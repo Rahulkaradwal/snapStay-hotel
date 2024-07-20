@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../../public/logo-no-background.svg";
+import logo from "/logo-no-background.svg";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
