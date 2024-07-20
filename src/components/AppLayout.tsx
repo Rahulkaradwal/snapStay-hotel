@@ -4,6 +4,7 @@ import Header from "../ui/Header";
 const AppLayout = () => {
   return (
     <div>
+      <Header isTopOfPage={true} />
       <Outlet />
     </div>
   );
