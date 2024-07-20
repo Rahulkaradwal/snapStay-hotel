@@ -29,7 +29,11 @@ export const theme = {
         950: "#020617",
       },
     },
+    backgroundImage: {
+      "about-us": "url('/rooms/aboutus.jpg')",
+    },
   },
+
   screens: {
     xs: "480px",
     sm: "768px",

@@ -20,16 +20,24 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
   return (
     <nav>
       <div
-        className={`${flexClass} justify-between ${headerBackground} text-golden-500 fixed top-0 z-30 w-full p-8 px-20`}
+        className={`${flexClass} justify-between ${headerBackground} fixed top-0 z-30 w-full p-8 px-20 text-slate-100`}
       >
         <img src={logo} alt="logo" className="w-28" />
         <div className="pointer-events-none absolute inset-0 drop-shadow-lg"></div>
         {isAboveScreen ? (
           <div className={`${flexClass} relative z-10 gap-16 text-2xl`}>
-            <Link to="/">Home</Link>
-            <Link to="/booking">Booking</Link>
-            <Link to="/services">Services</Link>
-            <Link to="/contact-us">Contact Us</Link>
+            <Link className="hover:text-golden-500 duration-75" to="/">
+              Home
+            </Link>
+            <Link className="hover:text-golden-500" to="/booking">
+              Booking
+            </Link>
+            <Link className="hover:text-golden-500" to="/services">
+              Services
+            </Link>
+            <Link className="hover:text-golden-500" to="/contact-us">
+              Contact Us
+            </Link>
           </div>
         ) : (
           <button
