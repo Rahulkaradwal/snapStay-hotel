@@ -1,8 +1,30 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+
+module.exports = {
+  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        golden: {
+          100: "#b59c7b",
+          500: "#b49062",
+          800: "#b88039",
+        },
+        blueGray: {
+          50: "#eceff1",
+          100: "#90a4ae",
+          500: "#607d8b",
+          800: "#37474f",
+          900: "#263238",
+        },
+        slate: {
+          50: "#f8fafc",
+          500: "#64748b",
+          800: "#0f172a",
+          950: "#020617",
+        },
+      },
+    },
   },
   plugins: [],
 };
