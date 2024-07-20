@@ -20,14 +20,12 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
   return (
     <nav>
       <div
-        className={`${flexClass} justify-between ${headerBackground} fixed top-0 z-30 w-full p-8 px-20`}
+        className={`${flexClass} justify-between ${headerBackground} text-golden-500 fixed top-0 z-30 w-full p-8 px-20`}
       >
         <img src={logo} alt="logo" className="w-28" />
-        <div className="pointer-events-none absolute inset-0 bg-zinc-900 opacity-30 drop-shadow-lg"></div>
+        <div className="pointer-events-none absolute inset-0 drop-shadow-lg"></div>
         {isAboveScreen ? (
-          <div
-            className={`${flexClass} text-golden-500 relative z-10 gap-16 text-2xl`}
-          >
+          <div className={`${flexClass} relative z-10 gap-16 text-2xl`}>
             <Link to="/">Home</Link>
             <Link to="/booking">Booking</Link>
             <Link to="/services">Services</Link>
@@ -38,7 +36,7 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
             className="bg-secondary-500 relative z-10 rounded-full p-2"
             onClick={() => setIsMenuToggled(!isMenuToggled)}
           >
-            <Bars3Icon className="h-6 w-6 text-white" />
+            <Bars3Icon className="text-golden-500 h-6 w-6" />
           </button>
         )}
       </div>
@@ -53,11 +51,11 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
             {/* close icon */}
             <div className="flex justify-end p-12">
               <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
-                <XMarkIcon className="h-6 w-6 text-gray-400" />
+                <XMarkIcon className="text-golden-500 h-6 w-6" />
               </button>
             </div>
             {/* mobile menu */}
-            <div className="flex flex-col items-center gap-10 text-2xl text-white">
+            <div className="text-golden-500 flex flex-col items-center gap-10 text-2xl">
               <Link to="/" onClick={() => setIsMenuToggled(false)}>
                 Home
               </Link>
