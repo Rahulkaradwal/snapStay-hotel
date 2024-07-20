@@ -26,7 +26,7 @@ const Carousel = (props: Props) => {
       </FlowbiteCarousel>
       {/* Heading and Buttons */}
       <div className="flext-start absolute left-8 top-1/2 flex flex-col gap-10 p-8 pr-96 text-slate-100">
-        <h1 className="mb-4 text-2xl">
+        <h1 className="mb-4 text-lg md:text-2xl">
           Welcome to Snap Stay, where luxury meets comfort in the heart of
           Toronto. Our elegant rooms, exquisite dining, and personalized service
           ensure a memorable stay.

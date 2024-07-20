@@ -7,6 +7,7 @@ export const content = [
   "./src/**/*.{vue,js,ts,jsx,tsx}",
   flowbite.content(),
 ];
+
 export const theme = {
   extend: {
     colors: {
@@ -31,13 +32,14 @@ export const theme = {
     },
     backgroundImage: {
       "about-us": "url('/rooms/aboutus.jpg')",
+      "special-package": "url('/rooms/dark-hotel.jpg')",
     },
   },
-
   screens: {
     xs: "480px",
     sm: "768px",
     md: "1060px",
   },
 };
+
 export const plugins = [flowbite.plugin()];

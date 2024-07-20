@@ -15,27 +15,39 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
   const isAboveScreen = useMediaQuery("(min-width: 1060px)");
   const headerBackground = isTopOfPage
     ? " "
-    : "bg-zinc-900 opacity-90 drop-shadow-lg";
+    : "bg-zinc-900 opacity-50 drop-shadow-lg";
 
   return (
     <nav>
       <div
-        className={`${flexClass} justify-between ${headerBackground} fixed top-0 z-30 w-full p-8 px-20 text-slate-100`}
+        className={`${flexClass} justify-between ${headerBackground} fixed top-0 z-30 w-full p-2 px-20 text-slate-100`}
       >
         <img src={logo} alt="logo" className="w-28" />
         <div className="pointer-events-none absolute inset-0 drop-shadow-lg"></div>
         {isAboveScreen ? (
           <div className={`${flexClass} relative z-10 gap-16 text-2xl`}>
-            <Link className="hover:text-golden-500 duration-75" to="/">
+            <Link
+              className="transition duration-500 hover:text-golden-500"
+              to="/"
+            >
               Home
             </Link>
-            <Link className="hover:text-golden-500" to="/booking">
+            <Link
+              className="transition duration-500 hover:text-golden-500"
+              to="/booking"
+            >
               Booking
             </Link>
-            <Link className="hover:text-golden-500" to="/services">
+            <Link
+              className="transition duration-500 hover:text-golden-500"
+              to="/services"
+            >
               Services
             </Link>
-            <Link className="hover:text-golden-500" to="/contact-us">
+            <Link
+              className="transition duration-500 hover:text-golden-500"
+              to="/contact-us"
+            >
               Contact Us
             </Link>
           </div>
@@ -44,7 +56,7 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
             className="bg-secondary-500 relative z-10 rounded-full p-2"
             onClick={() => setIsMenuToggled(!isMenuToggled)}
           >
-            <Bars3Icon className="text-golden-500 h-6 w-6" />
+            <Bars3Icon className="h-6 w-6 text-golden-500" />
           </button>
         )}
       </div>
@@ -59,11 +71,11 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
             {/* close icon */}
             <div className="flex justify-end p-12">
               <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
-                <XMarkIcon className="text-golden-500 h-6 w-6" />
+                <XMarkIcon className="h-6 w-6 text-golden-500" />
               </button>
             </div>
             {/* mobile menu */}
-            <div className="text-golden-500 flex flex-col items-center gap-10 text-2xl">
+            <div className="flex flex-col items-center gap-10 text-2xl text-golden-500">
               <Link to="/" onClick={() => setIsMenuToggled(false)}>
                 Home
               </Link>
