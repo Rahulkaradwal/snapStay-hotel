@@ -34,15 +34,15 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
             </Link>
             <Link
               className="transition duration-500 hover:text-golden-500"
-              to="/booking"
-            >
-              Booking
-            </Link>
-            <Link
-              className="transition duration-500 hover:text-golden-500"
               to="/services"
             >
               Services
+            </Link>{" "}
+            <Link
+              className="transition duration-500 hover:text-golden-500"
+              to="/booking"
+            >
+              Booking
             </Link>
             <Link
               className="transition duration-500 hover:text-golden-500"

@@ -33,6 +33,7 @@ export const theme = {
     backgroundImage: {
       "about-us": "url('/rooms/aboutus.jpg')",
       "special-package": "url('/rooms/dark-hotel.jpg')",
+      "service-background": "url('/rooms/service.jpg')",
     },
   },
   screens: {

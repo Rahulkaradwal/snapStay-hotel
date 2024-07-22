@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 type Props = {
@@ -11,7 +10,7 @@ type Props = {
 
 const Card = ({ slide }: Props) => {
   return (
-    <div className="w-fit p-4 text-slate-50">
+    <div className="w-fit cursor-pointer p-4 text-slate-50 transition-all duration-500 hover:scale-110">
       <img
         className="h-[14rem] w-full bg-cover object-cover md:h-[22rem]"
         src={slide.img}

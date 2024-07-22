@@ -1,4 +1,3 @@
-import Card from "./Card";
 import SlickCarousel from "./SlickCarousel";
 
 const SpecialPackage = () => {

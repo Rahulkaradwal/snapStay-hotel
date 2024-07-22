@@ -1,7 +1,12 @@
 import React from "react";
+import Cover from "../components/Services/Cover";
 
 function Services() {
-  return <div>Services</div>;
+  return (
+    <div>
+      <Cover />
+    </div>
+  );
 }
 
 export default Services;

@@ -10,8 +10,8 @@ const Carousel = (props: Props) => {
     <div className="relative h-screen">
       <FlowbiteCarousel
         slideInterval={10000}
-        leftControl={<ChevronLeftIcon className="text-golden-500 h-6 w-6" />}
-        rightControl={<ChevronRightIcon className="text-golden-500 h-6 w-6" />}
+        leftControl={<ChevronLeftIcon className="h-6 w-6 text-golden-500" />}
+        rightControl={<ChevronRightIcon className="h-6 w-6 text-golden-500" />}
       >
         {props.images.map((image, index) => (
           <div className="relative" key={index}>
@@ -20,7 +20,7 @@ const Carousel = (props: Props) => {
               src={image}
               alt={`Slide ${index + 1}`}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-gray-700 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-gray-700 to-transparent"></div>
           </div>
         ))}
       </FlowbiteCarousel>
@@ -32,10 +32,10 @@ const Carousel = (props: Props) => {
           ensure a memorable stay.
         </h1>
         <div className="flex gap-2">
-          <button className="bg-golden-500 hover:bg-golden-800 rounded px-4 py-2 font-bold text-slate-100">
+          <button className="rounded bg-golden-500 px-4 py-2 font-bold text-slate-100 hover:bg-golden-800">
             Book Now
           </button>
-          <button className="text-golden-500 rounded border border-white bg-transparent px-4 py-2 font-bold hover:bg-white hover:text-black">
+          <button className="rounded border border-white bg-transparent px-4 py-2 font-bold text-golden-500 hover:bg-white hover:text-black">
             Learn More
           </button>
         </div>
