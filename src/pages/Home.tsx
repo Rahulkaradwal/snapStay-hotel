@@ -4,9 +4,8 @@ import room2 from "/rooms/beachview.jpg";
 import room3 from "/rooms/lobby-sofa.jpg";
 import room4 from "/rooms/outdoor.jpg";
 import room5 from "/rooms/mountain.jpg";
-import AboutUs from "../ui/AboutUs";
 import SpecialPackage from "../ui/SpecialPackage";
-import SlickCarousel from "../ui/SlickCarousel";
+import Footer from "../ui/Footer";
 
 function Home() {
   return (
@@ -14,9 +13,8 @@ function Home() {
       <section className="h-screen">
         <Carousel images={[room1, room2, room3, room4, room5]} />
       </section>
-      {/* <AboutUs /> */}
       <SpecialPackage />
-      {/* <SlickCarousel /> */}
+      <Footer />
     </div>
   );
 }

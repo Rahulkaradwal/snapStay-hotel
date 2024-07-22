@@ -4,7 +4,6 @@ import Home from "./pages/Home";
 import Booking from "./pages/Booking";
 import Services from "./pages/Services";
 import ContactUs from "./pages/ContactUs";
-
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
