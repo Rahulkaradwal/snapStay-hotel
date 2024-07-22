@@ -6,6 +6,7 @@ import room4 from "/rooms/outdoor.jpg";
 import room5 from "/rooms/mountain.jpg";
 import AboutUs from "../ui/AboutUs";
 import SpecialPackage from "../ui/SpecialPackage";
+import SlickCarousel from "../ui/SlickCarousel";
 
 function Home() {
   return (
@@ -15,6 +16,7 @@ function Home() {
       </section>
       {/* <AboutUs /> */}
       <SpecialPackage />
+      {/* <SlickCarousel /> */}
     </div>
   );
 }

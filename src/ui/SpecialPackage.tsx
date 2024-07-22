@@ -1,8 +1,9 @@
 import Card from "./Card";
+import SlickCarousel from "./SlickCarousel";
 
 const SpecialPackage = () => {
   return (
-    <section className="grid h-screen grid-cols-[1fr_2fr] content-center gap-16 bg-special-package bg-cover px-8 align-middle text-golden-800">
+    <section className="grid h-screen grid-cols-[1.5fr_2fr] content-center gap-16 bg-special-package bg-cover px-8 align-middle text-golden-800">
       <div className="flex flex-col gap-12 p-8">
         <h1 className="text-sm md:text-3xl">
           Packages for pure joy on holiday
@@ -13,8 +14,8 @@ const SpecialPackage = () => {
           long-awaited stay.
         </p>
       </div>
-      <div className="rounded-xl p-20 backdrop-blur-sm">
-        <Card />
+      <div className="h-[36rem] w-[60rem] rounded-xl p-2 backdrop-blur-sm">
+        <SlickCarousel />
       </div>
     </section>
   );

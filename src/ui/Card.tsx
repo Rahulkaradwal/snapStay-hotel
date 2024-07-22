@@ -1,12 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = () => {
+type Props = {
+  slide: {
+    img: string;
+    title: string;
+    description: string;
+  };
+};
+
+const Card = ({ slide }: Props) => {
   return (
-    <div className="w-fit text-slate-50">
+    <div className="w-fit p-4 text-slate-50">
       <img
-        className="h-[16rem] w-full bg-cover object-cover md:h-[28rem]"
-        src="/card/room1.jpg"
+        className="h-[14rem] w-full bg-cover object-cover md:h-[22rem]"
+        src={slide.img}
         alt="image"
       />
       <div className="flex flex-col gap-2 py-2">
@@ -19,8 +27,8 @@ const Card = () => {
             Book Now
           </Link>
         </div>
-        <h1>4=3 Special - High Season</h1>
-        <p>4 nighst from $870.00 per person</p>
+        <h1>{slide.title}</h1>
+        <p>{slide.description}</p>
       </div>
     </div>
   );
