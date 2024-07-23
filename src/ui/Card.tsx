@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 type Props = {
@@ -8,9 +9,17 @@ type Props = {
   };
 };
 
+const childVariant = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { opacity: 1, scale: 1 },
+};
+
 const Card = ({ slide }: Props) => {
   return (
-    <div className="w-fit cursor-pointer p-4 text-slate-50 transition-all duration-500 hover:scale-110">
+    <motion.div
+      variants={childVariant}
+      className="w-fit cursor-pointer p-4 text-slate-50 transition-all duration-500 hover:scale-110"
+    >
       <img
         className="h-[14rem] w-full bg-cover object-cover md:h-[22rem]"
         src={slide.img}
@@ -29,7 +38,7 @@ const Card = ({ slide }: Props) => {
         <h1>{slide.title}</h1>
         <p>{slide.description}</p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

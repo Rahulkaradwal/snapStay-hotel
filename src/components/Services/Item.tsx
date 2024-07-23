@@ -1,12 +1,23 @@
+import { motion } from "framer-motion";
 import {
   MdOutlineBedroomParent,
   MdOutlineKeyboardDoubleArrowRight,
 } from "react-icons/md";
+
 import { Link } from "react-router-dom";
 const Item = () => {
-  4;
   return (
-    <div className="gap mb-10 grid grid-cols-[2rem_1.75fr_1fr] gap-20 rounded-xl border p-12 align-top shadow-md">
+    <motion.div
+      className="gap mb-10 grid grid-cols-[2rem_1.75fr_1fr] gap-20 rounded-xl border p-12 align-top shadow-md"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 0.5 }}
+      variants={{
+        hidden: { opacity: 0, x: -50 },
+        visible: { opacity: 1, x: 0 },
+      }}
+    >
       <MdOutlineBedroomParent className="text-4xl text-golden-800" />
 
       <div className="flex-start flex flex-col gap-10">
@@ -35,7 +46,7 @@ const Item = () => {
           src="/card/room2.jpg"
         />
       </div>
-    </div>
+    </motion.div>
   );
 };
 
