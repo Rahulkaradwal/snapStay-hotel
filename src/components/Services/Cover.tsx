@@ -1,6 +1,6 @@
 const Cover = () => {
   return (
-    <section className="bg-service-background relative h-[85vh] bg-cover">
+    <section className="relative h-[85vh] bg-service-background bg-cover">
       <div className="absolute inset-0 bg-gradient-to-b from-gray-700 to-transparent"></div>
       <div className="relative grid h-[85vh] content-center gap-16 pl-20 pr-72 text-2xl leading-8 text-white backdrop-blur-sm">
         Welcome to SnapStay! Enjoy luxurious rooms, gourmet dining, a
