@@ -6,7 +6,6 @@ const Detail = () => {
   return (
     <>
       <div className="relative overflow-hidden">
-        <FloatButton />
         <Cover />
         <Description />
       </div>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const FloatButton = () => {
   return (
     <motion.div
-      className="fixed bottom-10 right-10 z-30 flex flex-col gap-3 rounded-md bg-slate-700 p-10 text-slate-50 shadow-md"
+      className="absolute right-10 top-10 z-30 flex flex-col gap-3 rounded-md bg-slate-700 p-10 text-slate-50 shadow-md"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
