@@ -5,6 +5,7 @@ import Booking from "./pages/Booking";
 import Services from "./pages/Services";
 import ContactUs from "./pages/ContactUs";
 import Detail from "./pages/Detail";
+import Rooms from "./pages/Rooms";
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "/rooms",
+        element: <Rooms />,
       },
     ],
   },
