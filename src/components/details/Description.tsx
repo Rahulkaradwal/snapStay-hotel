@@ -1,3 +1,4 @@
+import DescriptionFooter from "./DescriptionFooter";
 import DescriptionHeader from "./DescriptionHeader";
 import DescriptionIcons from "./DescriptionIcons";
 import ImageGrid from "./ImageGrid";
@@ -10,6 +11,7 @@ const Description = () => {
         <DescriptionIcons />
         <ImageGrid />
       </div>
+      <DescriptionFooter />
     </section>
   );
 };

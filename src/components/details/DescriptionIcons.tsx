@@ -6,6 +6,18 @@ import { TbParkingCircle } from "react-icons/tb";
 const EquipmentFlex = "flex items-center  gap-2 justify-between";
 const iconClass = "text-xl text-golden-800";
 
+const container = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.2 },
+  },
+};
+
+const childVariant = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { opacity: 1, scale: 1 },
+};
+
 function DescriptionIcons() {
   return (
     <div className="pr-20">
@@ -15,32 +27,28 @@ function DescriptionIcons() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.75 }}
-        variants={{
-          hidden: { opacity: 0, y: -50 },
-          visible: { opacity: 1, y: 0 },
-        }}
+        variants={container}
       >
-        <div className={EquipmentFlex}>
+        <motion.div variants={childVariant} className={EquipmentFlex}>
           <IoBedOutline className={iconClass} />
           <p>Large Bed</p>
-        </div>
-        <div className={EquipmentFlex}>
+        </motion.div>
+        <motion.div variants={childVariant} className={EquipmentFlex}>
           <PiCouch className={iconClass} />
           <p>Pull-out Couch</p>
-        </div>
-        <div className={EquipmentFlex}>
+        </motion.div>
+        <motion.div variants={childVariant} className={EquipmentFlex}>
           <MdRoofing className={iconClass} />
           <p>Private Terrace</p>
-        </div>
-        <div className={EquipmentFlex}>
+        </motion.div>
+        <motion.div variants={childVariant} className={EquipmentFlex}>
           <TbParkingCircle className={iconClass} />
           <p>Underground Parking</p>
-        </div>
-        <div className={EquipmentFlex}>
+        </motion.div>
+        <motion.div variants={childVariant} className={EquipmentFlex}>
           <MdOutlineCleanHands className={iconClass} />
           <p>Wellness</p>
-        </div>
+        </motion.div>
       </motion.div>
     </div>
   );
