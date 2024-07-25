@@ -3,7 +3,7 @@ import Item from "./Item";
 
 const MenuItems = () => {
   return (
-    <motion.div className="bg-slate-50 p-16">
+    <motion.div className="bg-dark p-16">
       <Item />
       <Item />
       <Item />

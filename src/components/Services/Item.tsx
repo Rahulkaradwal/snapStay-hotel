@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const Item = () => {
   return (
     <motion.div
-      className="gap mb-10 grid grid-cols-[2rem_1.75fr_1fr] gap-20 rounded-xl border p-12 align-top shadow-md"
+      className="gap mb-10 grid grid-cols-[2rem_1.75fr_1fr] gap-20 rounded-xl border bg-slate-50 p-12 align-top shadow-md"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}

@@ -13,7 +13,7 @@ const container = {
 function DescriptionFooter() {
   return (
     <motion.div
-      className="flex w-full justify-between border-b-2 border-golden-800 bg-gray-900 p-10 text-slate-50"
+      className="bg-dark flex w-full justify-between border-b-2 border-golden-800 p-10 text-slate-50"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.5 }}

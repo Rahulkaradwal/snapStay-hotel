@@ -1,7 +1,13 @@
-import React from "react";
+import BookingList from "../components/bookings/BookingList";
+import Footer from "../ui/Footer";
 
 function Booking() {
-  return <div>Booking</div>;
+  return (
+    <>
+      <BookingList />
+      <Footer />
+    </>
+  );
 }
 
 export default Booking;

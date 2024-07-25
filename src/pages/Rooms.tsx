@@ -6,7 +6,7 @@ import Footer from "../ui/Footer";
 function Rooms() {
   return (
     <>
-      <div className="grid grid-cols-2 gap-6 bg-gray-900 px-10 pt-20">
+      <div className="bg-dark grid grid-cols-2 gap-6 px-10 pt-20">
         <Details />
         <RoomList />
       </div>

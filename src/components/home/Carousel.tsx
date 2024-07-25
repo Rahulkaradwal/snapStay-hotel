@@ -21,7 +21,7 @@ const Carousel = (props: Props) => {
               src={image}
               alt={`Slide ${index + 1}`}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-gray-700 to-transparent"></div>
+            <div className="from-dark absolute inset-0 bg-gradient-to-b to-transparent"></div>
           </div>
         ))}
       </FlowbiteCarousel>

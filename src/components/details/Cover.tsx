@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 
 const Cover = () => {
   return (
-    <section className="bg-default-detail-cover relative h-screen bg-cover">
-      <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
+    <section className="relative h-screen bg-default-detail-cover bg-cover">
+      <div className="from-dark absolute inset-0 bg-gradient-to-t to-transparent"></div>
       <motion.div
         className="absolute bottom-40 left-20 flex w-1/3 flex-col gap-4 p-6 text-white"
         initial="hidden"

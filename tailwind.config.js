@@ -29,6 +29,8 @@ export const theme = {
         800: "#0f172a",
         950: "#020617",
       },
+      dark: "#222222",
+      ligthDark: "#383737",
     },
     backgroundImage: {
       "about-us": "url('/rooms/aboutus.jpg')",

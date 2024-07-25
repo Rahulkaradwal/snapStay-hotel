@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const Cover = () => {
   return (
     <section className="relative h-[85vh] bg-service-background bg-cover">
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-700 to-transparent"></div>
+      <div className="from-dark absolute inset-0 bg-gradient-to-b to-transparent"></div>
       <motion.div
         className="relative grid h-[85vh] content-center gap-16 pl-20 pr-72 text-2xl leading-8 text-white backdrop-blur-sm"
         initial="hidden"
