@@ -21,7 +21,7 @@ function BookingItem() {
           <h1 className="text-4xl font-semibold transition-all duration-300 hover:text-golden-800">
             Room Name
           </h1>
-          <span className="rounded-full bg-blue-500 p-2 px-6 text-xl">
+          <span className="rounded-full bg-golden-800 p-2 px-6 text-xl text-black">
             Price : $100
           </span>
         </div>
@@ -29,6 +29,9 @@ function BookingItem() {
         <div className="flex gap-4">
           <button className="rounded-md bg-red-700 p-2 text-slate-50 transition-all duration-300 hover:bg-red-500">
             Cancel Booking
+          </button>
+          <button className="rounded-md bg-golden-800 p-2 text-slate-50 transition-all duration-300 hover:bg-golden-500 hover:bg-red-500">
+            Check-Out
           </button>
           <button className="rounded-md bg-green-700 p-2 text-slate-50 transition-all duration-300 hover:bg-green-500">
             Check-In
