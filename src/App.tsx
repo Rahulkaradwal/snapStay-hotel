@@ -6,6 +6,8 @@ import Services from "./pages/Services";
 import ContactUs from "./pages/ContactUs";
 import Detail from "./pages/Detail";
 import Rooms from "./pages/Rooms";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -35,6 +37,18 @@ const router = createBrowserRouter([
         element: <Rooms />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <Home />,
+  },
+  {
+    path: "login",
+    element: <Login />,
+  },
+  {
+    path: "signup",
+    element: <SignUp />,
   },
 ]);
 
