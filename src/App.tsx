@@ -8,6 +8,7 @@ import Detail from "./pages/Detail";
 import Rooms from "./pages/Rooms";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import CheckIn from "./pages/CheckIn";
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/rooms",
         element: <Rooms />,
+      },
+      {
+        path: "/check-in",
+        element: <CheckIn />,
       },
     ],
   },
