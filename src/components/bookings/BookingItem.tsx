@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { MdOutlineBedroomParent } from "react-icons/md";
+import BookingButtons from "./BookingButtons";
 
 function BookingItem() {
   return (
     <motion.div
-      className="gap bg-ligthDark mx-20 mb-10 mt-10 grid grid-cols-[2rem_1.75fr_1fr] gap-20 rounded-xl p-12 align-top shadow-md"
+      className="gap mx-20 mb-10 mt-10 grid grid-cols-[2rem_1.75fr_1fr] gap-20 bg-ligthDark p-12 align-top shadow-md"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
@@ -26,21 +27,11 @@ function BookingItem() {
           </span>
         </div>
         <h2 className="text-xl">description & details</h2>
-        <div className="flex gap-4">
-          <button className="rounded-md bg-red-700 p-2 text-slate-50 transition-all duration-300 hover:bg-red-500">
-            Cancel Booking
-          </button>
-          <button className="rounded-md bg-golden-800 p-2 text-slate-50 transition-all duration-300 hover:bg-golden-500 hover:bg-red-500">
-            Check-Out
-          </button>
-          <button className="rounded-md bg-green-700 p-2 text-slate-50 transition-all duration-300 hover:bg-green-500">
-            Check-In
-          </button>
-        </div>
+        <BookingButtons />
       </div>
       <div className="max-h-56 min-h-40 min-w-40 max-w-96">
         <img
-          className="h-full w-full cursor-pointer rounded-xl object-cover transition-all duration-500 hover:scale-105"
+          className="h-full w-full cursor-pointer object-cover transition-all duration-500 hover:scale-105"
           src="/card/room2.jpg"
         />
       </div>
