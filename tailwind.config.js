@@ -37,7 +37,6 @@ export const theme = {
       "special-package": "url('/rooms/dark-hotel.jpg')",
       "service-background": "url('/rooms/service.jpg')",
       "default-detail-cover": "url('/rooms/window-pool.jpg')",
-      // "auth-cover": "url('/auth/hotel-auth.jpg')",
       "auth-cover": "url('/auth/hotel-cover.png')",
     },
   },
