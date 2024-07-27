@@ -63,14 +63,13 @@ const Window = ({ windowName, children }: WindowProps) => {
   if (windowName !== openModal) return null;
 
   return createPortal(
-    <div className="fixed left-0 top-0 z-50 flex h-screen w-screen items-center justify-center">
+    <div className="fixed left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-ligthDark/50">
       <div className="relative p-16 shadow-lg">
-        <button
-          className="absolute right-7 top-5 w-9 translate-x-3 rounded-sm bg-golden-800 hover:text-golden-500"
+        <HiXMark
+          className="absolute right-7 top-5 w-9 translate-x-3 rounded-sm text-5xl text-slate-50 hover:cursor-pointer hover:text-dark"
           onClick={close}
-        >
-          <HiXMark />
-        </button>
+        />
+
         <div>
           {cloneElement(children as React.ReactElement, {
             onCloseModal: close,
