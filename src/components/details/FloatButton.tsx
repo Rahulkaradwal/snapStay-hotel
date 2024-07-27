@@ -9,7 +9,7 @@ type Props = {
 const FloatButton = ({ name, price }: Props) => {
   return (
     <motion.div
-      className="absolute right-10 top-10 z-30 flex flex-col gap-3 rounded-md bg-slate-700 p-10 text-slate-50 shadow-md"
+      className="absolute right-10 top-10 z-30 flex flex-col gap-3 rounded-md bg-dark p-10 text-slate-50 shadow-[0_0_50px_0px] shadow-golden-100"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
@@ -23,7 +23,7 @@ const FloatButton = ({ name, price }: Props) => {
       <h1 className="text-3xl">from ${price}</h1>
       <p>per person with pamering half board</p>
       <Link
-        className="w-fit rounded-sm bg-golden-800 p-2 transition duration-500"
+        className="w-fit rounded-sm bg-golden-800 p-2 transition duration-500 hover:text-black"
         to="/booking"
       >
         Book now

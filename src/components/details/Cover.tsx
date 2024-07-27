@@ -19,8 +19,8 @@ const Cover = ({ data }: Props) => {
           visible: { opacity: 1, y: 0 },
         }}
       >
-        <span className="xl text-golden-800">Suites</span>
-        <h1 className="w-fit bg-golden-800 p-4 text-4xl font-semibold text-black shadow-2xl transition-all duration-200">
+        <span className="text-golden-800">Suites</span>
+        <h1 className="w-fit bg-golden-800 p-4 text-2xl font-semibold text-black shadow-2xl transition-all duration-200">
           {data.name}
         </h1>
         <p className="text-xl">Applied Discount : {data.discount} $</p>
