@@ -22,10 +22,9 @@ export type Cabin = {
   _id: string;
 };
 
-const getCabins = async (): Promise<Cabin[]> => {
+const getRooms = async (): Promise<Cabin[]> => {
   try {
     const response = await axiosInstance.get<{ data: Cabin[] }>("/cabins");
-    console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -37,4 +36,19 @@ const getCabins = async (): Promise<Cabin[]> => {
   }
 };
 
-export default getCabins;
+export const getRoom = async (id: string): Promise<Cabin> => {
+  try {
+    const response = await axiosInstance.get<{ data: Cabin }>(`/cabins/${id}`);
+
+    return response.data.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios error:", error.response?.data || error.message);
+    } else {
+      console.error("Unknown error:", error);
+    }
+    throw error;
+  }
+};
+
+export default getRooms;

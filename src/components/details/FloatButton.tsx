@@ -1,7 +1,12 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-const FloatButton = () => {
+type Props = {
+  name: string;
+  price: number;
+};
+
+const FloatButton = ({ name, price }: Props) => {
   return (
     <motion.div
       className="absolute right-10 top-10 z-30 flex flex-col gap-3 rounded-md bg-slate-700 p-10 text-slate-50 shadow-md"
@@ -14,8 +19,8 @@ const FloatButton = () => {
         visible: { opacity: 1, x: 0 },
       }}
     >
-      <h2 className="text-xl text-golden-800">Suite Name</h2>
-      <h1 className="text-3xl">from $295.00</h1>
+      <h2 className="text-xl text-golden-800">{name}</h2>
+      <h1 className="text-3xl">from ${price}</h1>
       <p>per person with pamering half board</p>
       <Link
         className="w-fit rounded-sm bg-golden-800 p-2 transition duration-500"

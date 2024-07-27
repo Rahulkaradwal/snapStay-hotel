@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
-
-function DescriptionHeader() {
+type Props = {
+  description: string;
+};
+function DescriptionHeader({ description }: Props) {
   return (
     <motion.div
       className="pr-20"
@@ -14,12 +16,7 @@ function DescriptionHeader() {
       }}
     >
       <h1 className="text-2xl text-golden-800"> Descritpion</h1>
-      <p className="text-md mt-10">
-        The suite comprises a spacious living room-bedroom combo with double bed
-        and sofa bed, a bathroom with shower and separate toilet with bidet, and
-        a wellness terrace with relaxation lounger. The suites enjoy partially
-        an open view of the lake. Underground parking is included.
-      </p>
+      <p className="text-md mt-10">{description}</p>
     </motion.div>
   );
 }
