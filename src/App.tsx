@@ -9,6 +9,10 @@ import Rooms from "./pages/Rooms";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import CheckIn from "./pages/CheckIn";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "react-hot-toast";
+
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -58,7 +62,32 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 5000 * 60, // 5 minute
+      },
+    },
+  });
+  return (
+    <QueryClientProvider client={queryClient}>
+      {/* <Toaster
+        position="top-center"
+        reverseOrder={true}
+        toastOptions={{
+          success: {
+            duration: 3000,
+          },
+          error: { duration: 5000 },
+        }}
+        containerClassName="text-gray-700 max-w-xl text-base bg-gray-100 p-4"
+      /> */}
+
+      <RouterProvider router={router} />
+
+      <ReactQueryDevtools />
+    </QueryClientProvider>
+  );
 }
 
 export default App;

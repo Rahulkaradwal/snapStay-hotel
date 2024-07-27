@@ -65,17 +65,17 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
       {!isAboveScreen && isMenuToggled && (
         <div className="fixed inset-0 z-40">
           {/* overlay */}
-          <div className="absolute inset-0 bg-black opacity-50"></div>
+          <div className="absolute inset-0 bg-black opacity-80"></div>
           {/* menu content */}
           <div className="relative z-50">
             {/* close icon */}
             <div className="flex justify-end p-12">
               <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
-                <XMarkIcon className="h-6 w-6 text-golden-500" />
+                <XMarkIcon className="h-6 w-6 text-slate-100" />
               </button>
             </div>
             {/* mobile menu */}
-            <div className="flex flex-col items-center gap-10 text-2xl text-golden-500">
+            <div className="flex flex-col items-center gap-10 text-2xl text-slate-100">
               <Link to="/" onClick={() => setIsMenuToggled(false)}>
                 Home
               </Link>

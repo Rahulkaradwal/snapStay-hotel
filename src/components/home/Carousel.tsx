@@ -11,8 +11,8 @@ const Carousel = (props: Props) => {
     <div className="relative h-screen">
       <FlowbiteCarousel
         slideInterval={10000}
-        leftControl={<ChevronLeftIcon className="h-6 w-6 text-golden-500" />}
-        rightControl={<ChevronRightIcon className="h-6 w-6 text-golden-500" />}
+        leftControl={<ChevronLeftIcon className="h-10 w-10 text-slate-100" />}
+        rightControl={<ChevronRightIcon className="h-10 w-10 text-slate-100" />}
       >
         {props.images.map((image, index) => (
           <div className="relative" key={index}>
@@ -21,7 +21,7 @@ const Carousel = (props: Props) => {
               src={image}
               alt={`Slide ${index + 1}`}
             />
-            <div className="from-dark absolute inset-0 bg-gradient-to-b to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-dark to-transparent"></div>
           </div>
         ))}
       </FlowbiteCarousel>
