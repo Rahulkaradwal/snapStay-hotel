@@ -40,9 +40,9 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
             </Link>{" "}
             <Link
               className="transition duration-500 hover:text-golden-500"
-              to="/booking"
+              to="/rooms"
             >
-              Booking
+              Explore Rooms
             </Link>
             <Link
               className="transition duration-500 hover:text-golden-500"

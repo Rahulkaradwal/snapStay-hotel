@@ -1,6 +1,7 @@
 import { Carousel as FlowbiteCarousel } from "flowbite-react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 type Props = {
   images: string[];
@@ -53,12 +54,18 @@ const Carousel = (props: Props) => {
             visible: { opacity: 1, x: 0 },
           }}
         >
-          <button className="rounded bg-golden-500 px-4 py-2 font-bold text-slate-100 hover:bg-golden-800">
-            Book Now
-          </button>
-          <button className="rounded border border-white bg-transparent px-4 py-2 font-bold text-golden-500 hover:bg-white hover:text-black">
-            Learn More
-          </button>
+          <Link
+            to="/rooms"
+            className="rounded bg-golden-800 px-4 py-2 text-xl font-semibold text-slate-100 transition-all duration-300 hover:bg-golden-800 hover:text-black"
+          >
+            Discover Rooms
+          </Link>
+          <Link
+            to="services"
+            className="rounded border border-white bg-transparent px-4 py-2 text-xl font-semibold text-golden-800 transition-all duration-300 hover:bg-white hover:text-black"
+          >
+            All Categories
+          </Link>
         </motion.div>
       </motion.div>
     </div>
