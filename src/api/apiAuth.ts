@@ -43,7 +43,7 @@ export const guestLogin = async (data: UserData): Promise<ResponseData> => {
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      console.error("Axios error:", error.response?.data || error.message);
+      throw error.response?.data || error.message;
     } else {
       console.error("Unknown error:", error);
     }

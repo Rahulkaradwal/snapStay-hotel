@@ -73,17 +73,16 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        {/* <Toaster
-        position="top-center"
-        reverseOrder={true}
-        toastOptions={{
-          success: {
-            duration: 3000,
+        <Toaster
+          position="top-center"
+          reverseOrder={true}
+          toastOptions={{
+            success: {
+              duration: 3000,
             },
             error: { duration: 5000 },
-            }}
-            containerClassName="text-gray-700 max-w-xl text-base bg-gray-100 p-4"
-            /> */}
+          }}
+        />
 
         <RouterProvider router={router} />
 
