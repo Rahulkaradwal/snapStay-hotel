@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import getCurrentTime from "../utils/getTime";
 
 interface AuthState {
   token: string | null;
@@ -6,66 +7,58 @@ interface AuthState {
 }
 
 interface AuthContextProps extends AuthState {
-  login: (token: string, expirationTime: Date) => void;
+  loginCtx: (token: string, expirationTime: number) => void;
   logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
-const TOKEN_KEY = "token";
-const EXPIRATION_KEY = "expirationTime";
-
-const getTokenExpiration = () => {
-  const expiration = localStorage.getItem(EXPIRATION_KEY);
-  return expiration ? new Date(expiration) : null;
-};
-
-const isTokenExpired = (expiration: Date | null) => {
+const isTokenExpired = (expiration: number | null) => {
   if (!expiration) {
     return true;
   }
-  return expiration.getTime() <= new Date().getTime();
+  return Number(getCurrentTime()) > expiration;
 };
 
 const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [token, setToken] = useState<string | null>(
-    localStorage.getItem(TOKEN_KEY),
+    localStorage.getItem("TOKEN_KEY"),
   );
 
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
-    !isTokenExpired(getTokenExpiration()),
-  );
+  const [isAuthenticated, setIsAuthenticated] =
+    useState<boolean>(!isTokenExpired);
 
   useEffect(() => {
     if (isAuthenticated && token) {
-      localStorage.setItem(TOKEN_KEY, token);
+      localStorage.setItem("TOKEN_KEY", token);
     }
   }, [token, isAuthenticated]);
   useEffect(() => {
     if (!isAuthenticated) {
-      localStorage.removeItem(TOKEN_KEY);
-      localStorage.removeItem(EXPIRATION_KEY);
+      localStorage.removeItem("TOKEN_KEY");
+      localStorage.removeItem("EXPIRATION_TIME");
     }
   }, [isAuthenticated]);
 
-  const login = (newToken: string, expiration: Date) => {
+  const loginCtx = (newToken: string, expiration: number) => {
+    console.log(newToken, expiration);
     setToken(newToken);
     setIsAuthenticated(true);
-    localStorage.setItem(TOKEN_KEY, newToken);
-    localStorage.setItem(EXPIRATION_KEY, expiration.toISOString());
+    localStorage.setItem("TOKEN_KEY", newToken);
+    localStorage.setItem("EXPIRATION_TIME", expiration.toString());
   };
 
   const logout = () => {
     setToken(null);
     setIsAuthenticated(false);
-    localStorage.removeItem(TOKEN_KEY);
-    localStorage.removeItem(EXPIRATION_KEY);
+    localStorage.removeItem("TOKEN_KEY");
+    localStorage.removeItem("EXPIRATION_TIME");
   };
 
   return (
-    <AuthContext.Provider value={{ token, isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ token, isAuthenticated, loginCtx, logout }}>
       {children}
     </AuthContext.Provider>
   );

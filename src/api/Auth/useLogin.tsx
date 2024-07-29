@@ -8,10 +8,7 @@ function useLogin() {
   const navigate = useNavigate();
   const { mutate: login, error } = useMutation({
     mutationFn: (guestData: UserData) => guestLogin(guestData),
-    onSuccess: (data) => {
-      console.log(data);
-      navigate("/home");
-    },
+    // onSuccess: (data) => {},
     onError: (error) => {
       toast.error(error.message);
     },

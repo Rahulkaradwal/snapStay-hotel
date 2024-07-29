@@ -23,7 +23,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/booking/:id",
+        path: "/booking",
         element: <Booking />,
       },
       {
@@ -48,10 +48,10 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "*",
-    element: <Home />,
-  },
+  // {
+  //   path: "*",
+  //   element: <Home />,
+  // },
   {
     path: "login",
     element: <Login />,

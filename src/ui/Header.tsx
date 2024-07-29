@@ -46,13 +46,21 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
 
             <div className={flexClass}>
               {isAuthenticated ? (
-                <button
-                  className="flex cursor-pointer items-center gap-2 transition-all duration-300 hover:text-golden-800"
-                  onClick={logout}
-                >
-                  Logout
-                  <IoLogOut className="text-3xl" />
-                </button>
+                <>
+                  <Link
+                    className="transition duration-500 hover:text-golden-500"
+                    to="/booking"
+                  >
+                    Bookings
+                  </Link>
+                  <button
+                    className="flex cursor-pointer items-center gap-2 transition-all duration-300 hover:text-golden-800"
+                    onClick={logout}
+                  >
+                    Logout
+                    <IoLogOut className="text-3xl" />
+                  </button>
+                </>
               ) : (
                 <>
                   <Link to="/login">Login</Link>

@@ -1,18 +1,32 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useLogin from "../../api/Auth/useLogin";
+import { useAuth } from "../../context/AuthContext";
+import { getCurrentTimePlus30Minutes } from "../../utils/getTime";
 
 function LoginUser() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const { login } = useLogin();
+  const { loginCtx } = useAuth();
+  const time = Number(getCurrentTimePlus30Minutes());
 
   const submitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (!email || !password) return;
-    login({ email, password });
+
+    login(
+      { email, password },
+      {
+        onSuccess: (data) => {
+          loginCtx(data.token, time);
+          navigate("/");
+        },
+      },
+    );
   };
 
   return (
