@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
 import { Form, Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import InputDiv from "../../ui/InputDiv";
+import useSignup from "../../api/Auth/useSignup";
 
 const inputClass = "my-4 w-80 rounded-sm border bg-ligthDark p-2";
 
-interface IFormInput {
+export interface IFormInput {
   firstName: string;
   lastName: string;
   email: string;
@@ -17,6 +19,8 @@ interface IFormInput {
 function SignupUser() {
   const navigate = useNavigate();
 
+  const { signup } = useSignup();
+
   const {
     register,
     handleSubmit,
@@ -24,7 +28,11 @@ function SignupUser() {
   } = useForm<IFormInput>();
 
   const onSubmit = (data: IFormInput) => {
-    console.log(data);
+    signup(data, {
+      onSuccess: () => {
+        navigate("/login");
+      },
+    });
   };
 
   return (
@@ -45,57 +53,85 @@ function SignupUser() {
         onSubmit={handleSubmit(onSubmit)}
         className="z-50 grid grid-cols-2 gap-4"
       >
-        <input
-          type="text"
-          id="firstName"
-          placeholder="First Name"
-          className={inputClass}
-          {...register("firstName", { required: "First Name is required" })}
-        />
-        <input
-          type="text"
-          placeholder="Last Name"
-          id="lastName"
-          className={inputClass}
-          {...register("lastName", { required: "Last Name is required" })}
-        />
-        <input
-          type="text"
-          id="email"
-          placeholder="Email"
-          className={inputClass}
-          {...register("email", { required: "Email is required" })}
-        />
-        <input
-          type="text"
-          placeholder="Phone"
-          id="phoneNumber"
-          className={inputClass}
-          {...register("phoneNumber", { required: "Phone number is required" })}
-        />
-        <input
-          type="text"
-          placeholder="Nationality"
-          id="nationality"
-          className={inputClass}
-          {...register("nationality", { required: "Nationality is required" })}
-        />
-        <input
-          type="password"
-          id="password"
-          placeholder="Password"
-          className={inputClass}
-          {...register("password", { required: "Password is required" })}
-        />
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          id="confirmPassword"
-          className={inputClass}
-          {...register("confirmPassword", {
-            required: "Confirm Password is required",
-          })}
-        />
+        <InputDiv htmlFor="firstName" errors={errors?.firstName?.message}>
+          <input
+            type="text"
+            id="firstName"
+            placeholder="First Name"
+            className={inputClass}
+            {...register("firstName", { required: "First Name is required" })}
+          />
+        </InputDiv>
+
+        <InputDiv htmlFor="lastName" errors={errors?.lastName?.message}>
+          <input
+            type="text"
+            placeholder="Last Name"
+            id="lastName"
+            className={inputClass}
+            {...register("lastName", { required: "Last Name is required" })}
+          />
+        </InputDiv>
+
+        <InputDiv htmlFor="email" errors={errors?.email?.message}>
+          <input
+            type="email"
+            placeholder="Email"
+            id="email"
+            className={inputClass}
+            {...register("email", { required: "Email is required" })}
+          />
+        </InputDiv>
+
+        <InputDiv htmlFor="phoneNumber" errors={errors?.phoneNumber?.message}>
+          <input
+            type="text"
+            placeholder="Phone Number"
+            id="phoneNumber"
+            className={inputClass}
+            {...register("phoneNumber", {
+              required: "Phone Number is required",
+            })}
+          />
+        </InputDiv>
+
+        <InputDiv htmlFor="nationality" errors={errors?.nationality?.message}>
+          <input
+            type="text"
+            placeholder="Nationality"
+            id="nationality"
+            className={inputClass}
+            {...register("nationality", {
+              required: "Nationality is required",
+            })}
+          />
+        </InputDiv>
+
+        <InputDiv htmlFor="password" errors={errors?.password?.message}>
+          <input
+            type="password"
+            placeholder="Password"
+            id="password"
+            className={inputClass}
+            {...register("password", { required: "Password is required" })}
+          />
+        </InputDiv>
+
+        <InputDiv
+          htmlFor="confirmPassword"
+          errors={errors?.confirmPassword?.message}
+        >
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            id="confirmPassword"
+            className={inputClass}
+            {...register("confirmPassword", {
+              required: "Confirm Password is required",
+            })}
+          />
+        </InputDiv>
+
         <button className="mt-4 h-[2.6rem] rounded-sm border-[0.2px] border-gray-500 bg-ligthDark text-gray-500 transition-all duration-300 hover:text-slate-50">
           Create Account
         </button>
