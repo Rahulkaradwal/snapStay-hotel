@@ -3,12 +3,16 @@ import logo from "/logo-no-background.svg";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
+import { IoLogOut } from "react-icons/io5";
+import { useAuth } from "../context/AuthContext";
 
 type HeaderProps = {
   isTopOfPage: boolean;
 };
 
 const Header = ({ isTopOfPage }: HeaderProps) => {
+  const { isAuthenticated } = useAuth();
+
   const [isMenuToggled, setIsMenuToggled] = useState(false);
 
   const flexClass = "flex gap-12 items-center";
@@ -25,31 +29,40 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
         <img src={logo} alt="logo" className="w-28" />
         <div className="pointer-events-none absolute inset-0 drop-shadow-lg"></div>
         {isAboveScreen ? (
-          <div className={`${flexClass} relative z-10 gap-16 text-2xl`}>
+          <div className={`${flexClass} relative z-10 gap-16 text-xl`}>
             <Link
               className="transition duration-500 hover:text-golden-500"
               to="/"
             >
               Home
             </Link>
+
+            <Link
+              className="transition duration-500 hover:text-golden-500"
+              to="/rooms"
+            >
+              Rooms
+            </Link>
             <Link
               className="transition duration-500 hover:text-golden-500"
               to="/services"
             >
               Services
-            </Link>{" "}
-            <Link
-              className="transition duration-500 hover:text-golden-500"
-              to="/rooms"
-            >
-              Explore Rooms
             </Link>
-            <Link
-              className="transition duration-500 hover:text-golden-500"
-              to="/contact-us"
-            >
-              Contact Us
-            </Link>
+
+            <div className={flexClass}>
+              {isAuthenticated ? (
+                <button className="flex cursor-pointer items-center gap-2 transition-all duration-300 hover:text-golden-800">
+                  Logout
+                  <IoLogOut className="text-3xl" />
+                </button>
+              ) : (
+                <>
+                  <Link to="/login">Login</Link>
+                  <Link to="/signup">Register</Link>
+                </>
+              )}
+            </div>
           </div>
         ) : (
           <button

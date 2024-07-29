@@ -40,7 +40,7 @@ function LoginUser() {
           onChange={(e) => setEmail(e.target.value)}
           type="email"
           placeholder="Email"
-          className="bg-lightDark my-4 w-80 rounded-sm border p-2"
+          className="my-4 w-80 rounded-sm border bg-ligthDark p-2"
         />
         <label htmlFor="password" className="sr-only">
           Password
@@ -50,7 +50,7 @@ function LoginUser() {
           onChange={(e) => setPassword(e.target.value)}
           type="password"
           placeholder="Password"
-          className="bg-lightDark rounded-sm border p-2"
+          className="rounded-sm border bg-ligthDark p-2"
         />
         <button
           type="submit"
