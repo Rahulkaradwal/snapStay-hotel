@@ -32,9 +32,8 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     return storedValue ? parseInt(storedValue, 10) : null;
   });
 
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
-    !!token && !isTokenExpired(expirationTime),
-  );
+  // Define a state to track authentication status
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   const logout = () => {
     setToken(null);
@@ -44,10 +43,10 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   useEffect(() => {
-    if (!token || isTokenExpired(expirationTime)) {
-      logout();
-    } else {
+    if (token && !isTokenExpired(expirationTime)) {
       setIsAuthenticated(true);
+    } else {
+      logout();
     }
   }, [token, expirationTime]);
 
@@ -77,6 +76,8 @@ function useAuth() {
   if (context === undefined) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
+
+  // Optionally, re-check isTokenExpired here if real-time checks are critical
   return context;
 }
 

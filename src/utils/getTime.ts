@@ -17,7 +17,7 @@ export const getCurrentTimePlus30Minutes = () => {
   const currentTime = new Date();
 
   // Add 30 minutes to the current time
-  currentTime.setMinutes(currentTime.getMinutes() + 30);
+  currentTime.setMinutes(currentTime.getMinutes() + 1);
 
   // Extract the hours and minutes after adding 30 minutes
   const hours = currentTime.getHours();
