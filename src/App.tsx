@@ -13,6 +13,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "./context/AuthContext";
+import ProtectRoute from "./components/ProtectRoute";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/booking",
-        element: <Booking />,
+        element: (
+          <ProtectRoute>
+            <Booking />
+          </ProtectRoute>
+        ),
       },
       {
         path: "/services",
@@ -32,7 +37,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/details/:roomId",
-        element: <Detail />,
+        element: (
+          <ProtectRoute>
+            <Detail />
+          </ProtectRoute>
+        ),
       },
       {
         path: "/contact-us",
@@ -44,7 +53,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/check-in",
-        element: <CheckIn />,
+        element: (
+          <ProtectRoute>
+            <CheckIn />
+          </ProtectRoute>
+        ),
       },
     ],
   },
