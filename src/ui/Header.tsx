@@ -11,7 +11,7 @@ type HeaderProps = {
 };
 
 const Header = ({ isTopOfPage }: HeaderProps) => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
 
   const [isMenuToggled, setIsMenuToggled] = useState(false);
 
@@ -43,16 +43,13 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
             >
               Rooms
             </Link>
-            <Link
-              className="transition duration-500 hover:text-golden-500"
-              to="/services"
-            >
-              Services
-            </Link>
 
             <div className={flexClass}>
               {isAuthenticated ? (
-                <button className="flex cursor-pointer items-center gap-2 transition-all duration-300 hover:text-golden-800">
+                <button
+                  className="flex cursor-pointer items-center gap-2 transition-all duration-300 hover:text-golden-800"
+                  onClick={logout}
+                >
                   Logout
                   <IoLogOut className="text-3xl" />
                 </button>

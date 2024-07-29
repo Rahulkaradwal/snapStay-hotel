@@ -12,25 +12,52 @@ function SignupUser() {
         hidden: { opacity: 0, x: -150 },
         visible: { opacity: 1, x: 0 },
       }}
-      className="absolute right-0 flex h-full w-1/3 flex-col items-center justify-center p-10 pt-1"
+      className="flex h-full flex-col items-center justify-center p-10 pt-1"
     >
-      <img className="w-60" src={"/logo-no-background.svg"} alt="logo" />
-      <form className="flex flex-col gap-4 pb-10 pt-20">
+      <img className="z-50 w-60" src={"/logo-no-background.svg"} alt="logo" />
+
+      <form className="z-50 grid grid-cols-2 gap-4">
         <input
           type="text"
-          placeholder="Username"
-          className="bg-ligthDark my-4 w-80 rounded-sm border p-2"
-        ></input>
+          placeholder="First Name"
+          className="my-4 w-80 rounded-sm border bg-ligthDark p-2"
+        />
+        <input
+          type="text"
+          placeholder="Last Name"
+          className="my-4 w-80 rounded-sm border bg-ligthDark p-2"
+        />
+        <input
+          type="text"
+          placeholder="Email"
+          className="my-4 w-80 rounded-sm border bg-ligthDark p-2"
+        />
+        <input
+          type="text"
+          placeholder="Phone"
+          className="my-4 w-80 rounded-sm border bg-ligthDark p-2"
+        />
+        <input
+          type="text"
+          placeholder="Nationality"
+          className="my-4 w-80 rounded-sm border bg-ligthDark p-2"
+        />
         <input
           type="password"
           placeholder="Password"
-          className="bg-ligthDark rounded-sm border p-2"
-        ></input>
-        <button className="my-4 rounded-sm bg-golden-500 p-2 text-slate-50 transition-all duration-300 hover:bg-golden-800 hover:text-black">
+          className="my-4 w-80 rounded-sm border bg-ligthDark p-2"
+        />
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          className="my-4 w-80 rounded-sm border bg-ligthDark p-2"
+        />
+        <button className="mt-4 h-[2.6rem] rounded-sm border-[0.2px] border-gray-500 bg-ligthDark text-gray-500 transition-all duration-300 hover:text-slate-50">
           Create Account
         </button>
       </form>
-      <Link className="text-md text-slate-50" to="/login">
+
+      <Link className="text-md z-50 mt-8 text-slate-50" to="/login">
         Already have an account?
       </Link>
     </motion.div>
