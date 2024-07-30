@@ -4,7 +4,6 @@ type Props = {
   data: Cabin;
 };
 const Cover = ({ data }: Props) => {
-  console.log(data);
   return (
     <section className="relative h-screen bg-default-detail-cover bg-cover">
       <div className="absolute inset-0 bg-gradient-to-t from-dark to-transparent"></div>

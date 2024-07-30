@@ -6,12 +6,9 @@ type Props = {
 };
 
 const ProtectRoute = ({ children }: Props) => {
-  // const { isAuthenticated } = useAuth();
-  // if (!isAuthenticated) {
-  //   return <Login />;
-  // }
-  const { authChecker } = useAuth();
+  const { authChecker, setIsAuthenticated } = useAuth();
   if (!authChecker()) {
+    setIsAuthenticated(false);
     return <Login />;
   }
   return children;

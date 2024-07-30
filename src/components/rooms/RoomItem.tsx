@@ -8,7 +8,6 @@ type RoomItemProps = {
 
 function RoomItem({ room }: RoomItemProps) {
   const navigate = useNavigate();
-  console.log(room);
   return (
     <div className="grid-cols[1fr_2fr] mb-10 grid grid-cols-2 content-center justify-between gap-6 transition-all duration-300 hover:scale-105">
       {/* <img src="/rooms/asthetic-room.jpg" alt="room cover" /> */}

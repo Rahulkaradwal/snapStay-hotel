@@ -4,6 +4,7 @@ import getCurrentTime from "../utils/getTime";
 interface AuthState {
   token: string | null;
   isAuthenticated: boolean;
+  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface AuthContextProps extends AuthState {
@@ -73,7 +74,14 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <AuthContext.Provider
-      value={{ token, authChecker, isAuthenticated, loginCtx, logout }}
+      value={{
+        token,
+        authChecker,
+        setIsAuthenticated,
+        isAuthenticated,
+        loginCtx,
+        logout,
+      }}
     >
       {children}
     </AuthContext.Provider>
