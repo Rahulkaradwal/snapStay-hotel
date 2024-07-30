@@ -1,6 +1,7 @@
 import axios from "axios";
 import { axiosInstance, URL } from "./api";
 import { Stripe } from "@stripe/stripe-js";
+import { getToken } from "../utils/getToken";
 
 // Define the structure for the cabin data
 interface Cabin {
@@ -32,9 +33,15 @@ interface ErrorResponse {
 export const Payment = async (
   data: Iinput,
 ): Promise<GetCabinSuccessResponse | ErrorResponse> => {
+  const token = getToken();
   try {
     const response = await axiosInstance.get(
       `${URL}/bookings/checkout-session/${data.id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
     );
     const sessionId = response.data.session.id;
 

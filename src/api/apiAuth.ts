@@ -2,19 +2,6 @@ import axios, { AxiosResponse } from "axios";
 import { axiosInstance, URL } from "./api";
 import { IFormInput } from "../components/auth/SignupUser";
 
-// {
-//     "status": "success",
-//     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTU5MDliZDNhNTE0OWNmYTM5MWM2ZCIsImlhdCI6MTcyMjIwNzQ4NSwiZXhwIjoxNzIyMjA5Mjg1fQ.f-xDKhAGRI1UaUOEYYKrkayzFNNrStjKpuwDEpYwKz0",
-//     "data": {
-//         "firstName": "Rahul",
-//         "lastName": "Karadwal",
-//         "email": "rahul@gmail.com",
-//         "nationality": "Indian",
-//         "phoneNumber": "7853289696",
-//         "id": "66a5909bd3a5149cfa391c6d"
-//     }
-// }
-
 export type Guest = {
   firstName: string;
   lastName: string;
