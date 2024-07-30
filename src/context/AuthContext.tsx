@@ -37,14 +37,9 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   // Define a state to track authentication status
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
-  // Define a function to check if token is expired
+  // Function to check if token is expired
   const authChecker = () => {
-    if (!token || isTokenExpired(expirationTime)) {
-      setIsAuthenticated(false);
-
-      return false;
-    }
-    return true;
+    return token !== null && !isTokenExpired(expirationTime);
   };
 
   const logout = () => {
