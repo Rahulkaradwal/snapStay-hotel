@@ -9,13 +9,15 @@ interface AuthState {
 interface AuthContextProps extends AuthState {
   loginCtx: (token: string, expirationTime: number) => void;
   logout: () => void;
+  authChecker: () => boolean;
 }
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
+// Helper function to check if token is expired
 const isTokenExpired = (expiration: number | null) => {
   if (!expiration) return true;
-  return Number(getCurrentTime()) > expiration;
+  return getCurrentTime() > expiration;
 };
 
 const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -34,6 +36,16 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Define a state to track authentication status
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
+  // Define a function to check if token is expired
+  const authChecker = () => {
+    if (!token || isTokenExpired(expirationTime)) {
+      setIsAuthenticated(false);
+
+      return false;
+    }
+    return true;
+  };
 
   const logout = () => {
     setToken(null);
@@ -65,7 +77,9 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <AuthContext.Provider value={{ token, isAuthenticated, loginCtx, logout }}>
+    <AuthContext.Provider
+      value={{ token, authChecker, isAuthenticated, loginCtx, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
