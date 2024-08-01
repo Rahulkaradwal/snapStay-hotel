@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import { Payment } from "../../api/apiBooking";
+
+import DateRangePicker from "../../ui/DateRangePicker";
+import PayButtons from "./PayButtons";
 
 type Props = {
   name: string;
@@ -10,27 +10,9 @@ type Props = {
 };
 
 const FloatButton = ({ name, price, id }: Props) => {
-  const [isProcessing, setIsProcessing] = useState<boolean>(false);
-
-  const makePayment = async () => {
-    setIsProcessing(true);
-    try {
-      const stripe = await loadStripe(
-        "pk_test_51PKq1n02bTSpcbhuqaywfxqs9IuqGt7yOhuQs48BUUq46m3uvjInTg9EBGcBybGK3F3a9OQnr8lXZfDYLGK7aSEV00ZKgtyHLL",
-      );
-      await Payment({ id, stripe });
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsProcessing(false);
-    }
-
-    setIsProcessing(false);
-  };
-
   return (
     <motion.div
-      className="absolute right-10 top-10 z-30 flex flex-col gap-3 rounded-md bg-dark p-10 text-slate-50 shadow-[0_0_50px_0px] shadow-golden-100"
+      className="absolute -top-52 right-10 z-30 flex flex-col gap-6 rounded-md bg-dark px-20 py-10 text-slate-50 shadow-[0_0_50px_0px] shadow-golden-100"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
@@ -40,15 +22,27 @@ const FloatButton = ({ name, price, id }: Props) => {
         visible: { opacity: 1, x: 0 },
       }}
     >
-      <h2 className="text-xl text-golden-800">{name}</h2>
-      <h1 className="text-3xl">from ${price}</h1>
-      <p>per person with pamering half board</p>
-      <button
-        onClick={makePayment}
-        className="w-fit rounded-sm bg-golden-800 p-2 transition duration-500 hover:text-black"
-      >
-        {isProcessing ? "Processing..." : "Book Now"}
-      </button>
+      <DateRangePicker />
+      <label className="block text-golden-800">
+        <input
+          type="checkbox"
+          className="mr-4 cursor-pointer bg-ligthDark p-2 checked:bg-golden-800 focus:outline-golden-800"
+        />
+        Add BreakFast
+      </label>
+
+      <input
+        type="input"
+        placeholder="Number of Guests"
+        className="mr-4 w-full bg-ligthDark p-2 placeholder:text-slate-50/45 focus:outline-none"
+      />
+      <textarea
+        name="observations"
+        placeholder="Add Observations"
+        className="border-none bg-ligthDark p-2 placeholder:text-slate-50/45 focus:outline-none"
+        id="observations"
+      />
+      <PayButtons id={id} />
     </motion.div>
   );
 };

@@ -43,7 +43,11 @@ export const Payment = async (
         },
       },
     );
-    const sessionId = response.data.session.id;
+
+    const sessionId = response.data?.session?.id;
+    if (!sessionId) {
+      throw new Error("Invalid session ID in response");
+    }
 
     if (data.stripe) {
       const result = await data.stripe.redirectToCheckout({ sessionId });
@@ -55,16 +59,26 @@ export const Payment = async (
         };
       }
     } else {
-      throw new Error("Stripe has not been loaded");
+      return {
+        status: "error",
+        message: "Stripe has not been loaded",
+      };
     }
 
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error("Axios error:", error.response?.data || error.message);
+      return {
+        status: "error",
+        message: error.response?.data?.message || error.message,
+      };
     } else {
       console.error("Unknown error:", error);
+      return {
+        status: "error",
+        message: "An unknown error occurred",
+      };
     }
-    throw error;
   }
 };
