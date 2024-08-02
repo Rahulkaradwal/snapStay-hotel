@@ -8,7 +8,7 @@ const Cover = ({ data }: Props) => {
     <section className="relative h-screen bg-default-detail-cover bg-cover">
       <div className="absolute inset-0 bg-gradient-to-t from-dark to-transparent"></div>
       <motion.div
-        className="absolute bottom-40 left-20 flex w-1/3 flex-col gap-4 rounded-md bg-ligthDark/85 p-10 px-16 text-white shadow-2xl shadow-golden-100"
+        className="absolute bottom-10 left-10 flex w-1/3 flex-col gap-4 rounded-md bg-ligthDark/85 p-10 px-16 text-white shadow-2xl shadow-golden-100"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
