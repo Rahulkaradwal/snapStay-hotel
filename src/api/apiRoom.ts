@@ -1,30 +1,12 @@
 import { axiosInstance } from "./api";
 import axios from "axios";
+import { CabinResponse } from "./types";
 
-type BookingSettings = {
-  breakfastPrice: number;
-  createdAt: string;
-  _id: string;
-  maxBookingLength: number;
-  maxGuestPerBooking: number;
-  minBookingLength: number;
-};
-
-export type Cabin = {
-  bookingSettings: BookingSettings;
-  description: string;
-  discount?: number;
-  image: string;
-  createdAt: string;
-  maxCapacity: number;
-  name: string;
-  regularPrice: number;
-  _id: string;
-};
-
-const getRooms = async (): Promise<Cabin[]> => {
+const getRooms = async (): Promise<CabinResponse[]> => {
   try {
-    const response = await axiosInstance.get<{ data: Cabin[] }>("/cabins");
+    const response = await axiosInstance.get<{ data: CabinResponse[] }>(
+      "/cabins",
+    );
     return response.data.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -36,9 +18,11 @@ const getRooms = async (): Promise<Cabin[]> => {
   }
 };
 
-export const getRoom = async (id: string): Promise<Cabin> => {
+export const getRoom = async (id: string): Promise<CabinResponse> => {
   try {
-    const response = await axiosInstance.get<{ data: Cabin }>(`/cabins/${id}`);
+    const response = await axiosInstance.get<{ data: CabinResponse }>(
+      `/cabins/${id}`,
+    );
 
     return response.data.data;
   } catch (error) {

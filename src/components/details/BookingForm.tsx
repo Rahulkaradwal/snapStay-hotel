@@ -1,24 +1,24 @@
 import { Form } from "react-router-dom";
 import DateRangePicker from "../../ui/DateRangePicker";
 import PayButtons from "./PayButtons";
-import { Cabin } from "../../api/apiRoom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
-import { Payment, WithoutPayBookingFormData } from "../../api/apiBooking";
+import { Payment } from "../../api/apiBooking";
 import toast from "react-hot-toast";
 import useBookWithoutPay from "../../api/Booking/useBookWithoutPay";
+import { CabinResponse, WithoutPayBookingFormData } from "../../api/types";
 
 const STRIPE_PUBLIC_KEY =
   "pk_test_51PKq1n02bTSpcbhuqaywfxqs9IuqGt7yOhuQs48BUUq46m3uvjInTg9EBGcBybGK3F3a9OQnr8lXZfDYLGK7aSEV00ZKgtyHLL";
 
 type Props = {
-  data: Cabin;
+  data: CabinResponse;
 };
 
 const BookingForm = ({ data }: Props) => {
   // custom hook
-  const { error, BookWithoutPayment } = useBookWithoutPay();
+  const { BookWithoutPayment } = useBookWithoutPay();
 
   // guest id from local storage
   const guest = localStorage.getItem("guestId");
@@ -65,7 +65,7 @@ const BookingForm = ({ data }: Props) => {
       return;
     }
     if (!guest) {
-      toast.error("Somethig went wrong. Please login Again");
+      toast.error("Something went wrong. Please login again");
       return;
     }
 
@@ -81,10 +81,11 @@ const BookingForm = ({ data }: Props) => {
 
     const totalPrice = numNights * data.regularPrice + extraPrice;
 
-    // console.log({ ...formValues, cabin, guest, totalPrice, numNights, isPaid });
     BookWithoutPayment({
       ...formValues,
-
+      startDate: new Date(formValues.startDate),
+      endDate: new Date(formValues.endDate),
+      numGuests: Number(formValues.numGuests),
       cabin,
       guest,
       totalPrice,
@@ -122,14 +123,17 @@ const BookingForm = ({ data }: Props) => {
 
       <input
         {...register("numGuests", {
-          required: true,
-          min: { value: 1, message: "Minimum number of guests shuold be 1" },
+          required: "Number of guests is required",
+          min: { value: 1, message: "Minimum number of guests should be 1" },
           max: { value: 10, message: "Maximum number of guests is 10" },
         })}
         type="number"
         placeholder="Number of Guests"
         className="relative mr-4 w-full bg-ligthDark p-2 placeholder:text-slate-50/45 focus:outline-none"
       />
+      {errors.numGuests && (
+        <p className="text-red-500">{errors.numGuests.message}</p>
+      )}
 
       <textarea
         {...register("observations")}
@@ -139,11 +143,7 @@ const BookingForm = ({ data }: Props) => {
         id="observations"
       />
 
-      <PayButtons
-        handleBooking={handleBooking}
-        makePayment={makePayment}
-        isProcessing={isProcessing}
-      />
+      <PayButtons makePayment={makePayment} isProcessing={isProcessing} />
     </Form>
   );
 };

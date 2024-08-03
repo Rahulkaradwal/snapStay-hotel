@@ -1,49 +1,13 @@
 import axios from "axios";
 import { axiosInstance, URL } from "./api";
-import { Stripe } from "@stripe/stripe-js";
 import { getToken } from "../utils/getToken";
-
-// Define the structure for the cabin data
-interface Cabin {
-  id: string;
-  name: string;
-  description: string;
-  regularPrice: number;
-  discount: number;
-  images: string[];
-}
-
-interface Iinput {
-  id: string;
-  stripe: Stripe | null;
-}
-
-// Define the structure for the success response
-interface GetCabinSuccessResponse {
-  status: "success";
-  data: Cabin;
-}
-
-// Define the structure for the error response
-interface ErrorResponse {
-  status: "error";
-  message: string;
-}
-
-export type WithoutPayBookingFormData = {
-  startDate: Date;
-  endDate: Date;
-  numGuests: number;
-  observations: string;
-  breakfast: boolean;
-  numNights: number;
-  isPaid: boolean;
-  cabin: string;
-  guest: string;
-  totalPrice: number;
-  extraPrice: number;
-  cabinPrice: number;
-};
+import { BookingData } from "./Booking/useBookWithoutPay";
+import {
+  ErrorResponse,
+  GetCabinSuccessResponse,
+  Iinput,
+  WithoutPayBookingFormData,
+} from "./types";
 
 export const Payment = async (
   data: Iinput,
@@ -102,10 +66,10 @@ export const Payment = async (
 
 export const WithoutPayApi = async (
   data: WithoutPayBookingFormData,
-): Promise<GetCabinSuccessResponse | ErrorResponse> => {
+): Promise<BookingData> => {
   const token = getToken();
   try {
-    const response = await axiosInstance.post(
+    const response = await axiosInstance.post<BookingData>(
       `${URL}/bookings/create-booking`,
       data,
       {
@@ -119,16 +83,35 @@ export const WithoutPayApi = async (
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error("Axios error:", error.response?.data || error.message);
-      return {
-        status: "error",
-        message: error.response?.data?.message || error.message,
-      };
+      throw new Error(error.response?.data?.message || error.message);
     } else {
       console.error("Unknown error:", error);
-      return {
-        status: "error",
-        message: "An unknown error occurred",
-      };
+      throw new Error("An unknown error occurred");
+    }
+  }
+};
+
+// api call to get all guests bookings
+
+export const getMyBookings = async () => {
+  const token = getToken();
+  try {
+    const response = await axiosInstance.get(
+      `${URL}/bookings/get-my-bookings`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios error:", error.response?.data || error.message);
+      throw new Error(error.response?.data?.message || error.message);
+    } else {
+      console.error("Unknown error:", error);
+      throw new Error("An unknown error occurred");
     }
   }
 };
