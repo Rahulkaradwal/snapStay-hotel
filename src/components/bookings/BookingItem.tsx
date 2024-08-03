@@ -34,11 +34,14 @@ function BookingItem({ Booking }: Props) {
       <MdOutlineBedroomParent className="text-4xl text-golden-800" />
 
       <div className="flex-start flex flex-col gap-10 text-slate-50">
-        <div className="flex justify-between">
-          <h1 className="text-4xl font-semibold transition-all duration-300 hover:text-golden-800">
+        <div className="grid grid-flow-col gap-6">
+          <h1 className="col-span-10 text-4xl font-semibold transition-all duration-300 hover:text-golden-800">
             {cabinName}
           </h1>
-          <span className="rounded-md border border-golden-800 p-2 px-6 text-xl text-slate-100">
+          <span className="text-md rounded-sn content-center bg-golden-800 text-center uppercase text-slate-100">
+            {status}
+          </span>
+          <span className="text-md content-center rounded-sm border border-golden-800 text-center text-slate-100">
             Price : ${totalPrice}
           </span>
         </div>

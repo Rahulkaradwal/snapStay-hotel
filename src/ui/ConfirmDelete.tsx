@@ -2,12 +2,14 @@ type ConfirmDeleteProps = {
   resourceName: string;
   actionName: string;
   onCloseModal?: () => void;
+  onConfirm?: () => void;
 };
 
 const ConfirmDelete = ({
   resourceName,
   actionName,
   onCloseModal,
+  onConfirm,
 }: ConfirmDeleteProps) => {
   return (
     <div className="flex w-[40rem] flex-col gap-5 rounded-xl bg-dark p-20 text-slate-50">
@@ -25,7 +27,10 @@ const ConfirmDelete = ({
         >
           Cancel
         </button>
-        <button className="rounded-md bg-red-700 p-2 text-slate-50 transition-all duration-300 hover:bg-red-500 hover:text-black">
+        <button
+          onClick={onConfirm}
+          className="rounded-md bg-red-700 p-2 text-slate-50 transition-all duration-300 hover:bg-red-500 hover:text-black"
+        >
           {actionName}
         </button>
       </div>

@@ -1,4 +1,4 @@
-import React, { cloneElement, ReactNode } from "react";
+import React, { cloneElement, ReactNode, ReactElement } from "react";
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 
@@ -7,12 +7,12 @@ type ModalProps = {
 };
 
 type OpenProps = {
-  children: ReactNode;
+  children: ReactElement;
   modalName: string;
 };
 
 type WindowProps = {
-  children: ReactNode;
+  children: ReactElement;
   windowName: string;
 };
 
@@ -47,7 +47,7 @@ const Open = ({ modalName, children }: OpenProps) => {
 
   const { open } = context;
 
-  return cloneElement(children as React.ReactElement, {
+  return cloneElement(children, {
     onClick: () => open(modalName),
   });
 };
@@ -63,15 +63,16 @@ const Window = ({ windowName, children }: WindowProps) => {
   if (windowName !== openModal) return null;
 
   return createPortal(
-    <div className="fixed left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-ligthDark/50">
-      <div className="relative p-16 shadow-lg">
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      <div className="bg-lightDark/50 absolute inset-0 backdrop-blur-md"></div>
+      <div className="relative z-10 rounded-md p-16">
         <HiXMark
           className="absolute right-7 top-5 w-9 translate-x-3 rounded-sm text-5xl text-slate-50 hover:cursor-pointer hover:text-dark"
           onClick={close}
         />
 
         <div>
-          {cloneElement(children as React.ReactElement, {
+          {cloneElement(children, {
             onCloseModal: close,
           })}
         </div>
