@@ -8,18 +8,29 @@ import BookingItem from "./BookingItem";
 
 function BookingList() {
   const { data, isLoading, error } = useMyBookings();
-  console.log(data.data);
-  let Bookings = [];
-  if (!isLoading) {
-    Bookings = data?.data;
-  }
+
   return (
     <div className="h-fit bg-dark py-20">
-      {error && <div>Error: {error.message}</div>}
-      {isLoading && <Spinner color="warning" size="xl" />}
-      {Bookings.map((booking) => (
-        <BookingItem key={booking._id} booking={booking} />
-      ))}
+      {isLoading && (
+        <div className="h-fit justify-center py-40 text-center text-2xl text-slate-50">
+          <Spinner color="warning" size="xl" />
+        </div>
+      )}
+      {error ? (
+        <div className="h-fit justify-center py-40 text-center text-2xl text-slate-50">
+          {error
+            ? "Some Error Occured, Please try again!"
+            : "Sorry! No Booking Found"}
+        </div>
+      ) : (
+        <>
+          {!isLoading &&
+            !error &&
+            data?.data.map((Booking) => (
+              <BookingItem key={Booking._id} Booking={Booking} />
+            ))}
+        </>
+      )}
     </div>
   );
 }

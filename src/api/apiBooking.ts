@@ -3,6 +3,7 @@ import { axiosInstance, URL } from "./api";
 import { getToken } from "../utils/getToken";
 import { BookingData } from "./Booking/useBookWithoutPay";
 import {
+  BookingResponse,
   ErrorResponse,
   GetCabinSuccessResponse,
   Iinput,
@@ -93,10 +94,10 @@ export const WithoutPayApi = async (
 
 // api call to get all guests bookings
 
-export const getMyBookings = async () => {
+export const getMyBookings = async (): Promise<BookingResponse> => {
   const token = getToken();
   try {
-    const response = await axiosInstance.get(
+    const response = await axiosInstance.get<BookingResponse>(
       `${URL}/bookings/get-my-bookings`,
       {
         headers: {

@@ -1,7 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
-import { WithoutPayApi, WithoutPayBookingFormData } from "../apiBooking";
+import { WithoutPayApi } from "../apiBooking";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { WithoutPayBookingFormData } from "../types";
 
 export interface BookingData {
   status: string;

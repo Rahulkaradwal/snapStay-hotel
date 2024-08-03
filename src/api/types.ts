@@ -61,3 +61,35 @@ export type CabinResponse = {
   regularPrice: number;
   _id: string;
 };
+
+export type Guest = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  nationality?: string;
+  id: string;
+};
+
+export type BookingData = {
+  cabin: CabinResponse;
+  guest: Guest;
+  cabinPrice: number;
+  createdAt: string;
+  _id: string;
+  endDate: string;
+  extraPrice: number;
+  hasBreakfast: boolean;
+  isPaid: boolean;
+  numGuests: number;
+  observations: string;
+  startDate: string;
+  totalPrice: number;
+  status: string;
+  __v?: number;
+};
+
+export type BookingResponse = {
+  status: string;
+  data: BookingData[];
+};
