@@ -22,6 +22,8 @@ function LoginUser() {
       { email, password },
       {
         onSuccess: (data) => {
+          localStorage.setItem("guestId", data.data.id.toString());
+
           loginCtx(data.token, time);
           navigate("/");
         },

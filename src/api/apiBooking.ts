@@ -30,6 +30,21 @@ interface ErrorResponse {
   message: string;
 }
 
+export type WithoutPayBookingFormData = {
+  startDate: Date;
+  endDate: Date;
+  numGuests: number;
+  observations: string;
+  breakfast: boolean;
+  numNights: number;
+  isPaid: boolean;
+  cabin: string;
+  guest: string;
+  totalPrice: number;
+  extraPrice: number;
+  cabinPrice: number;
+};
+
 export const Payment = async (
   data: Iinput,
 ): Promise<GetCabinSuccessResponse | ErrorResponse> => {
@@ -64,6 +79,41 @@ export const Payment = async (
         message: "Stripe has not been loaded",
       };
     }
+
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios error:", error.response?.data || error.message);
+      return {
+        status: "error",
+        message: error.response?.data?.message || error.message,
+      };
+    } else {
+      console.error("Unknown error:", error);
+      return {
+        status: "error",
+        message: "An unknown error occurred",
+      };
+    }
+  }
+};
+
+// api call to book room/cabin without paying
+
+export const WithoutPayApi = async (
+  data: WithoutPayBookingFormData,
+): Promise<GetCabinSuccessResponse | ErrorResponse> => {
+  const token = getToken();
+  try {
+    const response = await axiosInstance.post(
+      `${URL}/bookings/create-booking`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
 
     return response.data;
   } catch (error) {

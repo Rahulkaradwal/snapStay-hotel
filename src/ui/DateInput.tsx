@@ -1,5 +1,3 @@
-import React from "react";
-
 type Props = {
   type: string;
   // value: string;
@@ -13,6 +11,7 @@ const DateInput = ({ register, type, label }: Props) => {
     <div>
       <label className="block text-golden-800">{label}</label>
       <input
+        required
         {...register}
         type={type}
         // value={value}

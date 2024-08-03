@@ -5,7 +5,9 @@ import { Cabin } from "../../api/apiRoom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
-import { Payment } from "../../api/apiBooking";
+import { Payment, WithoutPayBookingFormData } from "../../api/apiBooking";
+import toast from "react-hot-toast";
+import useBookWithoutPay from "../../api/Booking/useBookWithoutPay";
 
 const STRIPE_PUBLIC_KEY =
   "pk_test_51PKq1n02bTSpcbhuqaywfxqs9IuqGt7yOhuQs48BUUq46m3uvjInTg9EBGcBybGK3F3a9OQnr8lXZfDYLGK7aSEV00ZKgtyHLL";
@@ -13,16 +15,18 @@ const STRIPE_PUBLIC_KEY =
 type Props = {
   data: Cabin;
 };
-type IFormData = {
-  startDate: Date;
-  endDate: Date;
-  numberOfGuests: number;
-  observations: string;
-  breakfast: boolean;
-};
 
 const BookingForm = ({ data }: Props) => {
+  // custom hook
+  const { error, BookWithoutPayment } = useBookWithoutPay();
+
+  // guest id from local storage
+  const guest = localStorage.getItem("guestId");
+
+  // cabin id
   const { _id: id } = data;
+  const cabin = id;
+  const cabinPrice = data.regularPrice;
 
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const makePayment = async () => {
@@ -35,26 +39,75 @@ const BookingForm = ({ data }: Props) => {
     } finally {
       setIsProcessing(false);
     }
-
-    setIsProcessing(false);
   };
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IFormData>();
+  } = useForm<WithoutPayBookingFormData>();
 
-  const onSubmit = (data: IFormData) => {
-    // makePayment();
-    console.log(data);
+  const handleBooking = (formValues: WithoutPayBookingFormData) => {
+    const isPaid = false;
+
+    if (errors?.numGuests) {
+      const msg = errors.numGuests.message;
+      toast.error(msg || "Please add number of guests");
+      return;
+    }
+
+    if (errors?.startDate || errors?.endDate) {
+      toast.error("Please add dates");
+      return;
+    }
+    if (new Date(formValues.startDate) > new Date(formValues.endDate)) {
+      toast.error("Start date cannot be after end date");
+      return;
+    }
+    if (!guest) {
+      toast.error("Somethig went wrong. Please login Again");
+      return;
+    }
+
+    const numNights =
+      (new Date(formValues.endDate).getTime() -
+        new Date(formValues.startDate).getTime()) /
+      (1000 * 3600 * 24);
+
+    let extraPrice = 0;
+    if (formValues.breakfast) {
+      extraPrice += 35;
+    }
+
+    const totalPrice = numNights * data.regularPrice + extraPrice;
+
+    // console.log({ ...formValues, cabin, guest, totalPrice, numNights, isPaid });
+    BookWithoutPayment({
+      ...formValues,
+
+      cabin,
+      guest,
+      totalPrice,
+      numNights,
+      isPaid,
+      extraPrice,
+      cabinPrice,
+    });
   };
 
-  console.log(errors);
+  const onSubmit = handleSubmit((data) => {
+    const formattedData = {
+      ...data,
+      startDate: new Date(data.startDate),
+      endDate: new Date(data.endDate),
+      numGuests: Number(data.numGuests),
+    };
+    handleBooking(formattedData);
+  });
 
   return (
     <Form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={onSubmit}
       className="absolute -top-52 right-10 z-30 flex flex-col gap-6 rounded-md bg-dark px-20 py-10 text-slate-50 shadow-[0_0_50px_0px] shadow-golden-100"
     >
       <DateRangePicker register={register} />
@@ -64,25 +117,20 @@ const BookingForm = ({ data }: Props) => {
           type="checkbox"
           className="mr-4 cursor-pointer bg-ligthDark p-2 checked:bg-golden-800 focus:outline-golden-800"
         />
-        Add BreakFast
+        Add Breakfast
       </label>
 
       <input
-        {...register("numberOfGuests", {
-          required: "Number of guests is required",
-          min: {
-            value: 1,
-            message: "Minimum number of guests is 1",
-          },
-          max: {
-            value: 10,
-            message: "Maximum number of guests is 10",
-          },
+        {...register("numGuests", {
+          required: true,
+          min: { value: 1, message: "Minimum number of guests shuold be 1" },
+          max: { value: 10, message: "Maximum number of guests is 10" },
         })}
-        type="input"
+        type="number"
         placeholder="Number of Guests"
-        className="mr-4 w-full bg-ligthDark p-2 placeholder:text-slate-50/45 focus:outline-none"
+        className="relative mr-4 w-full bg-ligthDark p-2 placeholder:text-slate-50/45 focus:outline-none"
       />
+
       <textarea
         {...register("observations")}
         name="observations"
@@ -90,7 +138,12 @@ const BookingForm = ({ data }: Props) => {
         className="border-none bg-ligthDark p-2 placeholder:text-slate-50/45 focus:outline-none"
         id="observations"
       />
-      <PayButtons makePayment={makePayment} isProcessing={isProcessing} />
+
+      <PayButtons
+        handleBooking={handleBooking}
+        makePayment={makePayment}
+        isProcessing={isProcessing}
+      />
     </Form>
   );
 };
