@@ -38,12 +38,12 @@ function BookingItem({ Booking }: Props) {
           <h1 className="text-4xl font-semibold transition-all duration-300 hover:text-golden-800">
             {cabinName}
           </h1>
-          <span className="rounded-full bg-golden-800 p-2 px-6 text-xl text-black">
+          <span className="rounded-md border border-golden-800 p-2 px-6 text-xl text-slate-100">
             Price : ${totalPrice}
           </span>
         </div>
         <h2 className="text-sm">{description}</h2>
-        <BookingButtons />
+        <BookingButtons status={status} bookingId={id} isPaid={isPaid} />
       </div>
       <div className="max-h-56 min-h-40 min-w-40 max-w-96">
         <img
