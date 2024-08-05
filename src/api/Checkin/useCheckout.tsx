@@ -7,9 +7,9 @@ function useCheckout() {
   const { mutate: checkout, error } = useMutation({
     mutationFn: (id: string) => checkoutBookingApi(id),
     mutationKey: ["checkout"],
-    onSuccess: () => {
+    onSuccess: (_, id) => {
       toast.success("Successfully checked out booking");
-      queryClient.invalidateQueries({ queryKey: ["bookings"] });
+      queryClient.invalidateQueries(["bookingDetail", id]); // Invalidate the specific booking query
     },
     onError: () => {
       toast.error("Something went wrong while checking out the booking");

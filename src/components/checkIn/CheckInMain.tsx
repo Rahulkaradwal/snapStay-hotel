@@ -26,7 +26,10 @@ function CheckInMain() {
             status={data.data.status}
           />
           <CheckInDetail data={data.data} />
-          <CheckInButton bookingId={bookingId} />
+          <CheckInButton
+            bookingId={bookingId || data.data._id}
+            status={data.data.status}
+          />
         </>
       )}
     </div>
