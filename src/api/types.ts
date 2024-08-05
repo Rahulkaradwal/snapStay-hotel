@@ -10,7 +10,7 @@ export interface Cabin {
 }
 
 export interface Iinput {
-  id: string;
+  cabinId: string;
   stripe: Stripe | null;
 }
 

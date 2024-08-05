@@ -5,10 +5,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Payment } from "../../api/apiBooking";
 import toast from "react-hot-toast";
 import useBookWithoutPay from "../../api/Booking/useBookWithoutPay";
-import { CabinResponse } from "../../api/types";
-import FormInput from "../../ui/FormInput";
-import calculateNumNights from "../../utils/getNights";
-import { useNavigate } from "react-router-dom";
+import { CabinResponse, WithoutPayBookingFormData } from "../../api/types";
 
 const STRIPE_PUBLIC_KEY =
   "pk_test_51PKq1n02bTSpcbhuqaywfxqs9IuqGt7yOhuQs48BUUq46m3uvjInTg9EBGcBybGK3F3a9OQnr8lXZfDYLGK7aSEV00ZKgtyHLL";
@@ -17,9 +14,9 @@ type Props = {
   data: CabinResponse;
 };
 
-type FormValues = {
-  startDate: string;
-  endDate: string;
+ type FormValues = {
+  startDate: Date;
+  endDate: Date;
   numGuests: number;
   breakfast: boolean;
   observations: string;
@@ -28,17 +25,17 @@ type FormValues = {
 type isBooking = "not-ready" | "booking" | "failed" | "finished";
 
 const BookingForm = ({ data }: Props) => {
-  const navigate = useNavigate();
   const { BookWithoutPayment } = useBookWithoutPay();
   const guest = localStorage.getItem("guestId");
-  const { _id: cabinId, regularPrice: cabinPrice } = data;
+  const { _id: cabin, regularPrice: cabinPrice } = data;
 
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [isBooking, setIsBooking] = useState<isBooking>("not-ready");
+  const [checked, setChecked] = useState<boolean>(false);
 
-  const [formValues, setFormValues] = useState<FormValues>({
-    startDate: "",
-    endDate: "",
+  const [formValues, setFormValues] = useState<WithoutPayBookingFormData>({
+    startDate: Date,
+    endDate: Date,
     numGuests: 1,
     breakfast: false,
     observations: "",
@@ -54,11 +51,11 @@ const BookingForm = ({ data }: Props) => {
     }));
   };
 
-  const BookWithPayment = async () => {
+  const makePayment = async () => {
     setIsProcessing(true);
     try {
       const stripe = await loadStripe(STRIPE_PUBLIC_KEY);
-      await Payment({ cabinId, stripe });
+      await Payment({ id, stripe });
     } catch (error) {
       console.log(error);
     } finally {
@@ -66,7 +63,7 @@ const BookingForm = ({ data }: Props) => {
     }
   };
 
-  const bookWithoutPayment = async () => {
+  const handleBooking = async () => {
     const isPaid = false;
 
     if (
@@ -93,10 +90,10 @@ const BookingForm = ({ data }: Props) => {
       return;
     }
 
-    const numNights = calculateNumNights(
-      formValues.startDate,
-      formValues.endDate,
-    );
+    const numNights =
+      (new Date(formValues.endDate).getTime() -
+        new Date(formValues.startDate).getTime()) /
+      (1000 * 3600 * 24);
 
     let extraPrice = 0;
     if (formValues.breakfast) {
@@ -107,13 +104,12 @@ const BookingForm = ({ data }: Props) => {
 
     try {
       setIsBooking("booking");
-
       await BookWithoutPayment({
         ...formValues,
         startDate: new Date(formValues.startDate),
         endDate: new Date(formValues.endDate),
         numGuests: Number(formValues.numGuests),
-        cabin: cabinId,
+        cabin,
         guest,
         totalPrice,
         numNights,
@@ -121,7 +117,7 @@ const BookingForm = ({ data }: Props) => {
         extraPrice,
         cabinPrice,
       });
-
+      toast.success("Booking successful");
       setIsBooking("finished");
     } catch (error) {
       console.log(error);
@@ -130,59 +126,44 @@ const BookingForm = ({ data }: Props) => {
     }
   };
 
-  const handleBooking = async () => {
-    try {
-      await bookWithoutPayment();
-      if (isBooking === "finished") {
-        toast.success("Booking successful");
-        navigate("/booking");
-      }
-    } catch (error) {
-      toast.error("Booking failed, please try again");
-    }
-  };
-
-  const handlePaying = async () => {
-    try {
-      await bookWithoutPayment();
-      if (isBooking === "finished") {
-        toast.success("Booking successful. Processing payment...");
-        await BookWithPayment();
-      }
-    } catch (error) {
-      toast.error(
-        "An error occurred while processing the payment, but the booking was successful. You can pay later in the booking.",
-      );
-    }
-  };
-
   return (
     <div className="absolute -top-52 right-10 z-30 flex flex-col gap-6 rounded-md bg-dark px-20 py-10 text-slate-50 shadow-[0_0_50px_0px] shadow-golden-100">
-      <DateRangePicker formValues={formValues} setFormValues={setFormValues} />
-      <FormInput
-        name="breakfast"
-        formValues={formValues}
-        handleInputChange={handleInputChange}
-        inputType="checkbox"
+      <DateRangePicker
+        setStartDate={setFormValues.startDate}
+        setEndDate={setFormValues.endDate}
+        startDate={formValues.startDate}
+        endDate={formValues.endDate}} 
       />
-      <FormInput
+      <label className="block text-golden-800">
+        <input
+          name="breakfast"
+          type="checkbox"
+          checked={formValues.breakfast}
+          onChange={handleInputChange}
+          className="mr-4 cursor-pointer bg-ligthDark p-2 checked:bg-golden-800 focus:outline-golden-800"
+        />
+        Add Breakfast
+      </label>
+      <input
         name="numGuests"
-        formValues={formValues}
-        handleInputChange={handleInputChange}
-        inputType="input"
+        type="number"
+        value={formValues.numGuests}
+        onChange={handleInputChange}
+        placeholder="Number of Guests"
+        className="relative mr-4 w-full bg-ligthDark p-2 placeholder:text-slate-50/45 focus:outline-none"
       />
-      <FormInput
+      <textarea
         name="observations"
-        formValues={formValues}
-        handleInputChange={handleInputChange}
-        inputType="textArea"
+        value={formValues.observations}
+        onChange={handleInputChange}
+        placeholder="Add Observations"
+        className="border-none bg-ligthDark p-2 placeholder:text-slate-50/45 focus:outline-none"
       />
-
       <PayButtons
-        isProcessing={isProcessing}
+        makePayment={makePayment}
         isBooking={isBooking}
+        isProcessing={isProcessing}
         handleBooking={handleBooking}
-        handlePaying={handlePaying}
       />
     </div>
   );

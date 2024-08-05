@@ -1,5 +1,5 @@
-// export const URL: string = "https://snap-stay-backend.vercel.app";
-export const URL: string = "http://localhost:3000";
+export const URL: string = "https://snap-stay-backend.vercel.app";
+// export const URL: string = "http://localhost:3000";
 
 import axios, { AxiosInstance } from "axios";
 

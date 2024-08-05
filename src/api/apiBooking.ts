@@ -16,7 +16,7 @@ export const Payment = async (
   const token = getToken();
   try {
     const response = await axiosInstance.get(
-      `${URL}/bookings/checkout-session/${data.id}`,
+      `${URL}/bookings/checkout-session/${data.cabinId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

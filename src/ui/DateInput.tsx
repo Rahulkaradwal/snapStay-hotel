@@ -1,22 +1,23 @@
+import React from "react";
+
 type Props = {
   type: string;
-  // value: string;
   label: string;
-  register: any;
-  // onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const DateInput = ({ register, type, label }: Props) => {
+const DateInput = ({ type, label, name, value, onChange }: Props) => {
   return (
-    <div>
-      <label className="block text-golden-800">{label}</label>
+    <div className="flex flex-col">
+      <label className="text-slate-50/45">{label}</label>
       <input
-        required
-        {...register}
         type={type}
-        // value={value}
-        // onChange={onChange}
-        className="mt-1 block w-full cursor-pointer border-none bg-ligthDark p-2 text-slate-50/45 shadow-sm focus:outline-none focus:ring-golden-500"
+        name={name}
+        value={value}
+        onChange={onChange}
+        className="bg-ligthDark p-2 placeholder:text-slate-50/45 focus:outline-none"
       />
     </div>
   );
