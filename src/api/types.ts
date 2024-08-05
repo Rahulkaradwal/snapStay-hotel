@@ -82,6 +82,7 @@ export type BookingData = {
   hasBreakfast: boolean;
   isPaid: boolean;
   numGuests: number;
+  numNights: number;
   observations: string;
   startDate: string;
   totalPrice: number;
@@ -92,4 +93,9 @@ export type BookingData = {
 export type BookingResponse = {
   status: string;
   data: BookingData[];
+};
+
+export type BookingType = {
+  data: BookingData;
+  status: string;
 };

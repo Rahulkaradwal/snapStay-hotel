@@ -1,8 +1,27 @@
 import { AiOutlineDollar } from "react-icons/ai";
 import { FaRegCircleCheck } from "react-icons/fa6";
 import { RiHotelLine, RiMessage3Line } from "react-icons/ri";
+import { BookingData } from "../../api/types";
+import { format, differenceInDays, parseISO } from "date-fns";
 
-function CheckInDetail() {
+type Props = {
+  data: BookingData;
+};
+
+function CheckInDetail({ data }: Props) {
+  // Parse the ISO date strings into Date objects
+  const start = parseISO(data.startDate);
+  const end = parseISO(data.endDate);
+  const createdDate = parseISO(data.createdAt);
+
+  // Format the dates
+  const formattedStartDate = format(start, "EEE, MMM dd yyyy");
+  const formattedEndDate = format(end, "EEE, MMM dd yyyy");
+  const formattedDate = format(createdDate, "EEE, MMM dd yyyy, h:mm a");
+
+  // Calculate the difference in days
+  const daysDifference = differenceInDays(end, start);
+
   const flexClass = "flex justify-between items-center gap-4  p-3 ";
   return (
     <div
@@ -11,37 +30,44 @@ function CheckInDetail() {
       <div className={`${flexClass} -m-3 rounded-t-xl bg-golden-100`}>
         <div className={`${flexClass} gap-4`}>
           <RiHotelLine className="text-2xl" />
-          <h1>5 nighst in Cabin</h1>
-          <h1>1 Bedroom</h1>
+          <h1>
+            {data.numNights} {data.numNights > 1 ? "Nights" : "Night"}
+          </h1>
+          <h1>{data.cabin.name}</h1>
         </div>
-        <h1>Mon, Jul 01 2024 (24 days ago) - Fri, Jul 05 2024</h1>
+        <h1>
+          {formattedStartDate} ({daysDifference} days ago) - {formattedEndDate}
+        </h1>
       </div>
       <div className={`mt-6 flex gap-4 p-4`}>
-        <p>Rahul Karadwal</p>
-        <p className="font-normal">rahulkaradwal@gmail.com</p>
-        <p className="font-normal">+91 123456789</p>
+        <p>{data.guest.firstName + " " + data.guest.lastName}</p>
+        <p className="font-normal">{data.guest.email}</p>
+        <p className="font-normal">{data.guest.phoneNumber}</p>
       </div>
       <div className={`flex items-center gap-4 p-4`}>
         <RiMessage3Line className="text-golden-800" />
         <p>
-          Observations : I have a gluten allergy and would like to request a
-          gluten free menu.
+          Observations :{" "}
+          {data.observations ? data.observations : "No observations"}
         </p>
       </div>
       <div className={`flex items-center gap-4 p-4`}>
         <FaRegCircleCheck className="text-golden-800" />
         <p>Breakfast included?</p>
-        <p>Yes</p>
+        <p>{data.hasBreakfast ? "Yes" : "No"}</p>
       </div>
 
       <div className={`${flexClass} justify-between rounded-lg bg-golden-800`}>
         <div className={flexClass}>
           <AiOutlineDollar />
-          <p>Total Price : $835.00 ($800.00 cabin + $35.00 breakfast)</p>
+          <p>
+            Total Price : ${data.totalPrice}.00 (${data.cabinPrice}.00 cabin X{" "}
+            {data.numNights} Number of Nights + ${data.extraPrice}.00 breakfast)
+          </p>
         </div>
       </div>
       <p className="flex justify-end pt-6 text-sm font-normal">
-        Booked Mon, Jul 01 2024, 9:24 PM
+        Booked {formattedDate}
       </p>
     </div>
   );

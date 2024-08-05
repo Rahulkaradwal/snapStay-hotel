@@ -4,6 +4,7 @@ import { getToken } from "../utils/getToken";
 import { BookingData } from "./Booking/useBookWithoutPay";
 import {
   BookingResponse,
+  BookingType,
   ErrorResponse,
   GetCabinSuccessResponse,
   Iinput,
@@ -99,6 +100,29 @@ export const getMyBookings = async (): Promise<BookingResponse> => {
   try {
     const response = await axiosInstance.get<BookingResponse>(
       `${URL}/bookings/get-my-bookings`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios error:", error.response?.data || error.message);
+      throw new Error(error.response?.data?.message || error.message);
+    } else {
+      console.error("Unknown error:", error);
+      throw new Error("An unknown error occurred");
+    }
+  }
+};
+
+export const getBookingApi = async (id: string): Promise<BookingType> => {
+  const token = getToken();
+  try {
+    const response = await axiosInstance.get<BookingType>(
+      `${URL}/bookings/getBooking/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
