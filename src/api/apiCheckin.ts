@@ -1,15 +1,17 @@
 import axios from "axios";
 import { getToken } from "../utils/getToken";
-import { axiosInstance } from "./api";
+import { URL } from "./api";
 
 export const deleteBooking = async (id: string) => {
   const token = getToken();
   try {
-    await axiosInstance.delete(`${URL}/bookings/getBookings/${id}`, {
+    const response = await axios.delete(`${URL}/bookings/getBooking/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+
+    return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error("Axios error:", error.response?.data || error.message);

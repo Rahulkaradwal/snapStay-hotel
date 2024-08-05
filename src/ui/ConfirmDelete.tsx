@@ -12,8 +12,8 @@ const ConfirmDelete = ({
   onConfirm,
 }: ConfirmDeleteProps) => {
   return (
-    <div className="flex w-[40rem] flex-col gap-5 rounded-xl bg-dark p-20 text-slate-50">
-      <h1 className="text-4xl">
+    <div className="flex w-[40rem] flex-col gap-8 rounded-xl bg-dark p-20 text-slate-50">
+      <h1 className="text-3xl">
         {actionName} {resourceName}
       </h1>
       <p className="mb-5 text-xl">
@@ -22,14 +22,14 @@ const ConfirmDelete = ({
 
       <div className="flex-end flex gap-5 text-xl">
         <button
-          className="rounded-md bg-golden-800 p-2 text-slate-50 transition-all duration-300 hover:bg-golden-500 hover:text-black"
+          className="w-28 rounded-sm bg-golden-800 p-2 text-slate-50 transition-all duration-300 hover:bg-golden-500 hover:text-black"
           onClick={onCloseModal}
         >
           Cancel
         </button>
         <button
           onClick={onConfirm}
-          className="rounded-md bg-red-700 p-2 text-slate-50 transition-all duration-300 hover:bg-red-500 hover:text-black"
+          className="w-28 rounded-sm bg-red-700 p-2 text-slate-50 transition-all duration-300 hover:bg-red-500 hover:text-black"
         >
           {actionName}
         </button>
