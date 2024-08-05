@@ -47,7 +47,7 @@ const BookingForm = ({ data }: Props) => {
     formState: { errors },
   } = useForm<WithoutPayBookingFormData>();
 
-  const handleBooking = (formValues: WithoutPayBookingFormData) => {
+  const handleBooking = async (formValues: WithoutPayBookingFormData) => {
     const isPaid = false;
 
     if (errors?.numGuests) {
@@ -96,14 +96,8 @@ const BookingForm = ({ data }: Props) => {
     });
   };
 
-  const onSubmit = handleSubmit((data) => {
-    const formattedData = {
-      ...data,
-      startDate: new Date(data.startDate),
-      endDate: new Date(data.endDate),
-      numGuests: Number(data.numGuests),
-    };
-    handleBooking(formattedData);
+  const onSubmit = handleSubmit(async (formValues) => {
+    await handleBooking(formValues);
   });
 
   return (
@@ -143,7 +137,11 @@ const BookingForm = ({ data }: Props) => {
         id="observations"
       />
 
-      <PayButtons makePayment={makePayment} isProcessing={isProcessing} />
+      <PayButtons
+        makePayment={makePayment}
+        isProcessing={isProcessing}
+        handleBooking={onSubmit}
+      />
     </Form>
   );
 };

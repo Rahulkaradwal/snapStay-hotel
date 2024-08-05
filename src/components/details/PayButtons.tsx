@@ -1,10 +1,15 @@
 type Props = {
   isProcessing: boolean;
+  handleBooking: () => Promise<void>;
   makePayment: () => void;
-  handleBooking: () => void;
 };
 
 const PayButtons = ({ isProcessing, handleBooking, makePayment }: Props) => {
+  const handlePayNow = () => {
+    handleBooking();
+    makePayment();
+  };
+
   return (
     <div className="flex justify-between gap-4">
       <button
@@ -14,7 +19,7 @@ const PayButtons = ({ isProcessing, handleBooking, makePayment }: Props) => {
         Book & Pay Later
       </button>
       <button
-        onClick={makePayment}
+        onClick={handlePayNow}
         className="w-fit rounded-sm bg-golden-800 p-2 transition duration-500 hover:text-black"
       >
         {isProcessing ? "Processing..." : "Book & Pay Now"}

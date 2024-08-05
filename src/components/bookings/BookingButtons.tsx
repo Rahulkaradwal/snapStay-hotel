@@ -41,7 +41,7 @@ function BookingButtons({ bookingId, isPaid }: Props) {
           onClick={() => deleteBooking(bookingId)}
           className={SecondaryButton}
         >
-          Cancel
+          Delete
         </button>
       </Modal.Open>
       <Modal.Window windowName="delete">

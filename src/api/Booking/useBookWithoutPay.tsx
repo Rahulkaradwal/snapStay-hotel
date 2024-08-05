@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { WithoutPayApi } from "../apiBooking";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -27,6 +27,7 @@ export interface BookingData {
 
 const useBookWithoutPay = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { mutate: BookWithoutPayment, error } = useMutation<
     BookingData,
@@ -38,6 +39,7 @@ const useBookWithoutPay = () => {
     onSuccess: () => {
       toast.success("Successfully booked");
       navigate(`/booking`);
+      queryClient.invalidateQueries({ queryKey: ["bookings"] });
     },
     onError: (error: Error) => {
       toast.error(error.message);
