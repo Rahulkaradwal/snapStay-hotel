@@ -52,7 +52,7 @@ const router = createBrowserRouter([
         element: <Rooms />,
       },
       {
-        path: "/check-in",
+        path: "/check-in/:bookingId",
         element: (
           <ProtectRoute>
             <CheckIn />
