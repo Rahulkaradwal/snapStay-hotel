@@ -2,11 +2,15 @@ import { Link } from "react-router-dom";
 import useDeleteBooking from "../../api/Checkin/useDeleteBooking";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import Modal from "../../ui/Modal";
+import useCheckout from "../../api/Checkin/useCheckout";
+import { BookingData } from "../../api/types";
+import handleGenerateReceipt from "../../utils/generateReceipt";
 
 type Props = {
   status: string;
   bookingId: string;
   isPaid: boolean;
+  bookingData: BookingData;
 };
 
 const PrimaryButton =
@@ -14,8 +18,13 @@ const PrimaryButton =
 const SecondaryButton =
   "rounded-sm p-2 w-32 border transition-all duration-300 font-bold bg-slate-10 hover:text-black hover:bg-slate-50 text-slate-100";
 
-function BookingButtons({ bookingId, status, isPaid }: Props) {
+function BookingButtons({ bookingData, bookingId, status, isPaid }: Props) {
   const { deleteBooking } = useDeleteBooking();
+  const { checkout } = useCheckout();
+
+  const handleCheckout = (id: string) => {
+    checkout(id);
+  };
 
   const paidContent = (
     <>
@@ -42,13 +51,38 @@ function BookingButtons({ bookingId, status, isPaid }: Props) {
       {status === "checked-in" && isPaid && (
         <>
           <Modal.Open modalName="checkout">
-            <button className={SecondaryButton}>Cancel</button>
+            <button className={PrimaryButton}>Check-Out</button>
           </Modal.Open>
           <Modal.Window windowName="checkout">
             <ConfirmDelete
               resourceName="Checkout"
               actionName="Checkout"
+              onConfirm={() => handleCheckout(bookingId)}
+            />
+          </Modal.Window>
+          <Modal.Open modalName="cancel">
+            <button className={SecondaryButton}>Cancel</button>
+          </Modal.Open>
+          <Modal.Window windowName="cancel">
+            <ConfirmDelete
+              resourceName="Cancel"
+              actionName="Cancel"
               onConfirm={() => deleteBooking(bookingId)}
+            />
+          </Modal.Window>
+        </>
+      )}
+
+      {status === "checked-out" && isPaid && (
+        <>
+          <Modal.Open modalName="receipt">
+            <button className={PrimaryButton}>Get Receipt</button>
+          </Modal.Open>
+          <Modal.Window windowName="receipt">
+            <ConfirmDelete
+              resourceName="Receipt"
+              actionName="Generate"
+              onConfirm={() => handleGenerateReceipt(bookingData)}
             />
           </Modal.Window>
         </>

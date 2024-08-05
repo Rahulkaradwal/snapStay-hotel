@@ -46,7 +46,12 @@ function BookingItem({ Booking }: Props) {
           </span>
         </div>
         <h2 className="text-sm">{description}</h2>
-        <BookingButtons status={status} bookingId={id} isPaid={isPaid} />
+        <BookingButtons
+          bookingData={Booking}
+          status={status}
+          bookingId={id}
+          isPaid={isPaid}
+        />
       </div>
       <div className="max-h-56 min-h-40 min-w-40 max-w-96">
         <img

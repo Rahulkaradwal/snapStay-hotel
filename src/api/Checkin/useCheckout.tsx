@@ -9,7 +9,7 @@ function useCheckout() {
     mutationKey: ["checkout"],
     onSuccess: (_, id) => {
       toast.success("Successfully checked out booking");
-      queryClient.invalidateQueries(["bookingDetail", id]); // Invalidate the specific booking query
+      queryClient.invalidateQueries(["bookingDetail", "bookings", id]); // Invalidate the specific booking query
     },
     onError: () => {
       toast.error("Something went wrong while checking out the booking");
