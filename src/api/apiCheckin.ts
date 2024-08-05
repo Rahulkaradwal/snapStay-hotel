@@ -26,12 +26,15 @@ export const deleteBooking = async (id: string) => {
 export const checkinBookingApi = async (id: string) => {
   const token = getToken();
   try {
-    const response = await axios.patch(`${URL}/bookings/getBooking/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
+    const response = await axios.patch(
+      `${URL}/bookings/getBooking/${id}`,
+      { status: "checked-in", isPaid: true },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-      body: JSON.stringify({ status: "checked-in" }),
-    });
+    );
 
     return response.data;
   } catch (error) {
@@ -47,12 +50,15 @@ export const checkinBookingApi = async (id: string) => {
 export const checkoutBookingApi = async (id: string) => {
   const token = getToken();
   try {
-    const response = await axios.patch(`${URL}/bookings/getBooking/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
+    const response = await axios.patch(
+      `${URL}/bookings/getBooking/${id}`,
+      { status: "checked-out" },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-      body: JSON.stringify({ status: "checked-out" }),
-    });
+    );
 
     return response.data;
   } catch (error) {

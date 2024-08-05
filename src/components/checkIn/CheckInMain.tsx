@@ -26,7 +26,7 @@ function CheckInMain() {
             status={data.data.status}
           />
           <CheckInDetail data={data.data} />
-          <CheckInButton data={data.data} />
+          <CheckInButton bookingId={bookingId} />
         </>
       )}
     </div>
