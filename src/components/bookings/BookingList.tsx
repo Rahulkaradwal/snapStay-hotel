@@ -8,6 +8,13 @@ import BookingItem from "./BookingItem";
 
 function BookingList() {
   const { data, isLoading, error } = useMyBookings();
+  if (!isLoading && !error && data?.data.length === 0) {
+    return (
+      <div className="h-fit justify-center bg-ligthDark py-[13.5rem] text-center text-2xl text-slate-50">
+        No Bookings Found
+      </div>
+    );
+  }
 
   return (
     <div className="h-fit bg-dark py-20">

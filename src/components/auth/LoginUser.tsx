@@ -21,19 +21,23 @@ function LoginUser() {
     if (!email || !password) return;
 
     setIsLoading(true);
-    await login(
-      { email, password },
-      {
-        onSuccess: (data) => {
-          localStorage.setItem("guestId", data.data.id.toString());
+    try {
+      await login(
+        { email, password },
+        {
+          onSuccess: (data) => {
+            localStorage.setItem("guestId", data.data.id.toString());
 
-          loginCtx(data.token, time);
-          navigate("/");
+            loginCtx(data.token, time);
+            navigate("/");
 
-          setIsLoading(false);
+            setIsLoading(false);
+          },
         },
-      },
-    );
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

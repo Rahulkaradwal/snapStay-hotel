@@ -1,8 +1,8 @@
 import BookingForm from "./BookingForm";
-import { Cabin } from "../../api/apiRoom";
+import { CabinResponse } from "../../api/types";
 
 type Props = {
-  data: Cabin;
+  data: CabinResponse;
 };
 
 const BookingDetails = ({ data }: Props) => {

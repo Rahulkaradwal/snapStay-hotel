@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { Cabin } from "../../api/apiRoom";
+import { CabinResponse } from "../../api/types";
 type Props = {
-  data: Cabin;
+  data: CabinResponse;
 };
 const Cover = ({ data }: Props) => {
   return (
@@ -19,16 +19,13 @@ const Cover = ({ data }: Props) => {
         }}
       >
         <span className="text-golden-800">Suites</span>
-        <h1 className="w-fit bg-golden-800 p-4 text-2xl font-semibold text-black shadow-2xl transition-all duration-200">
+        <h1 className="w-fit bg-golden-800 p-3 text-2xl font-semibold text-black shadow-2xl transition-all duration-200">
           {data.name}
         </h1>
+        <p>Price: ${data.regularPrice}</p>
         <p className="text-xl">Applied Discount : {data.discount} $</p>
-        <p className="text-xl">
-          Capacity: for {data.bookingSettings.minBookingLength} -{" "}
-          {data.bookingSettings.maxBookingLength} people
-        </p>
 
-        <div className="text-xl">{data.maxCapacity} guests</div>
+        <div className="text-xl">Capacity: for {data.maxCapacity} guests</div>
       </motion.div>
     </section>
   );
