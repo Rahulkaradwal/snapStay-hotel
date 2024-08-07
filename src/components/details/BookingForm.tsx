@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import DateRangePicker from "../../ui/DateRangePicker";
 import PayButtons from "./PayButtons";
 import toast from "react-hot-toast";
-import useBookWithoutPay from "../../api/Booking/useBookWithoutPay";
 import { CabinResponse } from "../../api/types";
 import FormInput from "../../ui/FormInput";
 import calculateNumNights from "../../utils/getNights";
 import { useNavigate } from "react-router-dom";
-import validateForm from "../../utils/validateBookingForm";
 import useBookWithPayment from "../../api/Booking/useBookWithPayment";
+import useBookWithoutPayment from "../../api/Booking/useBookWithoutPayment";
 
 type Props = {
   data: CabinResponse;
@@ -26,11 +25,8 @@ type BookingStatus = "not-ready" | "booking" | "failed" | "finished";
 
 const BookingForm = ({ data }: Props) => {
   const navigate = useNavigate();
-  const { BookWithoutPayment } = useBookWithoutPay();
-  const guest = localStorage.getItem("guestId");
-  const { _id: cabinId, regularPrice: cabinPrice, maxCapacity } = data;
+  const { _id: cabinId, regularPrice: cabinPrice } = data;
 
-  // const [isProcessing, setIsProcessing] = useState(false);
   const [isBooking, setIsBooking] = useState<BookingStatus>("not-ready");
   const [totalPrice, setTotalPrice] = useState(cabinPrice);
   const [isLoading, setIsLoading] = useState(false);
@@ -63,50 +59,21 @@ const BookingForm = ({ data }: Props) => {
     }));
   };
 
-  //funciton to process booking without payment
-  const bookWithoutPayment = async () => {
-    if (!guest) {
-      toast.error("Something went wrong. Please login again");
-      return;
-    }
+  // custom hook for book with payment method
+  const { isProcessing, BookWithPayment } = useBookWithPayment(cabinId);
 
-    if (!validateForm(formValues, maxCapacity, guest)) return;
+  // custom hook for book without payment
+  const { BookWithoutPayment } = useBookWithoutPayment(
+    formValues,
+    data,
+    totalPrice,
+    setIsBooking,
+  );
 
-    const numNights = calculateNumNights(
-      formValues.startDate,
-      formValues.endDate,
-    );
-    const extraPrice = formValues.breakfast ? 35 : 0;
-    const isPaid = false;
-
-    try {
-      setIsBooking("booking");
-      await BookWithoutPayment({
-        ...formValues,
-        startDate: new Date(formValues.startDate),
-        endDate: new Date(formValues.endDate),
-        numGuests: Number(formValues.numGuests),
-        cabin: cabinId,
-        guest,
-        totalPrice,
-        numNights,
-        isPaid,
-        extraPrice,
-        cabinPrice,
-      });
-      return true; // indicate booking was successful
-    } catch (error) {
-      console.error(error);
-      toast.error("Booking failed. Please try again");
-      setIsBooking("failed");
-      return false; // indicate booking failed
-    }
-  };
-
-  // handler to process booking without payment
+  // handler to process Booking without payment
   const handleBooking = async () => {
     setIsLoading(true);
-    const success = await bookWithoutPayment();
+    const success = await BookWithoutPayment();
     setIsLoading(false);
     if (success) {
       toast.success("Booking successful");
@@ -118,15 +85,13 @@ const BookingForm = ({ data }: Props) => {
   // handler to process Booking with payment
   const handlePaying = async () => {
     setIsLoading(true);
-    const success = await bookWithoutPayment();
+    const success = await BookWithoutPayment();
     if (success) {
       toast.success("Booking successful. Processing payment...");
       await BookWithPayment();
     }
     setIsLoading(false);
   };
-
-  const { isProcessing, BookWithPayment } = useBookWithPayment(cabinId);
 
   return (
     <div className="absolute -top-52 right-10 z-30 flex flex-col gap-6 rounded-md bg-dark px-20 py-10 text-slate-50 shadow-[0_0_50px_0px] shadow-golden-100">

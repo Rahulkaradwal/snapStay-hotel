@@ -99,3 +99,11 @@ export type BookingType = {
   data: BookingData;
   status: string;
 };
+
+export type BookingFormValues = {
+  startDate: string;
+  endDate: string;
+  numGuests: number;
+  breakfast: boolean;
+  observations: string;
+};
