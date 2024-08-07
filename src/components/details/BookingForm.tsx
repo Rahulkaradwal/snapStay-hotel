@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import DateRangePicker from "../../ui/DateRangePicker";
 import PayButtons from "./PayButtons";
-import { loadStripe } from "@stripe/stripe-js";
-import { Payment } from "../../api/apiBooking";
 import toast from "react-hot-toast";
 import useBookWithoutPay from "../../api/Booking/useBookWithoutPay";
 import { CabinResponse } from "../../api/types";
@@ -10,9 +8,7 @@ import FormInput from "../../ui/FormInput";
 import calculateNumNights from "../../utils/getNights";
 import { useNavigate } from "react-router-dom";
 import validateForm from "../../utils/validateBookingForm";
-
-const STRIPE_PUBLIC_KEY =
-  "pk_test_51PKq1n02bTSpcbhuqaywfxqs9IuqGt7yOhuQs48BUUq46m3uvjInTg9EBGcBybGK3F3a9OQnr8lXZfDYLGK7aSEV00ZKgtyHLL";
+import useBookWithPayment from "../../api/Booking/useBookWithPayment";
 
 type Props = {
   data: CabinResponse;
@@ -34,7 +30,7 @@ const BookingForm = ({ data }: Props) => {
   const guest = localStorage.getItem("guestId");
   const { _id: cabinId, regularPrice: cabinPrice, maxCapacity } = data;
 
-  const [isProcessing, setIsProcessing] = useState(false);
+  // const [isProcessing, setIsProcessing] = useState(false);
   const [isBooking, setIsBooking] = useState<BookingStatus>("not-ready");
   const [totalPrice, setTotalPrice] = useState(cabinPrice);
   const [isLoading, setIsLoading] = useState(false);
@@ -130,21 +126,7 @@ const BookingForm = ({ data }: Props) => {
     setIsLoading(false);
   };
 
-  // function to process payment
-  const BookWithPayment = async () => {
-    setIsProcessing(true);
-    try {
-      const stripe = await loadStripe(STRIPE_PUBLIC_KEY);
-      await Payment({ cabinId, stripe });
-    } catch (error) {
-      console.error(error);
-      toast.error(
-        "An error occurred while processing the payment, but the booking was successful. You can pay later in the booking.",
-      );
-    } finally {
-      setIsProcessing(false);
-    }
-  };
+  const { isProcessing, BookWithPayment } = useBookWithPayment(cabinId);
 
   return (
     <div className="absolute -top-52 right-10 z-30 flex flex-col gap-6 rounded-md bg-dark px-20 py-10 text-slate-50 shadow-[0_0_50px_0px] shadow-golden-100">
