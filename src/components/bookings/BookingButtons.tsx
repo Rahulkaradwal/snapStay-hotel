@@ -5,6 +5,8 @@ import Modal from "../../ui/Modal";
 import useCheckout from "../../api/Checkin/useCheckout";
 import { BookingData } from "../../api/types";
 import handleGenerateReceipt from "../../utils/generateReceipt";
+import useBookWithPayment from "../../api/Booking/useBookWithPayment";
+import { Spinner } from "flowbite-react";
 
 type Props = {
   status: string;
@@ -19,11 +21,21 @@ const SecondaryButton =
   "rounded-sm p-2 w-32 border transition-all duration-300 font-bold bg-slate-10 hover:text-black hover:bg-slate-50 text-slate-100";
 
 function BookingButtons({ bookingData, bookingId, status, isPaid }: Props) {
+  const {
+    cabin: { _id: cabinId },
+  } = bookingData;
   const { deleteBooking } = useDeleteBooking();
   const { checkout } = useCheckout();
 
+  const { isProcessing, BookWithPayment } = useBookWithPayment(cabinId);
+
   const handleCheckout = (id: string) => {
     checkout(id);
+  };
+
+  const handlePayment = async () => {
+    console.log("handle payment clicked");
+    await BookWithPayment();
   };
 
   const paidContent = (
@@ -92,16 +104,11 @@ function BookingButtons({ bookingData, bookingId, status, isPaid }: Props) {
 
   const unpaidContent = (
     <>
-      <Modal.Open modalName="pay">
-        <button className={PrimaryButton}>Pay</button>
-      </Modal.Open>
+      <button onClick={handlePayment} className={PrimaryButton}>
+        {isProcessing ? <Spinner color="white" size="sm" /> : "Pay Now"}
+      </button>
       <Modal.Open modalName="delete">
-        <button
-          onClick={() => deleteBooking(bookingId)}
-          className={SecondaryButton}
-        >
-          Delete
-        </button>
+        <button className={SecondaryButton}>Delete</button>
       </Modal.Open>
       <Modal.Window windowName="delete">
         <ConfirmDelete

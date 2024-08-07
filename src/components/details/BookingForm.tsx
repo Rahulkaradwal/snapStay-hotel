@@ -29,6 +29,7 @@ const BookingForm = ({ data }: Props) => {
 
   const [isBooking, setIsBooking] = useState<BookingStatus>("not-ready");
   const [totalPrice, setTotalPrice] = useState(cabinPrice);
+  console.log("totalPrice", totalPrice, cabinPrice);
   const [isLoading, setIsLoading] = useState(false);
 
   const [formValues, setFormValues] = useState<FormValues>({
@@ -95,7 +96,7 @@ const BookingForm = ({ data }: Props) => {
 
   return (
     <div className="absolute -top-52 right-10 z-30 flex flex-col gap-6 rounded-md bg-dark px-20 py-10 text-slate-50 shadow-[0_0_50px_0px] shadow-golden-100">
-      <p>Total Price: {totalPrice}.00 $</p>
+      <p>Total Price: {totalPrice ? totalPrice : cabinPrice}.00 $</p>
       <DateRangePicker formValues={formValues} setFormValues={setFormValues} />
       <FormInput
         name="breakfast"
