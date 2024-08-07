@@ -3,6 +3,8 @@ import { Form, Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import InputDiv from "../../ui/InputDiv";
 import useSignup from "../../api/Auth/useSignup";
+import { useState } from "react";
+import { Spinner } from "flowbite-react";
 
 const inputClass = "my-4 w-80 rounded-sm border bg-ligthDark p-2";
 
@@ -18,6 +20,7 @@ export interface IFormInput {
 
 function SignupUser() {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { signup } = useSignup();
 
@@ -27,10 +30,12 @@ function SignupUser() {
     formState: { errors },
   } = useForm<IFormInput>();
 
-  const onSubmit = (data: IFormInput) => {
-    signup(data, {
+  const onSubmit = async (data: IFormInput) => {
+    setIsLoading(true);
+    await signup(data, {
       onSuccess: () => {
         navigate("/login");
+        setIsLoading(false);
       },
     });
   };
@@ -132,8 +137,11 @@ function SignupUser() {
           />
         </InputDiv>
 
-        <button className="mt-4 h-[2.6rem] rounded-sm border-[0.2px] border-gray-500 bg-ligthDark text-gray-500 transition-all duration-300 hover:text-slate-50">
-          Create Account
+        <button
+          disabled={isLoading}
+          className="mt-4 h-[2.6rem] rounded-sm border-[0.2px] border-gray-500 bg-ligthDark text-gray-500 transition-all duration-300 hover:text-slate-50"
+        >
+          {isLoading ? <Spinner color="white" size="sm" /> : "Create Account"}
         </button>
       </Form>
 

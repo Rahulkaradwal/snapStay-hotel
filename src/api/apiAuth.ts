@@ -15,6 +15,7 @@ export type ResponseData = {
   status: string;
   token: string;
   guest: Guest;
+  isLoading?: boolean;
 };
 
 export type UserData = {
