@@ -1,9 +1,14 @@
-function Select({ options, value, onChange, ...props }) {
+type selectProps = {
+  options: { value: string; label: string }[];
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+};
+function Select({ options, value, onChange }: selectProps) {
   return (
     <select
       className="rounded-md border-none bg-ligthDark p-2 outline-none placeholder:text-slate-50/45 focus:outline-none"
       value={value}
-      {...props}
+      //   {...props}
       onChange={onChange}
     >
       {options.map((option) => (
