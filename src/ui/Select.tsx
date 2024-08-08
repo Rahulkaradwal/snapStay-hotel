@@ -1,0 +1,18 @@
+function Select({ options, value, onChange, ...props }) {
+  return (
+    <select
+      className="rounded-md border-none bg-ligthDark p-2 outline-none placeholder:text-slate-50/45 focus:outline-none"
+      value={value}
+      {...props}
+      onChange={onChange}
+    >
+      {options.map((option) => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </select>
+  );
+}
+
+export default Select;

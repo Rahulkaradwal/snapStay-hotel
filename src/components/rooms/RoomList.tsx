@@ -12,7 +12,7 @@ function RoomList() {
   });
 
   return (
-    <div className="mt-10 h-screen overflow-y-auto p-6">
+    <div className="= mt-10 grid grid-cols-3 justify-between gap-14 p-10">
       {error && <div>Error: {error.message}</div>}
       {isLoading && <Spinner color="warning" size="xl" />}
       {data?.map((room) => <RoomItem key={room._id} room={room} />)}

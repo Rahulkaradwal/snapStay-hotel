@@ -1,17 +1,13 @@
-import DescriptionFooter from "../components/details/DescriptionFooter";
-import Details from "../components/rooms/Details";
-import RoomList from "../components/rooms/RoomList";
-import Footer from "../ui/Footer";
+import RoomMain from "../components/rooms/RoomMain";
+// import Footer from "../ui/Footer";
 
 function Rooms() {
   return (
     <>
-      <div className="bg-dark grid grid-cols-2 gap-6 px-10 pt-20">
-        <Details />
-        <RoomList />
-      </div>
-      <DescriptionFooter />
-      <Footer />
+      <div className="grid w-full grid-cols-2 gap-6 bg-dark px-10 pt-20"></div>
+      <RoomMain />
+
+      {/* <Footer /> */}
     </>
   );
 }
