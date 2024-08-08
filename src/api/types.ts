@@ -53,7 +53,7 @@ export type BookingSettings = {
 export type CabinResponse = {
   bookingSettings: BookingSettings;
   description: string;
-  discount?: number;
+  discount: number;
   image: string;
   createdAt: string;
   maxCapacity: number;
