@@ -1,12 +1,12 @@
-import SignupUserForm from "../components/auth/SignupUserForm";
+import ResetPassowrdForm from "../components/auth/ResetPasswordForm";
 
-function SignUp() {
+function ResetPassword() {
   return (
     <section className="relative h-screen bg-auth-cover bg-cover">
       <div className="absolute inset-0 bg-gradient-to-l from-dark to-transparent"></div>
-      <SignupUserForm />
+      <ResetPassowrdForm />
     </section>
   );
 }
 
-export default SignUp;
+export default ResetPassword;

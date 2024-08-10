@@ -1,10 +1,10 @@
-import LoginUser from "../components/auth/LoginUser";
+import LoginUserForm from "../components/auth/LoginUserForm";
 
 function Login() {
   return (
-    <section className="bg-auth-cover relative h-screen bg-cover">
-      <div className="from-dark absolute inset-0 bg-gradient-to-l to-transparent"></div>
-      <LoginUser />
+    <section className="relative h-screen bg-auth-cover bg-cover">
+      <div className="absolute inset-0 bg-gradient-to-l from-dark to-transparent"></div>
+      <LoginUserForm />
     </section>
   );
 }

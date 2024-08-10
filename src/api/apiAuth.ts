@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { axiosInstance, URL } from "./api";
-import { IFormInput } from "../components/auth/SignupUser";
+import { IFormInput } from "../components/auth/SignupUserForm";
 
 export type Guest = {
   firstName: string;
@@ -21,6 +21,11 @@ export type ResponseData = {
 export type UserData = {
   email: string;
   password: string;
+};
+
+export type forgetPasswordResponse = {
+  status: string;
+  message: string;
 };
 
 export const guestLogin = async (data: UserData): Promise<ResponseData> => {
@@ -44,6 +49,47 @@ export const guestSignup = async (data: IFormInput): Promise<ResponseData> => {
     const response: AxiosResponse<ResponseData> = await axiosInstance.post(
       URL + "/guests/guestSignup",
       data,
+    );
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw error.response?.data || error.message;
+    } else {
+      console.error("Unknown error:", error);
+    }
+    throw error;
+  }
+};
+
+// Forget Password
+export const forgetPasswordApi = async (
+  email: string,
+): Promise<forgetPasswordResponse> => {
+  try {
+    const response: AxiosResponse<forgetPasswordResponse> =
+      await axiosInstance.post(URL + "/guests/forgetPassword", { email });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw error.response?.data || error.message;
+    } else {
+      console.error("Unknown error:", error);
+    }
+    throw error;
+  }
+};
+
+// Reset Password
+
+export const resetPasswordApi = async (
+  password: string,
+  confirmPassword: string,
+  token: string,
+): Promise<Guest> => {
+  try {
+    const response: AxiosResponse<Guest> = await axiosInstance.post(
+      URL + "/guests/resetPassword/" + token,
+      { password, confirmPassword },
     );
     return response.data;
   } catch (error) {

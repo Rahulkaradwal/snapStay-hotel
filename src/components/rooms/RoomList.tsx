@@ -56,7 +56,7 @@ function RoomList() {
   if (!sortedCabins.length) return <div>No Room found</div>;
 
   return (
-    <div className="mt-10 grid grid-cols-3 justify-between gap-14 p-10">
+    <div className="mt-10 grid h-full grid-cols-3 justify-between gap-14 p-10">
       {sortedCabins.map((room) => (
         <RoomItem key={room._id} room={room} />
       ))}

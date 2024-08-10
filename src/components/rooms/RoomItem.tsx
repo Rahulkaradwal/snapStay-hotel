@@ -43,7 +43,7 @@ function RoomItem({ room }: RoomItemProps) {
             type="button"
             className="select-none rounded-lg bg-golden-800 px-6 py-3 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-golden-500/20 transition-all hover:shadow-lg hover:shadow-golden-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
           >
-            Read More
+            See Details
           </button>
         </div>
       </div>

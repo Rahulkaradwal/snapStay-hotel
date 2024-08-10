@@ -1,41 +1,35 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import useLogin from "../../api/Auth/useLogin";
-import { useAuth } from "../../context/AuthContext";
-import { getCurrentTimePlus30Minutes } from "../../utils/getTime";
+import { Link, useParams } from "react-router-dom";
 import { Spinner } from "flowbite-react";
+import useResetPassword from "../../api/Auth/useResetPassword";
 
-function LoginUser() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState<string>("");
+function ForgetPassword() {
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { token } = useParams();
 
-  const { login } = useLogin();
-  const { loginCtx } = useAuth();
-  const time = Number(getCurrentTimePlus30Minutes());
+  const { resetPassword } = useResetPassword();
 
   const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    if (!email || !password) return;
+    if (!password || !confirmPassword || !token) return;
+    if (password !== confirmPassword) return;
 
     setIsLoading(true);
     try {
-      await login(
-        { email, password },
+      await resetPassword(
+        { password, confirmPassword, token },
         {
-          onSuccess: (data) => {
-            localStorage.setItem("guestId", data.data.id.toString());
-
-            loginCtx(data.token, time);
-            navigate("/");
-
+          onSuccess: () => {
             setIsLoading(false);
+            // Add any additional success logic, like showing a success message
           },
         },
       );
-    } finally {
+    } catch (error) {
+      console.error(error);
       setIsLoading(false);
     }
   };
@@ -57,16 +51,6 @@ function LoginUser() {
         className="flex flex-col gap-4 pb-10 pt-20"
         onSubmit={submitHandler}
       >
-        <label htmlFor="email" className="sr-only">
-          Email
-        </label>
-        <input
-          id="email"
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
-          placeholder="Email"
-          className="my-4 w-80 rounded-sm border bg-ligthDark p-2"
-        />
         <label htmlFor="password" className="sr-only">
           Password
         </label>
@@ -77,20 +61,30 @@ function LoginUser() {
           placeholder="Password"
           className="rounded-sm border bg-ligthDark p-2"
         />
+        <label htmlFor="confirmPassword" className="sr-only">
+          Confirm Password
+        </label>
+        <input
+          id="confirmPassword"
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          type="password"
+          placeholder="Confirm Password"
+          className="my-4 w-80 rounded-sm border bg-ligthDark p-2"
+        />
         <button
           disabled={isLoading}
           type="submit"
           className="my-4 rounded-sm bg-golden-500 p-2 text-slate-50 transition-all duration-300 hover:bg-golden-800 hover:text-black"
         >
-          {isLoading ? <Spinner color="white" size="sm" /> : "Login"}
+          {isLoading ? <Spinner color="white" size="sm" /> : "Reset Password"}
         </button>
       </form>
       <div className="text-md flex justify-between gap-4 text-slate-50">
         <Link to="/signup">Create Account?</Link>
-        <Link to="/forgot">Forgot Password?</Link>
+        <Link to="/login">Login?</Link>
       </div>
     </motion.div>
   );
 }
 
-export default LoginUser;
+export default ForgetPassword;

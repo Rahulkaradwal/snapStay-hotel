@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import { Form, Link, useNavigate } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import InputDiv from "../../ui/InputDiv";
 import useSignup from "../../api/Auth/useSignup";
 import { useState } from "react";
 import { Spinner } from "flowbite-react";
+import toast from "react-hot-toast";
 
 const inputClass = "my-4 w-80 rounded-sm border bg-ligthDark p-2";
 
@@ -18,8 +19,7 @@ export interface IFormInput {
   confirmPassword: string;
 }
 
-function SignupUser() {
-  const navigate = useNavigate();
+function SignupUserForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { signup } = useSignup();
@@ -33,8 +33,8 @@ function SignupUser() {
   const onSubmit = async (data: IFormInput) => {
     setIsLoading(true);
     await signup(data, {
-      onSuccess: () => {
-        navigate("/login");
+      onSuccess: (data) => {
+        toast.success(data.message);
         setIsLoading(false);
       },
     });
@@ -152,4 +152,4 @@ function SignupUser() {
   );
 }
 
-export default SignupUser;
+export default SignupUserForm;
