@@ -94,7 +94,8 @@ export const resetPasswordApi = async (
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw error.response?.data || error.message;
+      console.log(error);
+      throw new Error("Something went wrong while resetting password");
     } else {
       console.error("Unknown error:", error);
     }

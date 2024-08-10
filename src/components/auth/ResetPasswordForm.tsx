@@ -24,7 +24,9 @@ function ForgetPassword() {
         {
           onSuccess: () => {
             setIsLoading(false);
-            // Add any additional success logic, like showing a success message
+          },
+          onError: () => {
+            setIsLoading(false);
           },
         },
       );
