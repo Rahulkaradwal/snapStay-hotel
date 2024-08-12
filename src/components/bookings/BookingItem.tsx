@@ -10,14 +10,11 @@ type Props = {
 function BookingItem({ Booking }: Props) {
   const {
     cabin: { image, name: cabinName, description },
-    guest: { id: guestId },
-    startDate,
-    endDate,
+
     status,
     _id: id,
     isPaid,
     totalPrice,
-    numGuests,
   } = Booking;
   return (
     <motion.div
@@ -35,10 +32,10 @@ function BookingItem({ Booking }: Props) {
 
       <div className="flex-start flex flex-col gap-10 text-slate-50">
         <div className="grid grid-flow-col gap-6">
-          <h1 className="col-span-10 text-4xl font-semibold transition-all duration-300 hover:text-golden-800">
+          <h1 className="col-span-10 text-2xl font-semibold transition-all duration-300 hover:text-golden-800">
             {cabinName}
           </h1>
-          <span className="text-md rounded-sn content-center bg-golden-800 text-center uppercase text-slate-100">
+          <span className="content-center rounded-sm bg-golden-800 text-center text-sm uppercase text-slate-100">
             {status}
           </span>
           <span className="text-md content-center rounded-sm border border-golden-800 text-center text-slate-100">
@@ -56,7 +53,6 @@ function BookingItem({ Booking }: Props) {
       <div className="max-h-56 min-h-40 min-w-40 max-w-96">
         <img
           className="h-full w-full cursor-pointer object-cover transition-all duration-500 hover:scale-105"
-          // src="/card/room2.jpg"
           src={image}
           alt={cabinName}
         />

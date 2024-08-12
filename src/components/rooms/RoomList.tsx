@@ -80,7 +80,9 @@ function RoomList() {
     return !hasOverlap;
   });
 
-  if (!sortedCabins.length) return <div>No Room found</div>;
+  console.log(sortedCabins, availableCabins);
+
+  if (!availableCabins.length) return <div>No Room found</div>;
 
   return (
     <div className="mt-5 grid h-full grid-cols-3 justify-between gap-14 p-10">
