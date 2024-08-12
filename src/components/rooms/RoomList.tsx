@@ -5,6 +5,7 @@ import RoomItem from "./RoomItem";
 import { Spinner } from "flowbite-react";
 import { CabinResponse } from "../../api/types";
 import { useSearchParams } from "react-router-dom";
+import { isDateOverlap } from "../../utils/checkAvailability";
 
 type discountType = "all" | "with-discount" | "no-discount" | string;
 
@@ -53,15 +54,37 @@ function RoomList() {
     return 0;
   });
 
-  // filter the cabins based on the availability date
   const userStartDate = new Date(searchParams.get("startDate") || "");
   const userEndDate = new Date(searchParams.get("endDate") || "");
+
+  // Filter the cabins based on availability
+  const availableCabins = sortedCabins.filter((cabin) => {
+    // If no booked dates, the cabin is available
+    if (!cabin.bookedDates || cabin.bookedDates.length === 0) {
+      return true;
+    }
+
+    // Check if there's any overlap in booked dates
+    const hasOverlap = cabin.bookedDates.some((date) => {
+      const bookedStartDate = new Date(date.startDate);
+      const bookedEndDate = new Date(date.endDate);
+      return isDateOverlap(
+        userStartDate,
+        userEndDate,
+        bookedStartDate,
+        bookedEndDate,
+      );
+    });
+
+    // Return cabins that do not have any overlap
+    return !hasOverlap;
+  });
 
   if (!sortedCabins.length) return <div>No Room found</div>;
 
   return (
     <div className="mt-5 grid h-full grid-cols-3 justify-between gap-14 p-10">
-      {sortedCabins.map((room) => (
+      {availableCabins.map((room) => (
         <RoomItem key={room._id} room={room} />
       ))}
     </div>

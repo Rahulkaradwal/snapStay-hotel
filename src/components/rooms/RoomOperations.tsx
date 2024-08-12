@@ -11,7 +11,6 @@ function RoomOperations() {
   });
 
   const { inputStartDate, inputEndDate } = dateValues;
-  console.log(inputStartDate, inputEndDate);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
