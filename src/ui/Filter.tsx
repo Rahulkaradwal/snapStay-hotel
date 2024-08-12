@@ -18,7 +18,7 @@ function Filter({ filterField, options }: FilterProps) {
   };
 
   return (
-    <div className="bg-lightDark flex gap-1 rounded-md shadow-lg">
+    <div className="flex gap-1 rounded-md bg-ligthDark shadow-lg">
       {options.map((option) => (
         <button
           className={`m-1 rounded-md p-1 px-2 transition-all duration-300 hover:bg-golden-800 hover:text-black ${

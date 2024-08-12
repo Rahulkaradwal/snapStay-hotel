@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import DateRangePicker from "../../ui/DateRangePicker";
 import PayButtons from "./PayButtons";
 import toast from "react-hot-toast";
-import { CabinResponse } from "../../api/types";
+import { BookingType, CabinResponse } from "../../api/types";
 import FormInput from "../../ui/FormInput";
 import calculateNumNights from "../../utils/getNights";
 import { useNavigate } from "react-router-dom";
@@ -29,8 +29,8 @@ const BookingForm = ({ data }: Props) => {
 
   const [isBooking, setIsBooking] = useState<BookingStatus>("not-ready");
   const [totalPrice, setTotalPrice] = useState(cabinPrice);
-  console.log("totalPrice", totalPrice, cabinPrice);
   const [isLoading, setIsLoading] = useState(false);
+  const BookedCabinDates = [];
 
   const [formValues, setFormValues] = useState<FormValues>({
     startDate: "",
@@ -39,6 +39,31 @@ const BookingForm = ({ data }: Props) => {
     breakfast: false,
     observations: "",
   });
+
+  if (data) {
+    if (data.bookedDates) {
+      const { bookedDates } = data;
+      BookedCabinDates.push(
+        ...bookedDates.map((date: BookingType) => {
+          return {
+            BookedStartDate: date.startDate,
+            BookedEndDate: date.endDate,
+          };
+        }),
+      );
+
+      // const isBooked = bookedCabinDates.some((date) => {
+      //   const { startBooking, endBooking } = date;
+      //   const { startDate, endDate } = formValues;
+      //   return (
+      //     (startDate >= startBooking && startDate <= endBooking) ||
+      //     (endDate >= startBooking && endDate <= endBooking) ||
+      //     (startBooking >= startDate && startBooking <= endDate) ||
+      //     (endBooking >= startDate && endBooking <= endDate)
+      //   );
+      // });
+    }
+  }
 
   useEffect(() => {
     const numNights = calculateNumNights(

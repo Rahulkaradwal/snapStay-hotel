@@ -17,7 +17,7 @@ const DateInput = ({ type, label, name, value, onChange }: Props) => {
         name={name}
         value={value}
         onChange={onChange}
-        className="bg-ligthDark p-2 placeholder:text-slate-50/45 focus:outline-none"
+        className="w-fit rounded-sm border-none bg-ligthDark p-2 outline-none placeholder:text-slate-50/45 focus:outline-none"
       />
     </div>
   );

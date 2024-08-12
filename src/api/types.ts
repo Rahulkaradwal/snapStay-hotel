@@ -60,6 +60,12 @@ export type CabinResponse = {
   name: string;
   regularPrice: number;
   _id: string;
+  bookedDates?: BookedDate[];
+};
+
+export type BookedDate = {
+  startDate: string;
+  endDate: string;
 };
 
 export type Guest = {

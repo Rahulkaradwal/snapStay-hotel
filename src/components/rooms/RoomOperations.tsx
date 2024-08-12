@@ -1,9 +1,34 @@
+import { useEffect, useState } from "react";
+import DateRangePicker from "../../ui/DateRangePicker";
 import Filter from "../../ui/Filter";
 import SortBy from "../../ui/SortBy";
+import { useSearchParams } from "react-router-dom";
 
 function RoomOperations() {
+  const [dateValues, setDateValues] = useState({
+    inputStartDate: "",
+    inputEndDate: "",
+  });
+
+  const { inputStartDate, inputEndDate } = dateValues;
+  console.log(inputStartDate, inputEndDate);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    searchParams.set("startDate", inputStartDate);
+    searchParams.set("endDate", inputEndDate);
+    setSearchParams(searchParams);
+  }, [inputStartDate, inputEndDate, searchParams, setSearchParams]);
+
   return (
     <>
+      <span className="pb-5">
+        <DateRangePicker
+          dateValues={dateValues}
+          setDateValues={setDateValues}
+        />
+      </span>
       <Filter
         filterField="discount"
         options={[

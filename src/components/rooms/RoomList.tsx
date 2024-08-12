@@ -53,10 +53,14 @@ function RoomList() {
     return 0;
   });
 
+  // filter the cabins based on the availability date
+  const userStartDate = new Date(searchParams.get("startDate") || "");
+  const userEndDate = new Date(searchParams.get("endDate") || "");
+
   if (!sortedCabins.length) return <div>No Room found</div>;
 
   return (
-    <div className="mt-10 grid h-full grid-cols-3 justify-between gap-14 p-10">
+    <div className="mt-5 grid h-full grid-cols-3 justify-between gap-14 p-10">
       {sortedCabins.map((room) => (
         <RoomItem key={room._id} room={room} />
       ))}

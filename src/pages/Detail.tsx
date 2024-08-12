@@ -5,9 +5,7 @@ import Description from "../components/details/Description";
 import Footer from "../ui/Footer";
 const Detail = () => {
   const { data, isLoading, error } = useRoom();
-  if (!isLoading) {
-    console.log(data);
-  }
+
   return (
     <>
       <div className="relative overflow-hidden">
