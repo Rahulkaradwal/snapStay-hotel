@@ -19,7 +19,7 @@ const Cover = ({ data }: Props) => {
         }}
       >
         <span className="text-golden-800">Suites</span>
-        <h1 className="w-fit bg-golden-800 p-3 text-2xl font-semibold text-black shadow-2xl transition-all duration-200">
+        <h1 className="w-fit bg-golden-800 p-3 text-xl font-semibold text-black shadow-2xl transition-all duration-200">
           {data.name}
         </h1>
         <p>Price: ${data.regularPrice}</p>

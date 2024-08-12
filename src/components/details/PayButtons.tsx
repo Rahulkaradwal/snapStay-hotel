@@ -9,6 +9,7 @@ type Props = {
   handleBooking: () => Promise<void>;
   handlePaying: () => Promise<void>;
   isLoading: boolean;
+  disabled: boolean;
 };
 
 const PayButtons = ({
@@ -16,13 +17,24 @@ const PayButtons = ({
   handleBooking,
   handlePaying,
   isLoading,
+  disabled,
 }: Props) => {
   return (
     <div className="flex justify-between gap-4">
-      <button type="button" onClick={handleBooking} className={buttonClass}>
+      <button
+        type="button"
+        onClick={handleBooking}
+        disabled={disabled}
+        className={`${buttonClass} ${disabled ? "cursor-not-allowed" : ""}`}
+      >
         {isLoading ? <Spinner color="white" size="sm" /> : "Book & Pay Later"}
       </button>
-      <button type="button" onClick={handlePaying} className={buttonClass}>
+      <button
+        disabled={disabled}
+        type="button"
+        onClick={handlePaying}
+        className={`${buttonClass} ${disabled ? "cursor-not-allowed" : ""}`}
+      >
         {isProcessing ? <Spinner color="white" size="sm" /> : "Book & Pay Now"}
       </button>
     </div>
