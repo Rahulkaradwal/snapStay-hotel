@@ -6,6 +6,7 @@ import useSignup from "../../api/Auth/useSignup";
 import { useState } from "react";
 import { Spinner } from "flowbite-react";
 import toast from "react-hot-toast";
+import { ResponseSignup } from "../../api/types";
 
 const inputClass = "my-4 w-80 rounded-sm border bg-ligthDark p-2";
 
@@ -34,8 +35,8 @@ function SignupUserForm() {
   const onSubmit = async (data: IFormInput) => {
     setIsLoading(true);
     await signup(data, {
-      onSuccess: (data) => {
-        toast.success(data.message);
+      onSuccess: (signupData: ResponseSignup) => {
+        toast.success(signupData.message);
         setIsLoading(false);
         reset();
       },

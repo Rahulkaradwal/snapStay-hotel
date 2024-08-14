@@ -6,7 +6,6 @@ useMutation;
 function useLogin() {
   const { mutate: login, error } = useMutation({
     mutationFn: (guestData: UserData) => guestLogin(guestData),
-    // onSuccess: (data) => {},
     onError: (error) => {
       toast.error(error.message);
     },

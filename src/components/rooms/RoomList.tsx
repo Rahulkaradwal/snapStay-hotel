@@ -17,10 +17,6 @@ function RoomList() {
     queryFn: () => getCabins(),
   });
 
-  if (isLoading) return <Spinner color="warning" size="xl" />;
-
-  if (error) return <div>Error: {error.message}</div>;
-
   // filter the cabins based on discount
   let filterCabins: CabinResponse[] = data || [];
 
@@ -85,11 +81,23 @@ function RoomList() {
   if (!availableCabins.length) return <div>No Room found</div>;
 
   return (
-    <div className="mt-5 grid h-full grid-cols-3 justify-between gap-14 p-10">
-      {availableCabins.map((room) => (
-        <RoomItem key={room._id} room={room} />
-      ))}
-    </div>
+    <>
+      {isLoading ? (
+        <div className="m-3 flex items-center justify-center p-20">
+          <Spinner color="warning" size="xl" />
+        </div>
+      ) : error ? (
+        <div className="m-3 flex items-center justify-center p-20 text-3xl text-slate-50">
+          Error: {error.message}
+        </div>
+      ) : (
+        <div className="mt-5 grid h-fit grid-cols-3 justify-between gap-14 p-10">
+          {availableCabins.map((room) => (
+            <RoomItem key={room._id} room={room} />
+          ))}
+        </div>
+      )}
+    </>
   );
 }
 

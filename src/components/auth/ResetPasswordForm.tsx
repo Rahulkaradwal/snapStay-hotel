@@ -53,24 +53,21 @@ function ForgetPassword() {
         className="flex flex-col gap-4 pb-10 pt-20"
         onSubmit={submitHandler}
       >
-        <label htmlFor="password" className="sr-only">
-          Password
-        </label>
         <input
           id="password"
           onChange={(e) => setPassword(e.target.value)}
           type="password"
-          placeholder="Password"
+          placeholder="Create New Password"
           className="rounded-sm border bg-ligthDark p-2"
         />
         <label htmlFor="confirmPassword" className="sr-only">
-          Confirm Password
+          Confirm New Password
         </label>
         <input
           id="confirmPassword"
           onChange={(e) => setConfirmPassword(e.target.value)}
           type="password"
-          placeholder="Confirm Password"
+          placeholder="Confirm New Password"
           className="my-4 w-80 rounded-sm border bg-ligthDark p-2"
         />
         <button

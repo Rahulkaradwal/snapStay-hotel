@@ -84,6 +84,12 @@ export type Guest = {
   id: string;
 };
 
+export type LoginResponse = {
+  data: Guest;
+  status: string;
+  token: string;
+};
+
 export type BookingData = {
   cabin: CabinResponse;
   guest: Guest;

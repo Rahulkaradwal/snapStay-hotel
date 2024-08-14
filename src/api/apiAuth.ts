@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { axiosInstance, URL } from "./api";
 import { IFormInput } from "../components/auth/SignupUserForm";
-import { ResponseSignup } from "./types";
+import { LoginResponse, ResponseSignup } from "./types";
 
 export type Guest = {
   firstName: string;
@@ -29,9 +29,9 @@ export type forgetPasswordResponse = {
   message: string;
 };
 
-export const guestLogin = async (data: UserData): Promise<ResponseData> => {
+export const guestLogin = async (data: UserData): Promise<LoginResponse> => {
   try {
-    const response: AxiosResponse<ResponseData> = await axiosInstance.post(
+    const response: AxiosResponse<LoginResponse> = await axiosInstance.post(
       URL + "/guests/guestLogin",
       data,
     );
@@ -45,6 +45,7 @@ export const guestLogin = async (data: UserData): Promise<ResponseData> => {
     throw error;
   }
 };
+
 export const guestSignup = async (
   data: IFormInput,
 ): Promise<ResponseSignup> => {

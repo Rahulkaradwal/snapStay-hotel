@@ -1,11 +1,11 @@
-import { Cabin } from "../../api/apiRoom";
 import DescriptionFooter from "./DescriptionFooter";
 import DescriptionHeader from "./DescriptionHeader";
 import DescriptionIcons from "./DescriptionIcons";
 import BookingDetails from "./BookingDetails";
 import ImageGrid from "./ImageGrid";
+import { CabinResponse } from "../../api/types";
 type Props = {
-  data: Cabin;
+  data: CabinResponse;
 };
 
 const Description = ({ data }: Props) => {

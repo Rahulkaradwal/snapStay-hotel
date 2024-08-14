@@ -5,6 +5,7 @@ import useLogin from "../../api/Auth/useLogin";
 import { useAuth } from "../../context/AuthContext";
 import { getCurrentTimePlus30Minutes } from "../../utils/getTime";
 import { Spinner } from "flowbite-react";
+import { LoginResponse } from "../../api/types";
 
 function LoginUserForm() {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ function LoginUserForm() {
       await login(
         { email, password },
         {
-          onSuccess: (data) => {
+          onSuccess: (data: LoginResponse) => {
             localStorage.setItem("guestId", data.data.id.toString());
 
             loginCtx(data.token, time);

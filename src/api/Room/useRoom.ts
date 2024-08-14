@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { getRoom, Cabin } from "../apiRoom";
+import { getRoom } from "../apiRoom";
+import { CabinResponse } from "../types";
 
 function useRoom() {
   const { roomId } = useParams<{ roomId: string }>();
 
-  const { data, isLoading, error } = useQuery<Cabin, Error>({
+  const { data, isLoading, error } = useQuery<CabinResponse, Error>({
     queryKey: ["roomId", roomId],
     queryFn: () => {
       if (!roomId) {
