@@ -27,6 +27,7 @@ function SignupUserForm() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<IFormInput>();
 
@@ -35,6 +36,11 @@ function SignupUserForm() {
     await signup(data, {
       onSuccess: (data) => {
         toast.success(data.message);
+        setIsLoading(false);
+        reset();
+      },
+      onError: (error) => {
+        toast.error(error.message);
         setIsLoading(false);
       },
     });

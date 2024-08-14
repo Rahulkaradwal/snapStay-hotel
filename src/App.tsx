@@ -16,6 +16,8 @@ import { AuthProvider } from "./context/AuthContext";
 import ProtectRoute from "./components/ProtectRoute";
 import ForgetPassword from "./pages/ForgetPassword";
 import ResetPassword from "./pages/ResetPassword";
+import VerifyEmail from "./pages/VerifyEmail";
+import { verifyEmailLoader } from "./api/Auth/verifyEmailLoader";
 
 const router = createBrowserRouter([
   {
@@ -61,12 +63,14 @@ const router = createBrowserRouter([
           </ProtectRoute>
         ),
       },
+      {
+        path: "/verify-email/:token",
+        element: <VerifyEmail />,
+        loader: verifyEmailLoader,
+      },
     ],
   },
-  // {
-  //   path: "*",
-  //   element: <Home />,
-  // },
+
   {
     path: "login",
     element: <Login />,

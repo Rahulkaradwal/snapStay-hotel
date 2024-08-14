@@ -9,6 +9,7 @@ type Props = {
 };
 
 const Description = ({ data }: Props) => {
+  console.log("data in description", data);
   const { description } = data;
   return (
     <section className="relative bg-dark">

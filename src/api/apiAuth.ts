@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { axiosInstance, URL } from "./api";
 import { IFormInput } from "../components/auth/SignupUserForm";
+import { ResponseSignup } from "./types";
 
 export type Guest = {
   firstName: string;
@@ -44,9 +45,11 @@ export const guestLogin = async (data: UserData): Promise<ResponseData> => {
     throw error;
   }
 };
-export const guestSignup = async (data: IFormInput): Promise<ResponseData> => {
+export const guestSignup = async (
+  data: IFormInput,
+): Promise<ResponseSignup> => {
   try {
-    const response: AxiosResponse<ResponseData> = await axiosInstance.post(
+    const response: AxiosResponse<ResponseSignup> = await axiosInstance.post(
       URL + "/guests/guestSignup",
       data,
     );

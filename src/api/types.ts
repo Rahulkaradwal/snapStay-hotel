@@ -26,6 +26,13 @@ export interface ErrorResponse {
   message: string;
 }
 
+// Response data structure for the POST request to create an account
+
+export type ResponseSignup = {
+  status: string;
+  message: string;
+};
+
 export type WithoutPayBookingFormData = {
   startDate: Date;
   endDate: Date;
@@ -112,4 +119,11 @@ export type BookingFormValues = {
   numGuests: number;
   breakfast: boolean;
   observations: string;
+};
+
+// response struction for verification email
+
+export type LoaderData = {
+  status: string;
+  message: string;
 };
