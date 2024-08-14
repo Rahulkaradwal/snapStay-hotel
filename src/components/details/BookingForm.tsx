@@ -86,13 +86,22 @@ const BookingForm = ({ data }: Props) => {
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    const { name, value, type, checked } = e.target;
-    setFormValues((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
+    const target = e.target;
 
+    if (target instanceof HTMLInputElement) {
+      const { name, value, type, checked } = target;
+      setFormValues((prev) => ({
+        ...prev,
+        [name]: type === "checkbox" ? checked : value,
+      }));
+    } else if (target instanceof HTMLTextAreaElement) {
+      const { name, value } = target;
+      setFormValues((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
+  };
   // custom hook for book with payment method
   const { isProcessing, BookWithPayment } = useBookWithPayment(cabinId);
 
