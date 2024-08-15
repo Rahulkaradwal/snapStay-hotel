@@ -1,30 +1,134 @@
-# React + TypeScript + Vite
+# Snap Stay Hotel
+Snap Stay Hotel is a full-fledged hotel booking application built with modern web technologies, enabling users to browse available rooms, make bookings, and manage their reservations. The application includes user authentication, room sorting and filtering, booking management, and more.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Table of Contents
+1) ### Features
+2) ### Tech Stack
+3) ### Installation
+4) ### Usage
+5) ### Project Structure
+6) ### Routes
+7) ### APIs
+8) ### Animations
+9) ### Known Issues
+10) ### Contributing
 
-Currently, two official plugins are available:
+## Features
+User Authentication: Register, login, reset password, and forget password functionalities. </br>
+Room Management: View available rooms, see detailed information, and sort and filter rooms based on various criteria.</br>
+Booking System: Book rooms, check availability, cancel bookings, check-in, and check-out.</br>
+Receipt Management: Generate and print booking receipts.</br>
+Responsive UI: Fully responsive design using Tailwind CSS and Flowbite React components.</br>
+Animations: Smooth and engaging animations powered by Framer Motion.</br>
+</br></br>
+## Tech Stack
+Frontend: React, TypeScript, Tailwind CSS, Flowbite React, Framer Motion </br>
+Routing: React Router, including React Router Loader for data fetching</br>
+State Management: Context API, React Query for server state management</br>
+Forms & Validation: React Hook Form (if used), Custom Validations</br>
+HTTP Client: Axios for API calls</br>
+Payment Integration: Stripe for handling payments</br>
+Build Tool: Vite</br>
+Notifications: React Hot Toast for user feedback</br>
+</br></br>
+## Installation
+To run this project locally, follow these steps:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Clone the repository:
 
-## Expanding the ESLint configuration
+git clone https://github.com/Rahulkaradwal/snap-stay-hotel.git
+cd snap-stay-hotel
+</br>
+### Install dependencies:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+npm install
+</br>
+npm run dev
+</br></br>
+### Usage
+Once the project is set up, you can navigate through the application to:
+</br>
+Register/Login: Create an account or log in to an existing one.</br>
+View Rooms: Browse all available rooms with options to sort and filter.</br>
+Make Bookings: Select dates, check availability, and book a room.</br>
+Manage Bookings: View, cancel, and manage your bookings, including checking in and out.</br>
+Print Receipts: Generate and print receipts for your bookings.</br> </br></br>
+## Project Structure
+Here’s an overview of the project structure:
 
-- Configure the top-level `parserOptions` property like this:
+</br>
+snap-stay-hotel/
+├── public/
+├── src/
+│   ├── api/
+│   ├── components/
+│   ├── context/
+│   ├── pages/
+│   ├── ui/
+│   ├── utils/
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.css
+├── .env
+├── package.json
+├── vite.config.ts
+└── README.md
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+api/: Contains API-related files, functions, and custom React hooks including Axios instances.
+components/: UI components such as buttons, forms, and layout components.
+context/: Context providers for managing global state.
+hooks/: Custom React hooks.
+pages/: Page components corresponding to different routes in the application.
+router/: React Router configurations and route definitions.
+styles/: Global CSS and Tailwind configurations.
+utils/: Utility functions and helpers.
+ui/: Reusable UI components such as buttons, forms, and layout components.
+Routes
+
+</br>
+
+Here’s a breakdown of the routes and their corresponding components:
+
+/: Home - Home component. </br>
+/booking: Booking page - Protected, Booking component.</br>
+/services: Services page - Services component.</br>
+/details/</br>
+: Room details - Protected, Detail component.</br>
+/contact-us: Contact Us page - ContactUs component.</br>
+/rooms: Rooms list - Rooms component.</br>
+/check-in/</br>
+: Check-In page - Protected, CheckIn component.</br>
+/verify-email/
+: Email verification - VerifyEmail component.</br>
+/login: Login page - Login component.</br>
+/forget-password: Forget Password page - ForgetPassword component.</br>
+/reset-password/</br>
+: Password Reset - ResetPassword component.</br>
+/signup: Sign Up page - SignUp component.</br></br></br>
+
+## APIs
+Authentication: API endpoints for login, registration, password reset, etc.</br>
+Room Management: Endpoints for fetching room details, availability checks, and bookings.</br>
+Booking Management: Endpoints to create, cancel, and manage bookings.</br>
+Stripe Integration: Endpoints for payment processing.</br>
+</br></br>
+## Animations
+Framer Motion: Used for smooth transitions, hover effects, and other interactive elements. Examples include:
+Button hover effects.
+Page transitions.
+Modal animations.
+
+
+## Known Issues
+This is not responsive yet, need to make it responsive.
+</br></br>
+
+## Contributing
+Contributions are welcome! Please fork this repository, create a new branch, and submit a pull request.
+</br></br>
+## Fork the repository
+Create a new feature branch: git checkout -b feature/your-feature-name</br>
+Commit your changes: git commit -m 'Add some feature'</br>
+Push to the branch: git push origin feature/your-feature-name</br>
+Open a pull request</br>
