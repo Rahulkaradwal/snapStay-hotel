@@ -9,16 +9,20 @@ type Props = {
 
 const Carousel = (props: Props) => {
   return (
-    <div className="relative h-screen">
+    <div className="relative md:h-screen">
       <FlowbiteCarousel
         slideInterval={10000}
-        leftControl={<ChevronLeftIcon className="h-10 w-10 text-slate-100" />}
-        rightControl={<ChevronRightIcon className="h-10 w-10 text-slate-100" />}
+        leftControl={
+          <ChevronLeftIcon className="h-4 w-4 text-slate-100 md:h-10 md:w-10" />
+        }
+        rightControl={
+          <ChevronRightIcon className="h-4 w-4 text-slate-100 md:h-10 md:w-10" />
+        }
       >
         {props.images.map((image, index) => (
-          <div className="relative" key={index}>
+          <div className="relative h-screen" key={index}>
             <img
-              className="h-auto w-full"
+              className="h-full w-full object-cover"
               src={image}
               alt={`Slide ${index + 1}`}
             />
@@ -28,7 +32,7 @@ const Carousel = (props: Props) => {
       </FlowbiteCarousel>
       {/* Heading and Buttons */}
       <motion.div
-        className="flext-start absolute left-8 top-1/2 flex flex-col gap-10 p-8 pr-96 text-slate-100"
+        className="flext-start absolute left-8 top-1/2 flex flex-col gap-10 p-8 pr-96 text-slate-100 md:top-1/2"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
