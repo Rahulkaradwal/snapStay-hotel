@@ -57,22 +57,22 @@ Print Receipts: Generate and print receipts for your bookings.</br> </br></br>
 Here’s an overview of the project structure:
 
 </br>
-snap-stay-hotel/
-├── public/
-├── src/
-│   ├── api/
-│   ├── components/
-│   ├── context/
-│   ├── pages/
-│   ├── ui/
-│   ├── utils/
-│   ├── App.tsx
-│   ├── main.tsx
-│   └── index.css
-├── .env
-├── package.json
-├── vite.config.ts
-└── README.md
+snap-stay-hotel/</br>
+├── public/</br>
+├── src/</br>
+│   ├── api/</br>
+│   ├── components/</br>
+│   ├── context/</br>
+│   ├── pages/</br>
+│   ├── ui/</br>
+│   ├── utils/</br>
+│   ├── App.tsx</br>
+│   ├── main.tsx</br>
+│   └── index.css</br>
+├── .env</br>
+├── package.json</br>
+├── vite.config.ts</br>
+└── README.md</br>
 
 
 api/: Contains API-related files, functions, and custom React hooks including Axios instances.
