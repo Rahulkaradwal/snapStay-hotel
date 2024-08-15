@@ -15,7 +15,7 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
 
   const [isMenuToggled, setIsMenuToggled] = useState(false);
 
-  const flexClass = "flex gap-12 items-center";
+  const flexClass = "md:flex md:gap-12 md:items-center";
   const isAboveScreen = useMediaQuery("(min-width: 1060px)");
   const headerBackground = isTopOfPage
     ? " "
@@ -24,9 +24,9 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
   return (
     <nav>
       <div
-        className={`${flexClass} justify-between ${headerBackground} fixed top-0 z-30 w-full p-2 px-20 text-slate-100`}
+        className={`${flexClass} flex justify-between ${headerBackground} fixed top-0 z-30 w-screen p-2 px-4 text-slate-100 md:w-full md:px-20`}
       >
-        <img src={logo} alt="logo" className="w-28" />
+        <img src={logo} alt="logo" className="w-16 md:w-28" />
         <div className="pointer-events-none absolute inset-0 drop-shadow-lg"></div>
         {isAboveScreen ? (
           <div className={`${flexClass} relative z-10 gap-16 text-xl`}>
@@ -81,7 +81,7 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
 
       {/* mobile menu modal */}
       {!isAboveScreen && isMenuToggled && (
-        <div className="fixed inset-0 z-40">
+        <div className="fixed inset-0 z-40 h-screen w-screen">
           {/* overlay */}
           <div className="absolute inset-0 bg-black opacity-80"></div>
           {/* menu content */}
@@ -93,12 +93,12 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
               </button>
             </div>
             {/* mobile menu */}
-            <div className="flex flex-col items-center gap-10 text-2xl text-slate-100">
+            <div className="flex flex-col items-end gap-10 pr-12 text-2xl text-slate-100">
               <Link to="/" onClick={() => setIsMenuToggled(false)}>
                 Home
               </Link>
-              <Link to="/booking" onClick={() => setIsMenuToggled(false)}>
-                Booking
+              <Link to="/rooms" onClick={() => setIsMenuToggled(false)}>
+                Rooms
               </Link>
               <Link to="/services" onClick={() => setIsMenuToggled(false)}>
                 Services
@@ -106,6 +106,13 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
               <Link to="/contact-us" onClick={() => setIsMenuToggled(false)}>
                 Contact Us
               </Link>
+              <button
+                className="flex cursor-pointer items-center gap-2 transition-all duration-300 hover:text-golden-800"
+                onClick={logout}
+              >
+                Logout
+                <IoLogOut className="text-3xl" />
+              </button>
             </div>
           </div>
         </div>

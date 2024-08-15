@@ -8,7 +8,7 @@ import { Spinner } from "flowbite-react";
 import toast from "react-hot-toast";
 import { ResponseSignup } from "../../api/types";
 
-const inputClass = "my-4 w-80 rounded-sm border bg-ligthDark p-2";
+const inputClass = "md:my-4 md:w-80 md:rounded-sm md:border bg-ligthDark p-2";
 
 export interface IFormInput {
   firstName: string;
@@ -57,13 +57,17 @@ function SignupUserForm() {
         hidden: { opacity: 0, x: -150 },
         visible: { opacity: 1, x: 0 },
       }}
-      className="flex h-full flex-col items-center justify-center p-10 pt-1"
+      className="flex h-fit flex-col items-center justify-center p-4 pt-20 md:h-full md:p-10"
     >
-      <img className="z-50 w-60" src={"/logo-no-background.svg"} alt="logo" />
+      <img
+        className="z-50 w-32 md:w-60"
+        src={"/logo-no-background.svg"}
+        alt="logo"
+      />
 
       <Form
         onSubmit={handleSubmit(onSubmit)}
-        className="z-50 grid grid-cols-2 gap-4"
+        className="z-50 mt-10 grid grid-cols-2 gap-6 md:gap-4"
       >
         <InputDiv htmlFor="firstName" errors={errors?.firstName?.message}>
           <input
@@ -146,13 +150,13 @@ function SignupUserForm() {
 
         <button
           disabled={isLoading}
-          className="mt-4 h-[2.6rem] rounded-sm border-[0.2px] border-gray-500 bg-ligthDark text-gray-500 transition-all duration-300 hover:text-slate-50"
+          className="h-[2.6rem] rounded-sm border-[0.2px] border-gray-500 bg-ligthDark text-gray-500 transition-all duration-300 hover:text-slate-50 md:mt-4"
         >
           {isLoading ? <Spinner color="white" size="sm" /> : "Create Account"}
         </button>
       </Form>
 
-      <Link className="text-md z-50 mt-8 text-slate-50" to="/login">
+      <Link className="md:text-md z-50 mt-32 text-slate-50 md:mt-8" to="/login">
         Already have an account?
       </Link>
     </motion.div>
