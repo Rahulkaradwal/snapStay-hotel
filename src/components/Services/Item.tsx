@@ -4,11 +4,14 @@ import {
   MdOutlineKeyboardDoubleArrowRight,
 } from "react-icons/md";
 
+const desktopScreen =
+  "md:mb-10 md:grid md:grid-cols-[2rem_1.75fr_1fr] md:gap-20 md:p-12 md:align-top";
+
 import { Link } from "react-router-dom";
 const Item = () => {
   return (
     <motion.div
-      className="gap mb-10 grid grid-cols-[2rem_1.75fr_1fr] gap-20 rounded-xl border-golden-800 bg-ligthDark p-12 align-top shadow-md"
+      className={`mb-4 flex flex-col gap-2 rounded-xl bg-ligthDark p-4 shadow-md ${desktopScreen} `}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
@@ -20,11 +23,11 @@ const Item = () => {
     >
       <MdOutlineBedroomParent className="text-4xl text-golden-800" />
 
-      <div className="flex-start flex flex-col gap-10">
-        <h1 className="text-4xl font-semibold transition-all duration-300 hover:text-golden-800">
+      <div className="flex-start flex flex-col gap-2 md:gap-10">
+        <h1 className="lg:text-3xl xl:text-4xl text-xl font-semibold transition-all duration-300 hover:text-golden-800 md:text-xl">
           Comfortable Modern Accommodations
         </h1>
-        <h2 className="text-xl">
+        <h2 className="hidden text-xl md:block">
           Experience unparalleled comfort in our modern accommodations,
           featuring contemporary design, plush bedding, and state-of-the-art
           amenities. Enjoy a relaxing stay with all the conveniences you need
@@ -32,7 +35,7 @@ const Item = () => {
         </h2>
         <Link
           to="/services"
-          className="flex items-center gap-2 text-xl font-semibold transition duration-500 hover:text-golden-800"
+          className="text-md flex items-center gap-2 font-semibold transition duration-500 hover:text-golden-800 md:text-xl"
         >
           <span>
             <MdOutlineKeyboardDoubleArrowRight />
@@ -40,9 +43,9 @@ const Item = () => {
           Find Out More
         </Link>
       </div>
-      <div className="max-h-96 min-h-40 min-w-40 max-w-96">
+      <div className="h-52 md:max-h-96 md:min-h-40 md:min-w-40 md:max-w-96">
         <img
-          className="h-full w-full cursor-pointer transition-all duration-500 hover:scale-105"
+          className="h-full w-full cursor-pointer rounded-md object-cover transition-all duration-500 hover:scale-105"
           src="/card/room2.jpg"
         />
       </div>

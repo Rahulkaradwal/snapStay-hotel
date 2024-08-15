@@ -9,8 +9,8 @@ import MenuItems from "../components/Services/MenuItems";
 
 function Home() {
   return (
-    <div>
-      <section className="h-screen">
+    <div className="flex min-h-screen flex-col overflow-hidden">
+      <section className="flex-grow bg-ligthDark">
         <Carousel images={[room1, room2, room3, room4, room5]} />
       </section>
       <MenuItems />

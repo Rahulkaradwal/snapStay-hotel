@@ -60,13 +60,13 @@ const Carousel = (props: Props) => {
         >
           <Link
             to="/rooms"
-            className="rounded bg-golden-800 px-4 py-2 text-xl font-semibold text-slate-100 transition-all duration-300 hover:bg-golden-800 hover:text-black"
+            className="rounded bg-golden-800 px-4 py-2 text-sm font-semibold text-slate-100 transition-all duration-300 hover:bg-golden-800 hover:text-black md:text-xl"
           >
             Discover Rooms
           </Link>
           <Link
             to="services"
-            className="rounded border border-white bg-transparent px-4 py-2 text-xl font-semibold text-golden-800 transition-all duration-300 hover:bg-white hover:text-black"
+            className="rounded border border-white bg-transparent px-4 py-2 text-sm font-semibold text-golden-800 transition-all duration-300 hover:bg-white hover:text-black md:text-xl"
           >
             All Categories
           </Link>
