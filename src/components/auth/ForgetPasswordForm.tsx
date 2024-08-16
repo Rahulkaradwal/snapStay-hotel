@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import { Spinner } from "flowbite-react";
 import useForgetPassword from "../../api/Auth/useForgetPassword";
 
+const desktopScreen =
+  "h-full md:absolute md:right-0 md:flex md:w-1/3 md:flex-col md:items-center md:justify-center md:p-10 md:pt-1";
+const mobileScreen = "flex flex-col items-center  justify-center p-6";
 function ForgetPassword() {
   const [email, setEmail] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -35,7 +38,7 @@ function ForgetPassword() {
 
   return (
     <motion.div
-      className="absolute right-0 flex h-full w-1/3 flex-col items-center justify-center p-10 pt-1"
+      className={`${desktopScreen} ${mobileScreen}`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}

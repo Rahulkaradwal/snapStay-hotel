@@ -94,25 +94,37 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
             </div>
             {/* mobile menu */}
             <div className="flex flex-col items-end gap-10 pr-12 text-2xl text-slate-100">
+              {isAuthenticated ? (
+                <button
+                  className="flex cursor-pointer items-center gap-2 transition-all duration-300 hover:text-golden-800"
+                  onClick={logout}
+                >
+                  Logout
+                </button>
+              ) : (
+                <>
+                  <Link to="/login" onClick={() => setIsMenuToggled(false)}>
+                    Login
+                  </Link>
+                  <Link to="/signup" onClick={() => setIsMenuToggled(false)}>
+                    Register
+                  </Link>
+                </>
+              )}
               <Link to="/" onClick={() => setIsMenuToggled(false)}>
                 Home
               </Link>
               <Link to="/rooms" onClick={() => setIsMenuToggled(false)}>
                 Rooms
               </Link>
-              <Link to="/services" onClick={() => setIsMenuToggled(false)}>
-                Services
-              </Link>
+              {isAuthenticated && (
+                <Link to="/booking" onClick={() => setIsMenuToggled(false)}>
+                  Bookings
+                </Link>
+              )}
               <Link to="/contact-us" onClick={() => setIsMenuToggled(false)}>
                 Contact Us
               </Link>
-              <button
-                className="flex cursor-pointer items-center gap-2 transition-all duration-300 hover:text-golden-800"
-                onClick={logout}
-              >
-                Logout
-                <IoLogOut className="text-3xl" />
-              </button>
             </div>
           </div>
         </div>
