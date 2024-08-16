@@ -9,7 +9,7 @@ import { LoginResponse } from "../../api/types";
 
 const desktopScreen =
   "h-full md:absolute md:right-0 md:flex md:w-1/3 md:flex-col md:items-center md:justify-center md:p-10 md:pt-1";
-const mobileScreen = "flex flex-col items-center z-50 justify-center p-6";
+const mobileScreen = "flex flex-col items-center  justify-center p-6";
 
 function LoginUserForm() {
   const navigate = useNavigate();
@@ -59,7 +59,7 @@ function LoginUserForm() {
     >
       <img className="w-60" src="/logo-no-background.svg" alt="logo" />
       <form
-        className="flex flex-col gap-4 pb-10 pt-20"
+        className="z-50 flex flex-col gap-4 pb-10 pt-20"
         onSubmit={submitHandler}
       >
         <label htmlFor="email" className="sr-only">
@@ -90,7 +90,7 @@ function LoginUserForm() {
           {isLoading ? <Spinner color="white" size="sm" /> : "Login"}
         </button>
       </form>
-      <div className="text-md flex justify-between gap-4 text-slate-50">
+      <div className="text-md z-50 flex justify-between gap-4 text-slate-50">
         <Link to="/signup">Create Account?</Link>
         <Link to="/forget-password">Forgot Password?</Link>
       </div>
