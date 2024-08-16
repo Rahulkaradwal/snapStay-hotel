@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const Item = () => {
   return (
     <motion.div
-      className={`mb-4 flex flex-col gap-2 rounded-xl bg-ligthDark p-4 shadow-md ${desktopScreen} `}
+      className={`shadow-lithtDark mb-4 flex flex-col gap-2 border border-ligthDark p-4 shadow-lg md:rounded-xl md:bg-ligthDark ${desktopScreen} `}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
@@ -35,7 +35,7 @@ const Item = () => {
         </h2>
         <Link
           to="/services"
-          className="text-md flex items-center gap-2 font-semibold transition duration-500 hover:text-golden-800 md:text-xl"
+          className="text-md flex items-center gap-2 font-semibold text-golden-800 transition duration-500 hover:text-golden-800 md:text-xl"
         >
           <span>
             <MdOutlineKeyboardDoubleArrowRight />

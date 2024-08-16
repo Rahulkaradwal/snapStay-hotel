@@ -4,7 +4,7 @@ import Footer from "../ui/Footer";
 
 function Services() {
   return (
-    <div>
+    <div className="flex min-h-screen flex-col overflow-hidden">
       <Cover />
       <MenuItems />
       <Footer />

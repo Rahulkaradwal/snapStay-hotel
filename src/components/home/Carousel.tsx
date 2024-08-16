@@ -32,7 +32,7 @@ const Carousel = (props: Props) => {
       </FlowbiteCarousel>
       {/* Heading and Buttons */}
       <motion.div
-        className="flext-start absolute left-8 top-1/2 flex flex-col gap-10 p-8 pr-96 text-slate-100 md:top-1/2"
+        className="flext-start absolute bottom-20 left-8 flex flex-col gap-10 p-8 pr-96 text-slate-100 md:top-1/2"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
