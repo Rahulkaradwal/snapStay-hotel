@@ -25,7 +25,7 @@ type Props = {
 };
 
 const DatePickerClass =
-  "flex flex-col items-center justify-center space-y-4 md:flex-row md:space-x-4 md:space-y-0  ";
+  "flex  items-center justify-center gap-2 md:space-y-4 md:flex-row md:space-x-4 md:space-y-0  ";
 
 const DateRangePicker = ({
   formValues,
@@ -80,10 +80,8 @@ const DateRangePicker = ({
 
       {dateValues && (
         <>
-          <div className={DatePickerClass}>
-            <p className="text-md w-28 pt-5 text-golden-800">
-              Check Availability
-            </p>
+          <div className={`${DatePickerClass} w-full text-center`}>
+            <p className="text-md pt-5 text-golden-800">Check Dates</p>
             <DateInput
               type="date"
               label="Start Date"

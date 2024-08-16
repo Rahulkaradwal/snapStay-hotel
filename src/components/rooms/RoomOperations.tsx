@@ -22,7 +22,7 @@ function RoomOperations() {
 
   return (
     <>
-      <span className="pb-5">
+      <span className="min-w-80 text-sm md:pb-5">
         <DateRangePicker
           dateValues={dateValues}
           setDateValues={setDateValues}

@@ -10,7 +10,7 @@ type RoomItemProps = {
 function RoomItem({ room }: RoomItemProps) {
   const navigate = useNavigate();
   return (
-    <div className="w-fit">
+    <div className="min-w-80 md:w-fit">
       <div className="relative flex max-w-96 flex-col rounded-xl bg-ligthDark bg-clip-border text-slate-50 shadow-md md:w-96">
         <div className="bg-blue-gray-500 shadow-blue-gray-500/40 relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-clip-border text-white shadow-lg transition-all duration-300 hover:scale-105">
           <img
