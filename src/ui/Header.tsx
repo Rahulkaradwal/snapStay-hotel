@@ -24,7 +24,7 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
   return (
     <nav>
       <div
-        className={`${flexClass} flex justify-between ${headerBackground} fixed top-0 z-30 w-screen p-2 px-4 text-slate-100 md:w-full md:px-20`}
+        className={`${flexClass} flex justify-between ${headerBackground} fixed top-0 z-50 w-screen p-2 px-4 text-slate-100 md:w-full md:px-20`}
       >
         <img src={logo} alt="logo" className="w-16 md:w-28" />
         <div className="pointer-events-none absolute inset-0 drop-shadow-lg"></div>
