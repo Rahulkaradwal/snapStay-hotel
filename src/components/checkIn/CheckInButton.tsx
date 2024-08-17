@@ -29,6 +29,8 @@ function CheckInButton({ bookingId, status }: Props) {
       setIsLoading(false);
     }
   };
+
+  console.log(status);
   const handleCheckOut = async (bookingId: string) => {
     try {
       setIsLoading(true);
@@ -53,7 +55,7 @@ function CheckInButton({ bookingId, status }: Props) {
         >
           Check Out
         </button>
-      ) : (
+      ) : status === "checked-out" ? null : (
         <button
           onClick={() => handleCheckIn(bookingId)}
           className="rounded-lg border border-golden-800 p-2 px-4 font-semibold text-slate-50 shadow-lg transition-all duration-300 hover:text-golden-800"

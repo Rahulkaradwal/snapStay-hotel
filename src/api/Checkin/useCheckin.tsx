@@ -7,9 +7,8 @@ function useCheckin() {
   const { mutate: checkin, error } = useMutation({
     mutationFn: (id: string) => checkinBookingApi(id),
     mutationKey: ["checkin"],
-    onSuccess: (_, id) => {
-      console.log("in the useCheckin", id);
-      queryClient.invalidateQueries({ queryKey: ["bookingDetail", id] }); // Invalidate the specific booking query
+    onSuccess: () => {
+      queryClient.invalidateQueries(); // Invalidate all query
       toast.success("Successfully checked in booking");
     },
     onError: () => {
