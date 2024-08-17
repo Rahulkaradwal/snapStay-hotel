@@ -12,24 +12,24 @@ const ConfirmDelete = ({
   onConfirm,
 }: ConfirmDeleteProps) => {
   return (
-    <div className="flex w-[40rem] flex-col gap-8 rounded-xl bg-dark p-20 text-slate-50">
-      <h1 className="text-3xl">
+    <div className="flex flex-col gap-4 rounded-xl bg-dark p-20 text-slate-50 sm:w-[40rem] md:w-[40rem] md:gap-8">
+      <h1 className="text-xl md:text-3xl">
         {actionName} {resourceName}
       </h1>
-      <p className="mb-5 text-xl">
+      <p className="text-md mb-5 md:text-xl">
         Are you sure you want to {actionName.toLowerCase()} this {resourceName}?
       </p>
 
-      <div className="flex-end flex gap-5 text-xl">
+      <div className="flex-end flex gap-5 md:text-xl">
         <button
-          className="w-28 rounded-sm bg-golden-800 p-2 text-slate-50 transition-all duration-300 hover:bg-golden-500 hover:text-black"
+          className="rounded-sm bg-golden-800 p-2 text-slate-50 transition-all duration-300 hover:bg-golden-500 hover:text-black md:w-28"
           onClick={onCloseModal}
         >
           Cancel
         </button>
         <button
           onClick={onConfirm}
-          className="w-28 rounded-sm bg-red-700 p-2 text-slate-50 transition-all duration-300 hover:bg-red-500 hover:text-black"
+          className="rounded-sm bg-red-700 p-2 text-slate-50 transition-all duration-300 hover:bg-red-500 hover:text-black md:w-28"
         >
           {actionName}
         </button>
