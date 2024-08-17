@@ -3,10 +3,10 @@ import Footer from "../ui/Footer";
 
 function Booking() {
   return (
-    <>
+    <div className="overflow-hidden">
       <BookingList />
       <Footer />
-    </>
+    </div>
   );
 }
 

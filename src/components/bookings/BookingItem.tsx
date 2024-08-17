@@ -18,7 +18,7 @@ function BookingItem({ Booking }: Props) {
   } = Booking;
   return (
     <motion.div
-      className="gap mx-20 mb-10 mt-10 grid grid-cols-[2rem_1.75fr_1fr] gap-20 bg-ligthDark p-12 align-top shadow-md"
+      className="mx-4 mb-10 mt-10 gap-20 overflow-hidden bg-ligthDark p-2 align-top shadow-md md:mx-20 md:grid md:grid-cols-[2rem_1.75fr_1fr] md:p-12"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
@@ -28,17 +28,17 @@ function BookingItem({ Booking }: Props) {
         visible: { opacity: 1, x: 0 },
       }}
     >
-      <MdOutlineBedroomParent className="text-4xl text-golden-800" />
+      <MdOutlineBedroomParent className="hidden text-golden-800 md:block md:text-4xl" />
 
       <div className="flex-start flex flex-col gap-10 text-slate-50">
-        <div className="grid grid-flow-col gap-6">
-          <h1 className="col-span-10 text-2xl font-semibold transition-all duration-300 hover:text-golden-800">
+        <div className="grid grid-flow-col gap-2 p-2 sm:gap-4 md:gap-6">
+          <h1 className="col-span-10 text-lg font-semibold transition-all duration-300 hover:text-golden-800 sm:text-xl md:text-2xl">
             {cabinName}
           </h1>
-          <span className="content-center rounded-sm bg-golden-800 text-center text-sm uppercase text-slate-100">
+          <span className="content-center rounded-sm bg-golden-800 text-center text-xs uppercase text-slate-100 sm:text-sm md:text-sm">
             {status}
           </span>
-          <span className="text-md content-center rounded-sm border border-golden-800 text-center text-slate-100">
+          <span className="md:text-md content-center rounded-sm border border-golden-800 text-center text-xs text-slate-100 sm:text-sm">
             Price : ${totalPrice}
           </span>
         </div>
@@ -50,7 +50,7 @@ function BookingItem({ Booking }: Props) {
           isPaid={isPaid}
         />
       </div>
-      <div className="max-h-56 min-h-40 min-w-40 max-w-96">
+      <div className="max-h-56 min-h-40 min-w-40 max-w-96 pt-4 sm:pt-0 md:pt-0">
         <img
           className="h-full w-full cursor-pointer object-cover transition-all duration-500 hover:scale-105"
           src={image}
