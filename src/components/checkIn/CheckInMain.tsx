@@ -12,7 +12,7 @@ function CheckInMain() {
   console.log(data);
 
   return (
-    <div className="h[90%] flex flex-col gap-6 px-32 text-slate-50">
+    <div className="h[90%] -mx-8 flex flex-col gap-6 px-4 text-slate-50 sm:px-16 md:px-32">
       {isLoading && (
         <div className="flex h-full items-center justify-center">
           <Spinner color="warning" size="xl" />

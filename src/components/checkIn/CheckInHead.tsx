@@ -8,21 +8,25 @@ type Props = {
 
 function CheckInHead({ status, cabinName }: Props) {
   const navigate = useNavigate();
-  const flexClass = "flex justify-between items-center gap-4";
+  const flexClass = "flex justify-between items-center gap-2 md:gap-4";
 
   return (
-    <div className={`${flexClass} p-4`}>
+    <div className={`${flexClass} p-2 md:p-4`}>
       <div className={flexClass}>
-        <h1 className="text-4xl font-semibold">{cabinName}</h1>
-        <span className="rounded-xl bg-golden-800 p-1 px-4 text-sm font-semibold uppercase text-black">
+        <h1 className="text-sm font-semibold sm:text-2xl md:text-4xl">
+          {cabinName}
+        </h1>
+        <span className="rounded-lg bg-golden-800 p-1 px-4 text-xs font-semibold uppercase text-black md:rounded-xl">
           {status}
         </span>
       </div>
       <button
-        className={`${flexClass} transition-all duration-300 hover:text-golden-800`}
+        className={`${flexClass} ml-4 transition-all duration-300 hover:text-golden-800`}
       >
-        <FaArrowLeftLong className="text-xl" />
-        <span onClick={() => navigate(-1)}>Back</span>
+        <FaArrowLeftLong className="-mr-1 text-xs md:text-xl" />
+        <span onClick={() => navigate(-1)} className="text-sm md:text-xl">
+          Back
+        </span>
       </button>
     </div>
   );

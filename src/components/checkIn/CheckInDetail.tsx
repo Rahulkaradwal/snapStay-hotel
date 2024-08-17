@@ -22,7 +22,7 @@ function CheckInDetail({ data }: Props) {
   // Calculate the difference in days
   const daysDifference = differenceInDays(end, start);
 
-  const flexClass = "flex justify-between items-center gap-4  p-3 ";
+  const flexClass = "flex justify-between items-center md:gap-4  p-3 ";
   return (
     <div
       className={`{${flexClass} flex-col rounded-lg bg-ligthDark font-semibold shadow-lg`}
@@ -30,17 +30,19 @@ function CheckInDetail({ data }: Props) {
       <div className={`${flexClass} -m-3 rounded-t-xl bg-golden-100`}>
         <div className={`${flexClass} gap-4`}>
           <RiHotelLine className="text-2xl" />
-          <h1>
+          <h1 className="text-sm">
             {data.numNights} {data.numNights > 1 ? "Nights" : "Night"}
           </h1>
-          <h1>{data.cabin.name}</h1>
+          <h1 className="text-sm">{data.cabin.name}</h1>
         </div>
-        <h1>
+        <p className="text-xs">
           {formattedStartDate} ({daysDifference} days ago) - {formattedEndDate}
-        </h1>
+        </p>
       </div>
-      <div className={`mt-6 flex gap-4 p-4`}>
-        <p>{data.guest.firstName + " " + data.guest.lastName}</p>
+      <div className={`mt-6 flex flex-wrap gap-4 p-4`}>
+        <p className="text-sm">
+          {data.guest.firstName + " " + data.guest.lastName}
+        </p>
         <p className="font-normal">{data.guest.email}</p>
         <p className="font-normal">{data.guest.phoneNumber}</p>
       </div>
@@ -57,7 +59,9 @@ function CheckInDetail({ data }: Props) {
         <p>{data.hasBreakfast ? "Yes" : "No"}</p>
       </div>
 
-      <div className={`${flexClass} justify-between rounded-lg bg-golden-800`}>
+      <div
+        className={`${flexClass} justify-between rounded-lg bg-golden-800 text-sm`}
+      >
         <div className={flexClass}>
           <AiOutlineDollar />
           <p>
