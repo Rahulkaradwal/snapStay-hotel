@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 
 type Props = {
   icon: JSX.Element;
@@ -12,17 +11,16 @@ const childVariant = {
   visible: { opacity: 1, scale: 1 },
 };
 
-const FooterItems = ({ icon, title, link }: Props) => {
+const FooterItems = ({ icon, title }: Props) => {
   return (
     <motion.div
       variants={childVariant}
-      className="flex w-60 flex-col items-center gap-4 rounded-md border border-golden-100 p-4 text-center text-slate-50"
+      className="flex flex-col items-center gap-4 rounded-md border border-golden-100 p-4 text-center text-slate-50 md:w-60"
     >
-      <span className="flex h-16 items-center justify-center rounded-full bg-golden-800 p-4 text-3xl text-slate-50">
+      <span className="flex items-center justify-center rounded-full bg-golden-800 p-2 text-xs text-slate-50 md:h-16 md:text-3xl">
         {icon}
       </span>
-      <h1>{title}</h1>
-      <Link to={link || "#"}>Learn more</Link>
+      <h1 className="md:text-md text-[0.50rem] font-semibold">{title}</h1>
     </motion.div>
   );
 };

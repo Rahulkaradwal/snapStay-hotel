@@ -56,10 +56,12 @@ const DateRangePicker = ({
     <>
       {formValues && (
         <>
-          <p className="text-xl text-slate-50/45">
+          <p className="text-slate-50/45 md:text-xl">
             Choose your Booking Duration
           </p>
-          <div className={DatePickerClass}>
+          <div
+            className={`${DatePickerClass} justify-between px-0 text-center`}
+          >
             <DateInput
               type="date"
               label="Start Date"

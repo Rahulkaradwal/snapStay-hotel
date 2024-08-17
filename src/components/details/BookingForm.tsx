@@ -149,8 +149,10 @@ const BookingForm = ({ data }: Props) => {
   };
 
   return (
-    <div className="absolute -top-52 right-10 z-30 flex flex-col gap-6 rounded-md bg-dark px-20 py-10 text-slate-50 shadow-[0_0_50px_0px] shadow-golden-100">
-      <p>Total Price: {totalPrice ? totalPrice : cabinPrice}.00 $</p>
+    <div className="-top-52 right-10 flex flex-col gap-6 rounded-md bg-dark p-4 text-slate-50 shadow-[0px_0px_5px_0px] shadow-golden-100 md:absolute md:z-30 md:px-20 md:py-10 md:shadow-[0_0_50px_0px]">
+      <p className="text-md">
+        Total Price: {totalPrice ? totalPrice : cabinPrice}.00 $
+      </p>
       <DateRangePicker formValues={formValues} setFormValues={setFormValues} />
       <FormInput
         name="breakfast"

@@ -21,8 +21,8 @@ const Detail = () => {
             <Description data={data} />
           </>
         )}
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };

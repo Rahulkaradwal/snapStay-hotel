@@ -1,7 +1,7 @@
 import { Spinner } from "flowbite-react";
 
 const buttonClass =
-  "min-w-40 rounded-sm bg-golden-800 p-2 font-semibold transition duration-500 hover:text-black";
+  "md:min-w-40   rounded-sm bg-golden-800 p-2 md:font-semibold transition-all duration-200 hover:text-black";
 
 type Props = {
   isProcessing: boolean;

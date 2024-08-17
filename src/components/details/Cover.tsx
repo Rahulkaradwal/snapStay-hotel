@@ -8,7 +8,7 @@ const Cover = ({ data }: Props) => {
     <section className="relative h-screen bg-default-detail-cover bg-cover">
       <div className="absolute inset-0 bg-gradient-to-t from-dark to-transparent"></div>
       <motion.div
-        className="absolute bottom-10 left-10 flex w-1/3 flex-col gap-4 rounded-md bg-ligthDark/85 p-10 px-16 text-white shadow-2xl shadow-golden-100"
+        className="absolute bottom-20 left-3 flex flex-col gap-4 rounded-md p-10 text-white shadow-2xl shadow-golden-100 md:bottom-10 md:left-10 md:w-1/3 md:bg-ligthDark/85 md:px-16"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
@@ -19,11 +19,11 @@ const Cover = ({ data }: Props) => {
         }}
       >
         <span className="text-golden-800">Suites</span>
-        <h1 className="w-fit bg-golden-800 p-3 text-xl font-semibold text-black shadow-2xl transition-all duration-200">
+        <h1 className="w-fit bg-golden-800 p-3 font-semibold text-black shadow-2xl transition-all duration-200 md:text-xl">
           {data.name}
         </h1>
-        <p>Price: ${data.regularPrice}</p>
-        <p className="text-xl">Applied Discount : {data.discount} $</p>
+        <p className="md:text-xl">Price: ${data.regularPrice}</p>
+        <p className="md:text-xl">Applied Discount : {data.discount} $</p>
 
         <div className="text-xl">Capacity: for {data.maxCapacity} guests</div>
       </motion.div>

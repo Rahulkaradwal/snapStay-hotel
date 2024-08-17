@@ -13,24 +13,16 @@ const container = {
 function DescriptionFooter() {
   return (
     <motion.div
-      className="bg-dark flex w-full justify-between border-b-2 border-golden-800 p-10 text-slate-50"
+      className="flex w-full justify-between border-b-2 border-golden-800 bg-dark p-2 text-slate-50 md:p-10"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.5 }}
       variants={container}
     >
-      <FooterItems icon={<CiStar />} title="Offers" link="/booking" />
-      <FooterItems icon={<FaGift />} title="Vouchers" link="/booking" />
-      <FooterItems
-        icon={<PiChefHatDuotone />}
-        title="Cuisines"
-        link="/booking"
-      />
-      <FooterItems
-        icon={<PiFlowerLotusLight />}
-        title="water & sauna world"
-        link="/booking"
-      />
+      <FooterItems icon={<CiStar />} title="Offers" />
+      <FooterItems icon={<FaGift />} title="Vouchers" />
+      <FooterItems icon={<PiChefHatDuotone />} title="Cuisines" />
+      <FooterItems icon={<PiFlowerLotusLight />} title="Sauna world" />
     </motion.div>
   );
 }

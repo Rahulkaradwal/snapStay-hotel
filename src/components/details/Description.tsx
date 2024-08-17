@@ -9,11 +9,10 @@ type Props = {
 };
 
 const Description = ({ data }: Props) => {
-  console.log("data in description", data);
   const { description } = data;
   return (
     <section className="relative bg-dark">
-      <div className="flex h-fit w-[70%] flex-col justify-start gap-20 p-20 text-slate-50">
+      <div className="flex h-fit flex-col justify-start gap-20 p-6 text-slate-50 md:w-[70%] md:p-20">
         <DescriptionHeader description={description} />
         <DescriptionIcons />
         <ImageGrid />

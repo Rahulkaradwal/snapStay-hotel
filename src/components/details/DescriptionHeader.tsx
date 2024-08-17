@@ -5,7 +5,7 @@ type Props = {
 function DescriptionHeader({ description }: Props) {
   return (
     <motion.div
-      className="pr-20"
+      className="md:pr-20"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.5 }}
