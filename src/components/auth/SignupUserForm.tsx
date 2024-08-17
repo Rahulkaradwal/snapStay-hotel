@@ -150,7 +150,7 @@ function SignupUserForm() {
 
         <button
           disabled={isLoading}
-          className="h-[2.6rem] rounded-sm border-[0.2px] border-gray-500 bg-ligthDark text-gray-500 transition-all duration-300 hover:text-slate-50 md:mt-4"
+          className="h-[2.6rem] rounded-sm border-[0.2px] border-gray-500 bg-golden-800 text-white transition-all duration-300 hover:text-black md:mt-4"
         >
           {isLoading ? <Spinner color="white" size="sm" /> : "Create Account"}
         </button>
