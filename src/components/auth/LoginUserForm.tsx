@@ -15,9 +15,8 @@ function LoginUserForm() {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const { login } = useLogin();
+  const { login, isPending } = useLogin();
   const { loginCtx } = useAuth();
   const time = Number(getCurrentTimePlus30Minutes());
 
@@ -25,9 +24,7 @@ function LoginUserForm() {
     e.preventDefault();
     if (!email || !password) return;
 
-    setIsLoading(true);
-    try {
-      await login(
+   login(
         { email, password },
         {
           onSuccess: (data: LoginResponse) => {
@@ -36,13 +33,10 @@ function LoginUserForm() {
             loginCtx(data.token, time);
             navigate("/");
 
-            setIsLoading(false);
           },
         },
       );
-    } finally {
-      setIsLoading(false);
-    }
+   
   };
 
   return (
@@ -83,11 +77,11 @@ function LoginUserForm() {
           className="rounded-sm border bg-ligthDark p-2"
         />
         <button
-          disabled={isLoading}
+          disabled={isPending}
           type="submit"
           className="my-4 rounded-sm bg-golden-500 p-2 text-slate-50 transition-all duration-300 hover:bg-golden-800 hover:text-black"
         >
-          {isLoading ? <Spinner color="white" size="sm" /> : "Login"}
+          {isPending ? <Spinner color="white" size="sm" /> : "Login"}
         </button>
       </form>
       <div className="text-md z-50 flex justify-between gap-4 text-slate-50">

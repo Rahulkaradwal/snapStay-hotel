@@ -27,7 +27,7 @@ export interface BookingData {
 const useBookWithoutPay = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: BookOnly, error } = useMutation<
+  const { mutate: BookOnly, error, isPending } = useMutation<
     BookingData,
     Error,
     WithoutPayBookingFormData
@@ -42,7 +42,7 @@ const useBookWithoutPay = () => {
     },
   });
 
-  return { BookOnly, error };
+  return { BookOnly, error, isPending };
 };
 
 export default useBookWithoutPay;

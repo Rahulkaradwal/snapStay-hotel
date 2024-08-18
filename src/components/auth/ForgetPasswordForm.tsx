@@ -10,30 +10,18 @@ const desktopScreen =
 const mobileScreen = "flex flex-col items-center  justify-center p-6";
 function ForgetPassword() {
   const [email, setEmail] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const { forgetPassword } = useForgetPassword();
+  const { forgetPassword, isPending } = useForgetPassword();
 
-  console.log(isLoading);
 
   const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (!email) return;
 
-    setIsLoading(true);
-    console.log(isLoading);
-    try {
-      await forgetPassword(email, {
-        onSuccess: () => {
-          setIsLoading(false);
-        },
-      });
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-      console.log(isLoading);
-    }
+
+       forgetPassword(email);
+   
+    
   };
 
   return (
@@ -65,11 +53,11 @@ function ForgetPassword() {
         />
 
         <button
-          disabled={isLoading}
+          disabled={isPending}
           type="submit"
           className="my-4 rounded-sm bg-golden-500 p-2 text-slate-50 transition-all duration-300 hover:bg-golden-800 hover:text-black"
         >
-          {isLoading ? <Spinner color="white" size="sm" /> : "Submit"}
+          {isPending ? <Spinner color="white" size="sm" /> : "Submit"}
         </button>
       </form>
       <div className="text-md text-slate-50">

@@ -3,7 +3,7 @@ import { BookingType } from "../types";
 import { getBookingApi } from "../apiBooking";
 
 function useGetBooking(id: string) {
-  const { isLoading, data, error } = useQuery<BookingType, Error>({
+  const { isPending : isLoading, data, error } = useQuery<BookingType, Error>({
     queryFn: ({ queryKey }) => getBookingApi(queryKey[1] as string),
     queryKey: ["bookingDetail", id],
   });

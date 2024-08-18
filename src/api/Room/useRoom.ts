@@ -6,7 +6,7 @@ import { CabinResponse } from "../types";
 function useRoom() {
   const { roomId } = useParams<{ roomId: string }>();
 
-  const { data, isLoading, error } = useQuery<CabinResponse, Error>({
+  const { data, isPending:isLoading, error } = useQuery<CabinResponse, Error>({
     queryKey: ["roomId", roomId],
     queryFn: () => {
       if (!roomId) {

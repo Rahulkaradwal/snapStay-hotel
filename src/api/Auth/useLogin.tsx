@@ -1,17 +1,27 @@
 import { useMutation } from "@tanstack/react-query";
 import { guestLogin, UserData } from "../apiAuth";
 import toast from "react-hot-toast";
-useMutation;
+import { LoginResponse } from "../types";
+
 
 function useLogin() {
-  const { mutate: login, error } = useMutation({
+  const {
+    mutate: login,
+    error,
+    isPending,
+  } = useMutation<LoginResponse, unknown, UserData>({
     mutationFn: (guestData: UserData) => guestLogin(guestData),
-    onError: (error) => {
-      toast.error(error.message);
+    onError: (error: unknown) => {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error("An unexpected error occurred");
+      }
     },
   });
 
-  return { login, error };
+  return { login, error, isPending }; // Renaming isMutating to isLoading
 }
+
 
 export default useLogin;

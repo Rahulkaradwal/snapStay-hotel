@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function useResetPassword() {
   const navigate = useNavigate();
-  const { mutate: resetPassword, error } = useMutation({
+  const { mutate: resetPassword, error, isPending } = useMutation({
     mutationFn: ({
       password,
       confirmPassword,
@@ -27,7 +27,7 @@ function useResetPassword() {
     },
   });
 
-  return { resetPassword, error };
+  return { resetPassword, error, isPending };
 }
 
 export default useResetPassword;

@@ -3,7 +3,6 @@ import { Form, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import InputDiv from "../../ui/InputDiv";
 import useSignup from "../../api/Auth/useSignup";
-import { useState } from "react";
 import { Spinner } from "flowbite-react";
 import toast from "react-hot-toast";
 import { ResponseSignup } from "../../api/types";
@@ -21,9 +20,8 @@ export interface IFormInput {
 }
 
 function SignupUserForm() {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const { signup } = useSignup();
+  const { signup, isPending } = useSignup();
 
   const {
     register,
@@ -33,16 +31,13 @@ function SignupUserForm() {
   } = useForm<IFormInput>();
 
   const onSubmit = async (data: IFormInput) => {
-    setIsLoading(true);
-    await signup(data, {
+     signup(data, {
       onSuccess: (signupData: ResponseSignup) => {
         toast.success(signupData.message);
-        setIsLoading(false);
         reset();
       },
       onError: (error) => {
         toast.error(error.message);
-        setIsLoading(false);
       },
     });
   };
@@ -149,10 +144,10 @@ function SignupUserForm() {
         </InputDiv>
 
         <button
-          disabled={isLoading}
+          disabled={isPending}
           className="h-[2.6rem] rounded-sm border-[0.2px] border-gray-500 bg-golden-800 text-white transition-all duration-300 hover:text-black md:mt-4"
         >
-          {isLoading ? <Spinner color="white" size="sm" /> : "Create Account"}
+          {isPending ? <Spinner color="white" size="sm" /> : "Create Account"}
         </button>
       </Form>
 
