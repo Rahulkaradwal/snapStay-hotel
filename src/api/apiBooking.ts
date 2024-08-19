@@ -140,3 +140,27 @@ export const getBookingApi = async (id: string): Promise<BookingType> => {
     }
   }
 };
+
+// Cancel Booking
+
+export const cancelBookingApi = async (id: string) => {
+  const token = getToken();
+  try {
+    const response = await axios.get(`${URL}/bookings/cancelBooking/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    if (axios.isAxiosError(error)) {
+      console.error("Axios error:", error.response?.data || error.message);
+      throw new Error(error.response?.data?.message || error.message);
+    } else {
+      console.error("Unknown error:", error);
+      throw new Error("An unknown error occurred");
+    }
+  }
+};

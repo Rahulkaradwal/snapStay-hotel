@@ -7,6 +7,7 @@ import { BookingData } from "../../api/types";
 import handleGenerateReceipt from "../../utils/generateReceipt";
 import useBookWithPayment from "../../api/Booking/useBookWithPayment";
 import { Spinner } from "flowbite-react";
+import useCancelBooking from "../../api/Booking/useCancelBooking";
 
 type Props = {
   status: string;
@@ -30,6 +31,7 @@ function BookingButtons({ bookingData, bookingId, status, isPaid }: Props) {
   } = bookingData;
   const { deleteBooking } = useDeleteBooking();
   const { checkout } = useCheckout();
+  const { cancelBooking, isPending } = useCancelBooking();
 
   const { isProcessing, BookWithPayment } = useBookWithPayment(cabinId);
 
@@ -51,14 +53,16 @@ function BookingButtons({ bookingData, bookingId, status, isPaid }: Props) {
           >
             Check-In
           </Link>
-          <Modal.Open modalName="delete">
-            <button className={SecondaryButton}>Cancel</button>
+          <Modal.Open modalName="cancel">
+            <button className={SecondaryButton} disabled={isPending}>
+              Cancel
+            </button>
           </Modal.Open>
-          <Modal.Window windowName="delete">
+          <Modal.Window windowName="cancel">
             <ConfirmDelete
               resourceName="booking"
-              actionName="Delete"
-              onConfirm={() => deleteBooking(bookingId)}
+              actionName="Confirm"
+              onConfirm={() => cancelBooking(bookingId)}
             />
           </Modal.Window>
         </>
@@ -140,9 +144,33 @@ function BookingButtons({ bookingData, bookingId, status, isPaid }: Props) {
     </>
   );
 
+  const cancelledContent = (
+    <>
+      <button disabled className={`${PrimaryButton} cursor-not-allowed`}>
+        {"Cancelled"}
+      </button>
+      <Modal.Open modalName="delete">
+        <button className={SecondaryButton}>Delete</button>
+      </Modal.Open>
+      <Modal.Window windowName="delete">
+        <ConfirmDelete
+          resourceName="booking"
+          actionName="Delete"
+          onConfirm={() => deleteBooking(bookingId)}
+        />
+      </Modal.Window>
+    </>
+  );
+
   return (
     <div className="flex gap-4">
-      <Modal>{isPaid ? paidContent : unpaidContent}</Modal>
+      <Modal>
+        {isPaid
+          ? paidContent
+          : status === "cancelled"
+            ? cancelledContent
+            : unpaidContent}
+      </Modal>
     </div>
   );
 }
