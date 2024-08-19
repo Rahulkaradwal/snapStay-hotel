@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 function useCheckin() {
   const queryClient = useQueryClient();
-  const { mutate: checkin, error } = useMutation({
+  const { mutate: checkin, error, isPending } = useMutation({
     mutationFn: (id: string) => checkinBookingApi(id),
     mutationKey: ["checkin"],
     onSuccess: () => {
@@ -16,7 +16,7 @@ function useCheckin() {
     },
   });
 
-  return { checkin, error };
+  return { checkin, error ,isPending};
 }
 
 export default useCheckin;

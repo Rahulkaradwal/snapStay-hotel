@@ -17,7 +17,7 @@ function BookingList() {
   }
 
   return (
-    <div className="h-fit bg-dark py-20">
+    <div className="h-fit  bg-dark py-20">
       {isLoading && (
         <div className="h-fit justify-center py-40 text-center text-2xl text-slate-50">
           <Spinner color="warning" size="xl" />

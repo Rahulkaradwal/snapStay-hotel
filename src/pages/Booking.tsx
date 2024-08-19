@@ -4,7 +4,7 @@ import Footer from "../ui/Footer";
 function Booking() {
   return (
     <>
-      <div className="h-screen overflow-hidden bg-ligthDark">
+      <div className="h-full  overflow-hidden bg-ligthDark">
         <BookingList />
       </div>
       <Footer />
