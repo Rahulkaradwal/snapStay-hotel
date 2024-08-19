@@ -17,6 +17,10 @@ type Props = {
 
 const PrimaryButton =
   "rounded-sm p-2 w-32 transition-all  md:text-sm font-semibold  md:font-bold duration-300 bg-golden-800 hover:text-black text-slate-100";
+
+const LinkButton =
+  "rounded-sm p-2 w-fit transition-all px-6  md:text-sm font-semibold  md:font-bold duration-300 bg-golden-800 hover:text-black text-slate-100";
+
 const SecondaryButton =
   "rounded-sm p-2 w-32 border transition-all md:text-sm duration-300 font-bold bg-slate-10 hover:text-black hover:bg-slate-50 text-slate-100";
 
@@ -34,7 +38,6 @@ function BookingButtons({ bookingData, bookingId, status, isPaid }: Props) {
   };
 
   const handlePayment = async () => {
-    console.log("handle payment clicked");
     await BookWithPayment();
   };
 
@@ -72,6 +75,10 @@ function BookingButtons({ bookingData, bookingId, status, isPaid }: Props) {
               onConfirm={() => handleCheckout(bookingId)}
             />
           </Modal.Window>
+          <Link className={`${LinkButton} `} to={`/check-in/${bookingId}`}>
+            Details
+          </Link>
+
           <Modal.Open modalName="cancel">
             <button className={SecondaryButton}>Cancel</button>
           </Modal.Open>
@@ -95,6 +102,19 @@ function BookingButtons({ bookingData, bookingId, status, isPaid }: Props) {
               resourceName="Receipt"
               actionName="Generate"
               onConfirm={() => handleGenerateReceipt(bookingData)}
+            />
+          </Modal.Window>
+          <Link className={`${LinkButton} `} to={`/check-in/${bookingId}`}>
+            Details
+          </Link>
+          <Modal.Open modalName="delete">
+            <button className={SecondaryButton}>Remove</button>
+          </Modal.Open>
+          <Modal.Window windowName="delete">
+            <ConfirmDelete
+              resourceName="booking"
+              actionName="Delete"
+              onConfirm={() => deleteBooking(bookingId)}
             />
           </Modal.Window>
         </>
