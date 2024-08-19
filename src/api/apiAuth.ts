@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { axiosInstance, URL } from "./api";
 import { IFormInput } from "../components/auth/SignupUserForm";
 import { LoginResponse, ResponseSignup } from "./types";
+import toast from "react-hot-toast";
 
 export type Guest = {
   firstName: string;
@@ -38,9 +39,8 @@ export const guestLogin = async (data: UserData): Promise<LoginResponse> => {
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw error.response?.data || error.message;
-    } else {
-      console.error("Unknown error:", error);
+      toast.error(error.response?.data.message);
+      // throw error.response?.data.message;
     }
     throw error;
   }

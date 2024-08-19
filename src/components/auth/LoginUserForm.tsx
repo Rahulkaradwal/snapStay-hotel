@@ -24,19 +24,17 @@ function LoginUserForm() {
     e.preventDefault();
     if (!email || !password) return;
 
-   login(
-        { email, password },
-        {
-          onSuccess: (data: LoginResponse) => {
-            localStorage.setItem("guestId", data.data.id.toString());
+    login(
+      { email, password },
+      {
+        onSuccess: (data: LoginResponse) => {
+          localStorage.setItem("guestId", data.data.id.toString());
 
-            loginCtx(data.token, time);
-            navigate("/");
-
-          },
+          loginCtx(data.token, time);
+          navigate("/");
         },
-      );
-   
+      },
+    );
   };
 
   return (
@@ -61,6 +59,7 @@ function LoginUserForm() {
         </label>
         <input
           id="email"
+          required
           onChange={(e) => setEmail(e.target.value)}
           type="email"
           placeholder="Email"
