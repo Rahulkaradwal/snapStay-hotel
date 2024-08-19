@@ -25,7 +25,7 @@ type Props = {
 };
 
 const DatePickerClass =
-  "flex  items-center justify-center gap-2 md:space-y-4 md:flex-row md:space-x-4 md:space-y-0  ";
+  "flex  items-center justify-center gap-2  md:flex-row md:space-x-4   ";
 
 const DateRangePicker = ({
   formValues,

@@ -125,7 +125,6 @@ const BookingForm = ({ data }: Props) => {
     const success = await BookWithoutPayment();
     setIsLoading(false);
     if (success) {
-      toast.success("Booking successful");
       setIsBooking("finished");
       navigate("/booking");
     }
