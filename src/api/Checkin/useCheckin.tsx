@@ -16,7 +16,11 @@ function useCheckin() {
     },
   });
 
+<<<<<<< HEAD
   return { checkin, error ,isPending};
+=======
+  return { checkin, error , isPending};
+>>>>>>> fixLoading
 }
 
 export default useCheckin;

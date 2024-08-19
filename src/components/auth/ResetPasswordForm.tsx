@@ -10,33 +10,21 @@ const mobileScreen = "flex flex-col items-center  justify-center p-6";
 function ForgetPassword() {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { token } = useParams();
 
-  const { resetPassword } = useResetPassword();
+  const { resetPassword , isPending } = useResetPassword();
 
   const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (!password || !confirmPassword || !token) return;
     if (password !== confirmPassword) return;
 
-    setIsLoading(true);
-    try {
-      await resetPassword(
+   
+  
+       resetPassword(
         { password, confirmPassword, token },
-        {
-          onSuccess: () => {
-            setIsLoading(false);
-          },
-          onError: () => {
-            setIsLoading(false);
-          },
-        },
+       
       );
-    } catch (error) {
-      console.error(error);
-      setIsLoading(false);
-    }
   };
 
   return (
@@ -74,11 +62,11 @@ function ForgetPassword() {
           className="my-4 w-80 rounded-sm border bg-ligthDark p-2"
         />
         <button
-          disabled={isLoading}
+          disabled={isPending}
           type="submit"
           className="my-4 rounded-sm bg-golden-500 p-2 text-slate-50 transition-all duration-300 hover:bg-golden-800 hover:text-black"
         >
-          {isLoading ? <Spinner color="white" size="sm" /> : "Reset Password"}
+          {isPending ? <Spinner color="white" size="sm" /> : "Reset Password"}
         </button>
       </form>
       <div className="text-md flex justify-between gap-4 text-slate-50">
