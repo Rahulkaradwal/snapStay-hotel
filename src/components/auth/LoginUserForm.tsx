@@ -8,8 +8,8 @@ import { Spinner } from "flowbite-react";
 import { LoginResponse } from "../../api/types";
 
 const desktopScreen =
-  "h-full md:absolute md:right-0 md:flex md:w-1/3 md:flex-col md:items-center md:justify-center md:p-10 md:pt-1";
-const mobileScreen = "flex flex-col items-center  justify-center p-6";
+  "h-full md:absolute md:right-0 md:flex md:w-1/3 md:flex-col md:items-center   md:justify-center md:p-10 md:pt-1";
+const mobileScreen = "flex z-10 flex-col items-center  justify-center p-6";
 
 function LoginUserForm() {
   const navigate = useNavigate();
@@ -43,15 +43,15 @@ function LoginUserForm() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.4 }}
       variants={{
-        hidden: { opacity: 0, x: -150 },
-        visible: { opacity: 1, x: 0 },
+        hidden: { opacity: 0, scale: 0.5 },
+        visible: { opacity: 1, scale: [0.8, 1.1, 1] },
       }}
     >
       <img className="w-60" src="/logo-no-background.svg" alt="logo" />
       <form
-        className="z-50 flex flex-col gap-4 pb-10 pt-20"
+        className="z-10 flex flex-col gap-4 pb-10 pt-20"
         onSubmit={submitHandler}
       >
         <label htmlFor="email" className="sr-only">

@@ -17,10 +17,10 @@ const FooterItems = ({ icon, title }: Props) => {
       variants={childVariant}
       className="flex flex-col items-center gap-4 rounded-md border border-golden-100 p-4 text-center text-slate-50 md:w-60"
     >
-      <span className="flex items-center justify-center rounded-full bg-golden-800 p-2 text-xs text-slate-50 md:h-16 md:text-3xl">
+      <span className="flex items-center justify-center rounded-full bg-golden-800 p-2 text-xs text-slate-50 md:h-16 md:w-16 md:text-3xl">
         {icon}
       </span>
-      <h1 className="md:text-md text-[0.50rem] font-semibold">{title}</h1>
+      <h1 className="text-[0.50rem] font-semibold md:text-lg">{title}</h1>
     </motion.div>
   );
 };

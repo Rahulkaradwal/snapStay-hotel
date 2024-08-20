@@ -18,6 +18,7 @@ import ForgetPassword from "./pages/ForgetPassword";
 import ResetPassword from "./pages/ResetPassword";
 import VerifyEmail from "./pages/VerifyEmail";
 import { verifyEmailLoader } from "./api/Auth/verifyEmailLoader";
+import NotFound from "./pages/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -68,24 +69,27 @@ const router = createBrowserRouter([
         element: <VerifyEmail />,
         loader: verifyEmailLoader,
       },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "forget-password",
+        element: <ForgetPassword />,
+      },
+      {
+        path: "reset-password/:token",
+        element: <ResetPassword />,
+      },
+      {
+        path: "signup",
+        element: <SignUp />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
+      },
     ],
-  },
-
-  {
-    path: "login",
-    element: <Login />,
-  },
-  {
-    path: "forget-password",
-    element: <ForgetPassword />,
-  },
-  {
-    path: "reset-password/:token",
-    element: <ResetPassword />,
-  },
-  {
-    path: "signup",
-    element: <SignUp />,
   },
 ]);
 

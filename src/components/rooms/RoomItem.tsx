@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import { CabinResponse } from "../../api/types";
 import { PiUsersThree } from "react-icons/pi";
+import { motion } from "framer-motion";
 
 type RoomItemProps = {
   room: CabinResponse;
@@ -10,7 +11,17 @@ type RoomItemProps = {
 function RoomItem({ room }: RoomItemProps) {
   const navigate = useNavigate();
   return (
-    <div className="min-w-80 md:w-fit">
+    <motion.div
+      className="min-w-80 md:w-fit"
+      // initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 0.4 }}
+      variants={{
+        hidden: { opacity: 0, scale: 0.5 },
+        visible: { opacity: 1, scale: [0.8, 1.1, 1] },
+      }}
+    >
       <div className="relative flex max-w-96 flex-col rounded-xl bg-ligthDark bg-clip-border text-slate-50 shadow-md md:w-96">
         <div className="bg-blue-gray-500 shadow-blue-gray-500/40 relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-clip-border text-white shadow-lg transition-all duration-300 hover:scale-105">
           <img
@@ -47,7 +58,7 @@ function RoomItem({ room }: RoomItemProps) {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

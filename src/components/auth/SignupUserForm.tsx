@@ -20,7 +20,6 @@ export interface IFormInput {
 }
 
 function SignupUserForm() {
-
   const { signup, isPending } = useSignup();
 
   const {
@@ -31,7 +30,7 @@ function SignupUserForm() {
   } = useForm<IFormInput>();
 
   const onSubmit = async (data: IFormInput) => {
-     signup(data, {
+    signup(data, {
       onSuccess: (signupData: ResponseSignup) => {
         toast.success(signupData.message);
         reset();
@@ -47,22 +46,22 @@ function SignupUserForm() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.4 }}
       variants={{
-        hidden: { opacity: 0, x: -150 },
-        visible: { opacity: 1, x: 0 },
+        hidden: { opacity: 0, scale: 0.5 },
+        visible: { opacity: 1, scale: [0.8, 1.1, 1] },
       }}
       className="flex h-fit flex-col items-center justify-center p-4 pt-20 md:h-full md:p-10"
     >
       <img
-        className="z-50 w-32 md:w-60"
+        className="z-20 w-32 md:w-60"
         src={"/logo-no-background.svg"}
         alt="logo"
       />
 
       <Form
         onSubmit={handleSubmit(onSubmit)}
-        className="z-50 mt-10 grid grid-cols-2 gap-6 md:gap-4"
+        className="z-20 mt-10 grid grid-cols-2 gap-6 md:gap-4"
       >
         <InputDiv htmlFor="firstName" errors={errors?.firstName?.message}>
           <input

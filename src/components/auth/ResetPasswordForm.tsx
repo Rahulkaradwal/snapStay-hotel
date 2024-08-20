@@ -12,19 +12,14 @@ function ForgetPassword() {
   const [password, setPassword] = useState<string>("");
   const { token } = useParams();
 
-  const { resetPassword , isPending } = useResetPassword();
+  const { resetPassword, isPending } = useResetPassword();
 
   const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (!password || !confirmPassword || !token) return;
     if (password !== confirmPassword) return;
 
-   
-  
-       resetPassword(
-        { password, confirmPassword, token },
-       
-      );
+    resetPassword({ password, confirmPassword, token });
   };
 
   return (
@@ -33,10 +28,10 @@ function ForgetPassword() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.4 }}
       variants={{
-        hidden: { opacity: 0, x: -150 },
-        visible: { opacity: 1, x: 0 },
+        hidden: { opacity: 0, scale: 0.5 },
+        visible: { opacity: 1, scale: [0.8, 1.1, 1] },
       }}
     >
       <img className="w-60" src="/logo-no-background.svg" alt="logo" />

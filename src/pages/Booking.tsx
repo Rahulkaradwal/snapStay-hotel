@@ -3,7 +3,7 @@ import BookingList from "../components/bookings/BookingList";
 function Booking() {
   return (
     <>
-      <div className="h-full overflow-hidden bg-ligthDark">
+      <div className="h-screen overflow-hidden overflow-y-scroll bg-ligthDark">
         <BookingList />
       </div>
     </>

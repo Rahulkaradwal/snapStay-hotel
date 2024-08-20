@@ -19,13 +19,13 @@ function BookingItem({ Booking }: Props) {
   return (
     <motion.div
       className="mx-4 mb-10 mt-10 gap-20 overflow-hidden bg-ligthDark p-2 align-top shadow-md md:mx-20 md:grid md:grid-cols-[2rem_1.75fr_1fr] md:p-12"
-      initial="hidden"
+      // initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.4 }}
       variants={{
-        hidden: { opacity: 0, x: -50 },
-        visible: { opacity: 1, x: 0 },
+        hidden: { opacity: 0, scale: 0.5 },
+        visible: { opacity: 1, scale: [0.8, 1.1, 1] },
       }}
     >
       <MdOutlineBedroomParent className="hidden text-golden-800 md:block md:text-4xl" />
