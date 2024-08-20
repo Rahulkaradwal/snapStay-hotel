@@ -1,24 +1,34 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React, { Suspense } from "react";
 import AppLayout from "./components/AppLayout";
-import Home from "./pages/Home";
-import Booking from "./pages/Booking";
-import Services from "./pages/Services";
-import ContactUs from "./pages/ContactUs";
-import Detail from "./pages/Detail";
-import Rooms from "./pages/Rooms";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
-import CheckIn from "./pages/CheckIn";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectRoute from "./components/ProtectRoute";
-import ForgetPassword from "./pages/ForgetPassword";
-import ResetPassword from "./pages/ResetPassword";
-import VerifyEmail from "./pages/VerifyEmail";
 import { verifyEmailLoader } from "./api/Auth/verifyEmailLoader";
-import NotFound from "./pages/NotFound";
+import { Spinner } from "flowbite-react";
+
+// Lazy load the page components
+const Home = React.lazy(() => import("./pages/Home"));
+const Booking = React.lazy(() => import("./pages/Booking"));
+const Services = React.lazy(() => import("./pages/Services"));
+const ContactUs = React.lazy(() => import("./pages/ContactUs"));
+const Detail = React.lazy(() => import("./pages/Detail"));
+const Rooms = React.lazy(() => import("./pages/Rooms"));
+const Login = React.lazy(() => import("./pages/Login"));
+const SignUp = React.lazy(() => import("./pages/SignUp"));
+const CheckIn = React.lazy(() => import("./pages/CheckIn"));
+const ForgetPassword = React.lazy(() => import("./pages/ForgetPassword"));
+const ResetPassword = React.lazy(() => import("./pages/ResetPassword"));
+const VerifyEmail = React.lazy(() => import("./pages/VerifyEmail"));
+const NotFound = React.lazy(() => import("./pages/NotFound"));
+
+const spinner = (
+  <div className="flex h-screen items-center justify-center bg-ligthDark">
+    <Spinner color="warning" size="xl" />
+  </div>
+);
 
 const router = createBrowserRouter([
   {
@@ -26,68 +36,114 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: (
+          <Suspense fallback={spinner}>
+            <Home />
+          </Suspense>
+        ),
       },
       {
         path: "/booking",
         element: (
           <ProtectRoute>
-            <Booking />
+            <Suspense fallback={spinner}>
+              <Booking />
+            </Suspense>
           </ProtectRoute>
         ),
       },
       {
         path: "/services",
-        element: <Services />,
+        element: (
+          <Suspense fallback={spinner}>
+            <Services />
+          </Suspense>
+        ),
       },
       {
         path: "/details/:roomId",
         element: (
           <ProtectRoute>
-            <Detail />
+            <Suspense fallback={spinner}>
+              <Detail />
+            </Suspense>
           </ProtectRoute>
         ),
       },
       {
         path: "/contact-us",
-        element: <ContactUs />,
+        element: (
+          <Suspense fallback={spinner}>
+            <ContactUs />
+          </Suspense>
+        ),
       },
       {
         path: "/rooms",
-        element: <Rooms />,
+        element: (
+          <Suspense fallback={spinner}>
+            <Rooms />
+          </Suspense>
+        ),
       },
       {
         path: "/check-in/:bookingId",
         element: (
           <ProtectRoute>
-            <CheckIn />
+            <Suspense fallback={spinner}>
+              <CheckIn />
+            </Suspense>
           </ProtectRoute>
         ),
       },
       {
         path: "/verify-email/:token",
-        element: <VerifyEmail />,
+        element: (
+          <Suspense fallback={spinner}>
+            <VerifyEmail />
+          </Suspense>
+        ),
         loader: verifyEmailLoader,
       },
       {
         path: "login",
-        element: <Login />,
+        element: (
+          <Suspense fallback={spinner}>
+            <Login />
+          </Suspense>
+        ),
       },
       {
         path: "forget-password",
-        element: <ForgetPassword />,
+        element: (
+          <Suspense fallback={spinner}>
+            <ForgetPassword />
+          </Suspense>
+        ),
       },
       {
         path: "reset-password/:token",
-        element: <ResetPassword />,
+        element: (
+          <Suspense fallback={spinner}>
+            <ResetPassword />
+          </Suspense>
+        ),
       },
       {
         path: "signup",
-        element: <SignUp />,
+        element: (
+          <Suspense fallback={spinner}>
+            <SignUp />
+          </Suspense>
+        ),
       },
       {
         path: "*",
-        element: <NotFound />,
+        element: (
+          <Suspense fallback={spinner}>
+            <NotFound />
+          </Suspense>
+        ),
       },
     ],
   },
