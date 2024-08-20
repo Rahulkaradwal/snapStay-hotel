@@ -57,7 +57,7 @@ export const guestSignup = async (
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw error.response?.data || error.message;
+      throw new Error(error.response?.data?.message || error.message);
     } else {
       console.error("Unknown error:", error);
     }

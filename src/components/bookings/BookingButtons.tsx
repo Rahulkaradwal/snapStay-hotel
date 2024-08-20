@@ -17,13 +17,13 @@ type Props = {
 };
 
 const PrimaryButton =
-  "rounded-sm p-2 w-32 transition-all  md:text-sm font-semibold  md:font-bold duration-300 bg-golden-800 hover:text-black text-slate-100";
+  "rounded-sm p-2 w-32 transition-all text-xs  md:text-sm font-semibold  md:font-bold duration-300 bg-golden-800 hover:text-black text-slate-100";
 
 const LinkButton =
-  "rounded-sm p-2 w-fit transition-all px-6  md:text-sm font-semibold  md:font-bold duration-300 bg-golden-800 hover:text-black text-slate-100";
+  "rounded-sm p-2 w-fit transition-all px-6 text-center  text-xs   md:text-sm font-semibold  md:font-bold duration-300 bg-golden-800 hover:text-black text-slate-100";
 
 const SecondaryButton =
-  "rounded-sm p-2 w-32 border transition-all md:text-sm duration-300 font-bold bg-slate-10 hover:text-black hover:bg-slate-50 text-slate-100";
+  "rounded-sm p-2 w-32 border transition-all text-xs md:text-sm duration-300 font-bold bg-slate-10 hover:text-black hover:bg-slate-50 text-slate-100";
 
 function BookingButtons({ bookingData, bookingId, status, isPaid }: Props) {
   const {

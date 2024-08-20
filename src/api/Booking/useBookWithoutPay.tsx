@@ -27,14 +27,17 @@ export interface BookingData {
 const useBookWithoutPay = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: BookOnly, error, isPending } = useMutation<
-    BookingData,
-    Error,
-    WithoutPayBookingFormData
-  >({
+  const {
+    mutate: BookOnly,
+    error,
+    isPending,
+  } = useMutation<BookingData, Error, WithoutPayBookingFormData>({
     mutationFn: (bookingData: WithoutPayBookingFormData) =>
       WithoutPayApi(bookingData),
     onSuccess: () => {
+      toast.success(
+        "Booking Confirmed! You will receive an email with more details shortly.",
+      );
       queryClient.invalidateQueries({ queryKey: ["bookings"] });
     },
     onError: (error: Error) => {

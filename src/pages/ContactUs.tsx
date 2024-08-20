@@ -5,7 +5,7 @@ function ContactUs() {
     <>
       <section className="flex h-screen justify-center bg-auth-cover bg-cover pt-20 align-middle">
         <motion.div className="absolute inset-0 bg-gradient-to-b from-dark to-transparent"></motion.div>
-        <div className="z-50 mt-20 flex flex-col gap-12 text-center text-2xl text-slate-50">
+        <div className="z-10 mt-20 flex flex-col gap-12 text-center text-2xl text-slate-50">
           <motion.p
             className="-rotate-6 font-serif text-2xl sm:text-xl md:text-7xl"
             initial="hidden"
@@ -44,7 +44,7 @@ function ContactUs() {
               hola
             </motion.p>
           </div>
-          <p className="text-xl text-slate-50 md:text-2xl">
+          <p className="px-6 text-sm text-slate-50 sm:text-xl md:text-2xl">
             Got a question? Send us a message and we'll get back to you!
           </p>
           <motion.div
@@ -57,9 +57,14 @@ function ContactUs() {
               visible: { opacity: 1, y: 0 },
             }}
           >
-            <span className="hover:text-slatduration-300 cursor-pointer rounded-sm bg-golden-800 p-4 text-lg font-bold text-black transition-all duration-300 hover:text-slate-50 md:text-xl">
+            <button
+              onClick={() =>
+                (window.location.href = "mailto:rahulkaradwal.dev@gmail.com")
+              }
+              className="hover:text-slatduration-300 cursor-pointer rounded-sm bg-golden-800 p-2 text-sm font-bold text-black transition-all duration-300 hover:text-slate-50 md:text-xl"
+            >
               Write us a message
-            </span>
+            </button>
           </motion.div>
         </div>
       </section>

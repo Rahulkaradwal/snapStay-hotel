@@ -81,7 +81,7 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
 
       {/* mobile menu modal */}
       {!isAboveScreen && isMenuToggled && (
-        <div className="fixed inset-0 z-40 h-screen w-screen">
+        <div className="fixed inset-0 z-50 h-screen w-screen">
           {/* overlay */}
           <div className="absolute inset-0 bg-black opacity-80"></div>
           {/* menu content */}

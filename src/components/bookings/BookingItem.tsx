@@ -35,10 +35,10 @@ function BookingItem({ Booking }: Props) {
           <h1 className="col-span-10 text-lg font-semibold transition-all duration-300 hover:text-golden-800 sm:text-xl md:text-2xl">
             {cabinName}
           </h1>
-          <span className="content-center rounded-sm bg-golden-800 text-center text-xs uppercase text-slate-100 sm:text-sm md:text-sm">
+          <span className="content-center rounded-sm bg-golden-800 p-1 text-center text-[0.5rem] uppercase text-slate-100 sm:text-sm md:text-sm">
             {status}
           </span>
-          <span className="md:text-md content-center rounded-sm border border-golden-800 text-center text-xs text-slate-100 sm:text-sm">
+          <span className="md:text-md content-center rounded-sm border border-golden-800 p-1 text-center text-[0.5rem] text-slate-100 sm:text-sm">
             Price : ${totalPrice}
           </span>
         </div>
