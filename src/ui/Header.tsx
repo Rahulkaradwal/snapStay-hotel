@@ -5,6 +5,8 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { IoLogOut } from "react-icons/io5";
 import { useAuth } from "../context/AuthContext";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 type HeaderProps = {
   isTopOfPage: boolean;
@@ -26,7 +28,12 @@ const Header = ({ isTopOfPage }: HeaderProps) => {
       <div
         className={`${flexClass} flex justify-between ${headerBackground} fixed top-0 z-50 w-screen p-2 px-4 text-slate-100 md:w-full md:px-20`}
       >
-        <img src={logo} alt="logo" className="w-16 md:w-28" />
+        <LazyLoadImage
+          src={logo}
+          alt="logo"
+          className="w-16 md:w-28"
+          effect="blur"
+        />
         <div className="pointer-events-none absolute inset-0 drop-shadow-lg"></div>
         {isAboveScreen ? (
           <div className={`${flexClass} relative z-10 gap-16 text-xl`}>

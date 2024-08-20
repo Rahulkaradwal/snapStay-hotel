@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const container = {
   hidden: {},
@@ -24,28 +26,28 @@ function ImageGrid() {
         variants={container}
       >
         <motion.div variants={childVariant} className="row-span-2 h-full">
-          <img
+          <LazyLoadImage
             className="h-full w-full object-cover"
             src="/rooms/asthetic-room.jpg"
             alt="img"
           />
         </motion.div>
         <motion.div variants={childVariant} className="h-56">
-          <img
+          <LazyLoadImage
             className="h-full w-full object-cover"
             src="/rooms/lobby-sofa.jpg"
             alt="img"
           />
         </motion.div>
         <motion.div variants={childVariant} className="h-56">
-          <img
+          <LazyLoadImage
             className="h-full w-full object-cover"
             src="/rooms/beachview.jpg"
             alt="img"
           />
         </motion.div>
         <motion.div variants={childVariant} className="col-span-2 h-56">
-          <img
+          <LazyLoadImage
             className="h-full w-full object-cover"
             src="/rooms/outdoor.jpg"
             alt="img"

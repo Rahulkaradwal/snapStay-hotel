@@ -1,3 +1,5 @@
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 function Details() {
   return (
     <div className="mt-10 flex h-screen flex-col gap-6 p-4">
@@ -14,10 +16,11 @@ function Details() {
       <span className="mt-10 text-golden-800">Rooms | Suites | Chalets</span>
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900"></div>
-        <img
+        <LazyLoadImage
           className="h-[23rem] w-[100%] object-cover"
           src="/rooms/asthetic-room.jpg"
           alt="room-cover"
+          effect="blur"
         />
       </div>
     </div>

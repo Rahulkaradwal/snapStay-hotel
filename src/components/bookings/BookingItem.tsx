@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { MdOutlineBedroomParent } from "react-icons/md";
 import BookingButtons from "./BookingButtons";
 import { BookingData } from "../../api/types";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 type Props = {
   Booking: BookingData;
@@ -51,10 +53,11 @@ function BookingItem({ Booking }: Props) {
         />
       </div>
       <div className="max-h-56 min-h-40 min-w-40 max-w-96 pt-4 sm:pt-0 md:pt-0">
-        <img
+        <LazyLoadImage
           className="h-full w-full cursor-pointer object-cover transition-all duration-500 hover:scale-105"
           src={image}
           alt={cabinName}
+          effect="blur"
         />
       </div>
     </motion.div>

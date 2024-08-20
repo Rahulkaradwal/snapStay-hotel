@@ -4,6 +4,9 @@ import {
   MdOutlineKeyboardDoubleArrowRight,
 } from "react-icons/md";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 const desktopScreen =
   "md:mb-10 md:grid md:grid-cols-[2rem_1.75fr_1fr] md:gap-20 md:p-12 md:align-top";
 
@@ -45,9 +48,11 @@ const Item = ({ title, description, image }: Props) => {
         </Link>
       </div>
       <div className="h-52 md:max-h-96 md:min-h-40 md:min-w-40 md:max-w-96">
-        <img
+        <LazyLoadImage
           className="h-full w-full cursor-pointer rounded-md object-cover transition-all duration-500 hover:scale-105"
           src={image}
+          alt={title}
+          effect="blur"
         />
       </div>
     </motion.div>

@@ -1,4 +1,6 @@
 import { FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Footer = () => {
   const socialIcons =
@@ -8,10 +10,11 @@ const Footer = () => {
   return (
     <section className="flex items-start justify-between bg-zinc-900 p-4 text-golden-800 md:p-8">
       <div className="mx-2 hidden flex-col items-center gap-4 p-4 sm:flex md:flex">
-        <img
+        <LazyLoadImage
           className="w-14 md:w-36"
           src={"/logo-no-background.svg"}
           alt="logo"
+          effect="blur"
         />
         <div className="flex gap-4">
           <FaGithub className={socialIcons} />

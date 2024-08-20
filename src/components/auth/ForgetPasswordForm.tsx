@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import { Spinner } from "flowbite-react";
 import useForgetPassword from "../../api/Auth/useForgetPassword";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const desktopScreen =
   "h-full md:absolute md:right-0 md:flex md:w-1/3 md:flex-col md:items-center md:justify-center md:p-10 md:pt-1";
@@ -32,7 +34,12 @@ function ForgetPassword() {
         visible: { opacity: 1, scale: [0.8, 1.1, 1] },
       }}
     >
-      <img className="w-60" src="/logo-no-background.svg" alt="logo" />
+      <LazyLoadImage
+        className="w-60"
+        src="/logo-no-background.svg"
+        alt="logo"
+        effect="blur"
+      />
       <form
         className="flex flex-col gap-4 pb-10 pt-20"
         onSubmit={submitHandler}

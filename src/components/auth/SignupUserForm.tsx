@@ -6,6 +6,8 @@ import useSignup from "../../api/Auth/useSignup";
 import { Spinner } from "flowbite-react";
 import toast from "react-hot-toast";
 import { ResponseSignup } from "../../api/types";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const inputClass = "md:my-4 md:w-80 md:rounded-sm md:border bg-ligthDark p-2";
 
@@ -53,10 +55,11 @@ function SignupUserForm() {
       }}
       className="flex h-fit flex-col items-center justify-center p-4 pt-20 md:h-full md:p-10"
     >
-      <img
+      <LazyLoadImage
         className="z-20 w-32 md:w-60"
         src={"/logo-no-background.svg"}
         alt="logo"
+        effect="blur"
       />
 
       <Form

@@ -2,6 +2,8 @@ import { Carousel as FlowbiteCarousel } from "flowbite-react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 type Props = {
   images: string[];
@@ -21,10 +23,11 @@ const Carousel = (props: Props) => {
       >
         {props.images.map((image, index) => (
           <div className="relative h-screen" key={index}>
-            <img
+            <LazyLoadImage
               className="h-full w-full object-cover"
               src={image}
               alt={`Slide ${index + 1}`}
+              effect="blur"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-dark to-transparent"></div>
           </div>

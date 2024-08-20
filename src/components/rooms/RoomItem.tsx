@@ -4,6 +4,9 @@ import { CabinResponse } from "../../api/types";
 import { PiUsersThree } from "react-icons/pi";
 import { motion } from "framer-motion";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 type RoomItemProps = {
   room: CabinResponse;
 };
@@ -24,10 +27,11 @@ function RoomItem({ room }: RoomItemProps) {
     >
       <div className="relative flex max-w-96 flex-col rounded-xl bg-ligthDark bg-clip-border text-slate-50 shadow-md md:w-96">
         <div className="bg-blue-gray-500 shadow-blue-gray-500/40 relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-clip-border text-white shadow-lg transition-all duration-300 hover:scale-105">
-          <img
+          <LazyLoadImage
             className="h-full w-full object-cover"
             src={room.image}
             alt="room cover"
+            effect="blur"
           />
         </div>
         <div className="p-6">
