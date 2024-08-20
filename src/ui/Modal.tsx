@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React, { cloneElement, ReactNode, ReactElement } from "react";
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
@@ -65,7 +66,17 @@ const Window = ({ windowName, children }: WindowProps) => {
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden">
       <div className="bg-lightDark/50 absolute inset-0 backdrop-blur-md"></div>
-      <div className="relative z-10 m-10 w-screen rounded-md sm:w-screen md:w-fit md:p-16">
+      <motion.div
+        className="relative z-10 m-10 w-screen rounded-md sm:w-screen md:w-fit md:p-16"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.75 }}
+        transition={{ duration: 0.5 }}
+        variants={{
+          hidden: { opacity: 0, y: 50 },
+          visible: { opacity: 1, y: 0 },
+        }}
+      >
         <HiXMark
           className="absolute right-7 top-5 w-9 translate-x-3 rounded-sm text-5xl text-slate-50 hover:cursor-pointer hover:text-dark"
           onClick={close}
@@ -76,7 +87,7 @@ const Window = ({ windowName, children }: WindowProps) => {
             onCloseModal: close,
           })}
         </div>
-      </div>
+      </motion.div>
     </div>,
     document.body,
   );
