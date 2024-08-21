@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import useBookWithPayment from "../../api/Booking/useBookWithPayment";
 import useBookWithoutPayment from "../../api/Booking/useBookWithoutPayment";
 import { isDateOverlap } from "../../utils/checkAvailability";
+import { checkPastDates } from "../../utils/checkPastDates";
 
 type Props = {
   data: CabinResponse;
@@ -52,6 +53,8 @@ const BookingForm = ({ data }: Props) => {
   }, [formValues, data.regularPrice]);
 
   useEffect(() => {
+    // Set the time to midnight
+
     if (
       !formValues.startDate ||
       !formValues.endDate ||
@@ -121,6 +124,17 @@ const BookingForm = ({ data }: Props) => {
       );
       return;
     }
+
+    if (
+      checkPastDates(new Date(formValues.startDate)) ||
+      checkPastDates(new Date(formValues.endDate))
+    ) {
+      toast.error(
+        "Cannot proceed with booking. The selected dates are in the past.",
+      );
+      return;
+    }
+
     setIsLoading(true);
     const success = await BookWithoutPayment();
     setIsLoading(false);
