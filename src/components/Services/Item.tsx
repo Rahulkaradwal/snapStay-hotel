@@ -52,7 +52,6 @@ const Item = ({ title, description, image }: Props) => {
           className="h-full w-full cursor-pointer rounded-md object-cover transition-all duration-500 hover:scale-105"
           src={image}
           alt={title}
-          effect="blur"
         />
       </div>
     </motion.div>
