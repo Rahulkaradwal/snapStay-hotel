@@ -27,7 +27,7 @@ const Carousel = (props: Props) => {
               className="h-full w-full object-cover"
               src={image}
               alt={`Slide ${index + 1}`}
-              effect="blur"
+              // effect="blur"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-dark to-transparent"></div>
           </div>
