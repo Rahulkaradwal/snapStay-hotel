@@ -126,8 +126,8 @@ const BookingForm = ({ data }: Props) => {
     }
 
     if (
-      checkPastDates(new Date(formValues.startDate)) ||
-      checkPastDates(new Date(formValues.endDate))
+      checkPastDates(formValues.startDate) ||
+      checkPastDates(formValues.endDate)
     ) {
       toast.error(
         "Cannot proceed with booking. The selected dates are in the past.",
@@ -140,7 +140,11 @@ const BookingForm = ({ data }: Props) => {
     setIsLoading(false);
     if (success) {
       setIsBooking("finished");
-      navigate("/booking");
+      toast.success("Booking successful. Redirecting...");
+
+      setTimeout(() => {
+        navigate("/booking");
+      }, 2000);
     }
   };
 
