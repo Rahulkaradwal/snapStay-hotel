@@ -22,8 +22,11 @@ const Cover = ({ data }: Props) => {
         <h1 className="w-fit bg-golden-800 p-3 font-semibold text-black shadow-2xl transition-all duration-200 md:text-xl">
           {data.name}
         </h1>
-        <p className="md:text-xl">Price: ${data.regularPrice}</p>
+        <p className="md:text-xl">
+          Regular Price: ${data.regularPrice + data.discount}
+        </p>
         <p className="md:text-xl">Applied Discount : {data.discount} $</p>
+        <p className="md:text-xl"> Total Price: ${data.regularPrice}</p>
 
         <div className="text-xl">Capacity: for {data.maxCapacity} guests</div>
       </motion.div>

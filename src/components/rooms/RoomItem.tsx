@@ -39,12 +39,21 @@ function RoomItem({ room }: RoomItemProps) {
             {room.name}
           </h5>
           <div className="mb-3 flex items-center justify-between gap-2">
-            <span className="pb-2">$ {room.regularPrice}</span>
+            {room.discount > 0 ? (
+              <>
+                <span className="text-red-600 line-through">
+                  $ {room.regularPrice + room.discount}
+                </span>
+                <span className="text-green-500">$ {room.regularPrice}</span>
+              </>
+            ) : (
+              <span>$ {room.regularPrice}</span>
+            )}
+            {room.discount > 0 && <span>Discount: {room.discount}$</span>}
             <span className="flex items-center gap-2">
               <PiUsersThree className="text-md text-golden-800" />{" "}
               {room.maxCapacity} People
             </span>
-            <span>Discount: {room.discount} $</span>
           </div>
           <p className="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
             {room.description.split(" ").slice(0, 20).join(" ") +
