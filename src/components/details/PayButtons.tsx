@@ -13,9 +13,9 @@ type Props = {
 };
 
 const PayButtons = ({
-  isProcessing,
+  // isProcessing,
   handleBooking,
-  handlePaying,
+  // handlePaying,
   isLoading,
   disabled,
 }: Props) => {
@@ -29,14 +29,14 @@ const PayButtons = ({
       >
         {isLoading ? <Spinner color="white" size="sm" /> : "Book & Pay Later"}
       </button>
-      <button
+      {/* <button
         disabled={disabled}
         type="button"
         onClick={handlePaying}
         className={`${buttonClass} ${disabled ? "cursor-not-allowed" : ""}`}
       >
         {isProcessing ? <Spinner color="white" size="sm" /> : "Book & Pay Now"}
-      </button>
+      </button> */}
     </div>
   );
 };
