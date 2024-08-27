@@ -92,7 +92,7 @@ function RoomList() {
 
       {!isLoading && !error && availableCabins.length > 0 && (
         // <div className="m-2 flex flex-col gap-4 p-4 md:mt-5 md:grid md:h-fit md:grid-cols-3 md:justify-between md:gap-14 md:p-10">
-        <div className="px-auto m-2 mt-5 flex flex-wrap items-center justify-center gap-14 md:justify-between md:p-10">
+        <div className="px-auto col-span-1 m-2 mt-5 grid items-center justify-center gap-14 sm:grid-cols-2 md:grid-cols-3 md:justify-between md:p-10">
           {availableCabins.map((room) => (
             <RoomItem key={room._id} room={room} />
           ))}
