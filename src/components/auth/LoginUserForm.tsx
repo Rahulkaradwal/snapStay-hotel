@@ -51,6 +51,15 @@ function LoginUserForm() {
         visible: { opacity: 1, scale: [0.8, 1.1, 1] },
       }}
     >
+      <div className="absolute bottom-10 rounded-md bg-ligthDark p-4 text-sm">
+        <p className="text-md text-slate-50">
+          Login Credentials : user@gmail.com, user@123
+        </p>
+        <p className="text-md text-slate-50">
+          Credit Card: 4242 4242 4242 4242
+        </p>
+        <p className="text-md text-slate-50">PIN: 5555</p>
+      </div>
       <LazyLoadImage
         className="w-60"
         src="/logo-no-background.svg"
